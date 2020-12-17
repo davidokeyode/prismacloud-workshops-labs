@@ -2,7 +2,7 @@
 
 Welcome to the Prisma Cloud Azure workshop! Prisma™ Cloud is a cloud security posture management (CSPM) and cloud workload protection platform (CWPP) solution. It provides comprehensive visibility and threat detection across your organization’s hybrid, multi-cloud environment (Azure, AWS, GCP, Alibaba, Oracle Cloud, Kubernetes). 
 
-![readme-prisma](/images/readme-prisma.png)
+![readme-prisma](./images/readme-prisma.png)
 
 This workshop was created as a walkthrough for an in person or virtual workshop, however you may feel free to run through at your own pace.
 ### Pre-requisites
