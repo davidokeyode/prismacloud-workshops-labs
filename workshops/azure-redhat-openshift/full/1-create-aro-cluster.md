@@ -116,12 +116,12 @@ The subnet is created with a service endpoint connection to Azure Container Regi
 
 * In Azure CloudShell, click on the "Upload/Download files" icon then click on "Upload" 
 
-![Cloud Shell Pull Secret Upload](../img/1-uploaded-file.png)
+![Verify Uploaded Pull Secret](../img/1-upload-pull-secret.png)
 
 * Select the pullsecret to upload
 * Confirm upload with the "ls" command
 
-![Verify Uploaded Pull Secret](../img/1-upload-pull-secret.png)
+![Cloud Shell Pull Secret Upload](../img/1-uploaded-file.png)
 
 
 ## Create the ARO cluster
