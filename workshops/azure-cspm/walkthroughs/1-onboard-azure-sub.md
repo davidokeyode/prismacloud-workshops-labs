@@ -76,6 +76,7 @@ In the previous module, you created the accounts that you need to complete the w
    location=uksouth 
    
    # enable network watcher for the location
+   az group create -g NetworkWatcherRG -l $location
    az network watcher configure -g NetworkWatcherRG  -l $location --enabled true 
 
    ```

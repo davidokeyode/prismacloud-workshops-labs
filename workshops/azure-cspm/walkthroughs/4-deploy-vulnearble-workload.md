@@ -14,7 +14,7 @@ Author: David Okeyode
 2. In **`Azure Cloud Shell`**, run the following commands to download and extract the vulnerable templates:
    ```
       # Download the templates from GitHub
-      wget https://github.com/davidokeyode/azure-prismacloud-workshop/raw/main/azure-vunlerable-terraform.zip
+      wget https://github.com/davidokeyode/prismacloud-workshops-labs/raw/main/workshops/azure-cspm/azure-vunlerable-terraform.zip
       
       # Extract the templates
       unzip azure-vunlerable-terraform.zip
