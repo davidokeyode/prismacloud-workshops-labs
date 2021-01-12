@@ -5,6 +5,7 @@ Welcome to the Prisma Cloud Azure workshop! Prisma™ Cloud is a cloud security 
 ![readme-prisma](./images/readme-prisma.png)
 
 This workshop was created as a walkthrough for an in person or virtual workshop, however you may feel free to run through at your own pace.
+
 ### Pre-requisites
 
 * An Azure Subscription

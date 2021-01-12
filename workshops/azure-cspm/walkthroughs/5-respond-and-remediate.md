@@ -30,6 +30,24 @@ Author: David Okeyode
 
 4. In the left hand menu, click on **`Policies`**. In the filter pane, select only **`Azure`** for the **`CLOUD TYPE`** filter. Review the following columns of the built-in policies
    * **Policy Type**:
+      * Config: Based on cloud resource misconfigurations. They could be aligned with security best practices or compliance frameworks. Examples are misconfigured cloud database or storage services.
+      * Audit event: Based on suspicious user activities. 
+      * Network: Based on suspicious network communications. For example, direct traffic from internet IPs or Suspicious IPs to known database server ports OR traffic patterns that matches crypto-mining or Cache DDoS attacks.
+      * Anomaly: Based on external threat intelligence contextualizations and pre-built anomaly ML detections
+
+   * **Severity**:
+      * High
+      * Medium
+      * Low
+   * **Category**:
+      * Risk
+      * Incident
+   * **Class**: Behavioral, Misconfiguration, Privileged Activity Monitoring
+   * **Status**: Enabled or Disabled
+   * **Remediable**: Auto-remediation is available for alerts based on the policy
+
+5. Investigate configuration, audit and network incidents
+   * **Policy Type**:
       * Config
       * Network
       * Anomaly
@@ -38,7 +56,9 @@ Author: David Okeyode
       * High
       * Medium
       * Low
-   * **Category**: Risk, Incident
+   * **Category**:
+      * Risk
+      * Incident
    * **Class**: Behavioral, Misconfiguration, Privileged Activity Monitoring
    * **Status**: Enabled or Disabled
    * **Remediable**: Auto-remediation is available for alerts based on the policy
