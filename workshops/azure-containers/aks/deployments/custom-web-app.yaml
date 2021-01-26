@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: custom-web-app
+spec:
+  selector:
+    matchLabels:
+      app: custom-web-app
+  template:
+    metadata:
+      labels:
+        app: custom-web-app # the label for the pods and the deployments
+    spec:
+      containers:
+      - name: custom-web-app
+        image: vulnerables/web-dvwa
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80 # the application listens to this port
+        resources:
+          requests: # minimum resources required
+            cpu: 250m
+            memory: 64Mi
+          limits: # maximum resources allocated
+            cpu: 500m
+            memory: 512Mi
