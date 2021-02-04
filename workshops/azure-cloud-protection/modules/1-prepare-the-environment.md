@@ -24,7 +24,7 @@ azlab-sql-[uniqestring] | SQL server | To be using for the sample database
 azlab-as | SQL database | Sample database based on AdventureWorks template
 azlab-kv-[uniqestring] | Key vault | Demonstrating Key Vault related recommendations and security alerts
 
-<images src="../images/1-lab-environment.png">
+![lab-environment](../images/1-lab-environment.png)
 
 ### Deploy Workshop Resources Using an ARM Template
 1. Click on the **Deploy to Azure** button below:
