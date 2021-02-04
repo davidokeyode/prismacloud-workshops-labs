@@ -24,12 +24,12 @@ azlab-sql-[uniqestring] | SQL server | To be using for the sample database
 azlab-as | SQL database | Sample database based on AdventureWorks template
 azlab-kv-[uniqestring] | Key vault | Demonstrating Key Vault related recommendations and security alerts
 
-<img src="../img/1-lab-environment.png?raw=true">
+<images src="../images/1-lab-environment.png?raw=true">
 
 ### Deploy Workshop Resources Using an ARM Template
 1. Click on the **Deploy to Azure** button below:
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fdavidokeyode%2Fprismacloud-workshops-labs%2Fmain%2Fworkshops%2Fazure-cloud-workload-protection%2Ftemplate%2Fazlabtemplatedeploy.json" target="_blank"><img src="https://aka.ms/deploytoazurebutton"/></a>
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fdavidokeyode%2Fprismacloud-workshops-labs%2Fmain%2Fworkshops%2Fazure-cloud-workload-protection%2Ftemplate%2Fazlabtemplatedeploy.json" target="_blank"><images src="https://aka.ms/deploytoazurebutton"/></a>
 
 2.	You will be redirected to Azure Portal, the custom deployment page where you should specify mandatory fields for deployment. Configure the following settings:
 * **Subscription**: Select the Azure subscription that you want to deploy the resources into
@@ -41,20 +41,20 @@ azlab-kv-[uniqestring] | Key vault | Demonstrating Key Vault related recommendat
 * **Resource Tags**: Leave the default value
 * Click **Review and Create**
 <br>
-<img src="../img/1-template-parameter.png?raw=true">
+<images src="../images/1-template-parameter.png?raw=true">
 
 3. After the validation passed, click on **Create**
 <br>
-<img src="../img/1-template-validation.png?raw=true">
+<images src="../images/1-template-validation.png?raw=true">
 
 > The *deployment is in progress* page continues to update and shows the resources as they deployed.  
 > Be aware than an additional resource group will be created automatically for Kubernetes resources named as "azlab-aks".<br>
 
-<img src="../img/1-template-deployment-progress?raw=true">
+<images src="../images/1-template-deployment-progress?raw=true">
 
 3. When the deployment is complete, you should see the view below. You can click on **Go to resource group** to view the deployed resources.
 <br>
-<img src="../img/1-template-deployment-complete?raw=true">
+<images src="../images/1-template-deployment-complete?raw=true">
 
 ## Next steps
 
