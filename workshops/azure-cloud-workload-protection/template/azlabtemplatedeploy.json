@@ -34,8 +34,6 @@
         }
     },
     "variables": {
-        "workspaceName": "[toLower(concat('azlab-la-',uniqueString(subscription().subscriptionId)))]",
-        "workspaceSKU": "PerGB2018",
         "vmNameWindows": "azlab-win",
         "vmNameLinux": "azlab-linux",
         "vmSize": "Standard_B1ms",
