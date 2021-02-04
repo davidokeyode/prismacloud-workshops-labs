@@ -24,7 +24,7 @@ azlab-sql-[uniqestring] | SQL server | To be using for the sample database
 azlab-as | SQL database | Sample database based on AdventureWorks template
 azlab-kv-[uniqestring] | Key vault | Demonstrating Key Vault related recommendations and security alerts
 
-<images src="../images/1-lab-environment.png?raw=true">
+![1-lab-environment](../images/1-lab-environment.png)
 
 ### Deploy Workshop Resources Using an ARM Template
 1. Click on the **Deploy to Azure** button below:
@@ -41,24 +41,23 @@ azlab-kv-[uniqestring] | Key vault | Demonstrating Key Vault related recommendat
 * **Resource Tags**: Leave the default value
 * Click **Review and Create**
 <br>
-<images src="../images/1-template-parameter.png?raw=true">
+![template-parameter](../images/1-template-parameter.png)
 
 3. After the validation passed, click on **Create**
 <br>
-<images src="../images/1-template-validation.png?raw=true">
+![1-template-validation](../images/1-template-validation.png)
 
 > The *deployment is in progress* page continues to update and shows the resources as they deployed.  
 > Be aware than an additional resource group will be created automatically for Kubernetes resources named as "azlab-aks".<br>
-
-<images src="../images/1-template-deployment-progress?raw=true">
+![1-template-deployment-progress](../images/1-template-deployment-progress.png)
 
 3. When the deployment is complete, you should see the view below. You can click on **Go to resource group** to view the deployed resources.
 <br>
-<images src="../images/1-template-deployment-complete?raw=true">
+![template-deployment-complete](../images/1-template-deployment-complete.png)
 
 ## Next steps
 
 In this lesson, you provisioned resources in your Azure subscription using an ARM template.
 
 Proceed to the next lesson:
-> [Connect to the ARO cluster](2-connect-aro-cluster.md)
+> [Onboard Azure Subscription to Prisma Cloud](2-onboard-azure-sub.md)

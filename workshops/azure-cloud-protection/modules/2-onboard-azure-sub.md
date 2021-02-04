@@ -188,4 +188,4 @@ In this module, you completed the following:
 > * Added your Azure Subscription in Prisma Cloud
 
 In the next module, you will onboard your Azure AD tenant to Prisma Cloud. Click here to proceed to the next lesson:
-> [Onboard your Azure AD tenant to Prisma Cloud](2-onboard-azure-ad.md)
+> [Onboard Azure AD to Prisma Cloud](3-onboard-azure-ad.md)

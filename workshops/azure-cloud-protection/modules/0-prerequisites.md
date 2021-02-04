@@ -122,4 +122,4 @@ In this lesson, you completed the following:
 > * Created a Slack account
 
 Proceed to the next lesson:
-> [Onboard Azure Subscription to Prisma Cloud](1-onboard-azure-sub.md)
+> [Prepare Your Azure Environment](1-prepare-the-environment.md)
