@@ -23,8 +23,6 @@ azlabsa[uniqestring] | Storage account | Demonstrating related security recommen
 azlab-sql-[uniqestring] | SQL server | To be using for the sample database
 azlab-as | SQL database | Sample database based on AdventureWorks template
 azlab-kv-[uniqestring] | Key vault | Demonstrating Key Vault related recommendations and security alerts
-SecurityCenterFree | Solution | Default workspace solution used for Security Center free tier
-azlab-la-[uniqestring]	| Log Analytics workspace | Log Analytics workspace used for data collection and analysis, storing logs and continuous export data
 
 <img src="../img/1-lab-environment.png?raw=true">
 
