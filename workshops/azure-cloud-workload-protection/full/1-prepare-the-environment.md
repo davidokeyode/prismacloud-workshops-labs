@@ -39,12 +39,22 @@ azlab-kv-[uniqestring] | Key vault | Demonstrating Key Vault related recommendat
 * **Password**: Enter a complex password. This password will be used across services like VMs and SQL databases
 * **Storage Account Type**: Leave the default value
 * **Resource Tags**: Leave the default value
-* Click **Review and Create** 
+* Click **Review and Create**
 <br>
 <img src="../img/1-template-parameter.png?raw=true">
 
-> The *deployment is in progress* page continues to update and show the resources being uploaded to the environment assuming the deployment is successful.  
-> During the deployment, additional resource group will be created automatically for Kubernetes resources named as "azlab-aks".<br>
+3. After the validation passed, click on **Create**
+<br>
+<img src="../img/1-template-validation.png?raw=true">
+
+> The *deployment is in progress* page continues to update and shows the resources as they deployed.  
+> Be aware than an additional resource group will be created automatically for Kubernetes resources named as "azlab-aks".<br>
+
+<img src="../img/1-template-deployment-progress?raw=true">
+
+3. When the deployment is complete, you should see the view below. You can click on **Go to resource group** to view the deployed resources.
+<br>
+<img src="../img/1-template-deployment-complete?raw=true">
 
 ## Next steps
 
