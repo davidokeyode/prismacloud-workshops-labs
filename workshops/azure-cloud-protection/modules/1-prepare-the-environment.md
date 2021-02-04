@@ -3,7 +3,7 @@ Title: 1 - Prepare the Environment
 Description: Follow these instructions to deploy Azure resources that we will use for the exercises in this workshop
 Author: David Okeyode
 ---
-# Lesson 1: Provision Azure Resources
+# Module 1: Provision Azure Resources
 
 In this workshop lesson, you'll provision resources in your Azure subscription using an ARM template.
 The following list of resources will be deployed during the provisioning process (including dependencies like disks, network interfaces, public IP addresses, etc.):

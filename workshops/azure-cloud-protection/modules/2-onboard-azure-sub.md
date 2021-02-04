@@ -1,10 +1,10 @@
 ---
-Title: 1 - Onboard Azure Subscription to Prisma Cloud
+Title: 2 - Onboard Azure Subscription to Prisma Cloud
 Description: Follow these instructions to onboard your Azure Subscription to Prisma Cloud
 Author: David Okeyode
 ---
 
-# Module 1: Onboard Azure Subscription to Prisma Cloud
+# Module 2: Onboard Azure Subscription to Prisma Cloud
 
 In the previous module, you created the accounts that you need to complete the workshop. If you have not completed that lesson, you can refer to it [here](0-prerequisites.md). In this module, you will add your Azure subscription to Prisma Cloud. This is the first step to protecting your cloud environment, services and workloads with Prisma Cloud. Onboarding gives Prisma Cloud the permissions needed to ingest resource configuration metadata, activity logs and network flow logs from your Azure subscription. Here are the exercises that we will be completing:
 
