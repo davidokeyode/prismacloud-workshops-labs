@@ -26,7 +26,7 @@ azlab-kv-[uniqestring] | Key vault | Demonstrating Key Vault related recommendat
 SecurityCenterFree | Solution | Default workspace solution used for Security Center free tier
 azlab-la-[uniqestring]	| Log Analytics workspace | Log Analytics workspace used for data collection and analysis, storing logs and continuous export data
 
-<img src="../img/1-lab-environment.png"?raw=true">
+<img src="../img/1-lab-environment.png?raw=true">
 
 ### Deploy Workshop Resources Using an ARM Template
 1. Prepare your lab environment by clicking on the blue **Deploy to Azure** button below:
