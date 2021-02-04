@@ -29,21 +29,24 @@ azlab-la-[uniqestring]	| Log Analytics workspace | Log Analytics workspace used 
 <img src="../img/1-lab-environment.png?raw=true">
 
 ### Deploy Workshop Resources Using an ARM Template
-1. Prepare your lab environment by clicking on the blue **Deploy to Azure** button below:
+1. Click on the **Deploy to Azure** button below:
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fdavidokeyode%2Fprismacloud-workshops-labs%2Fmain%2Fworkshops%2Fazure-cloud-workload-protection%2Ftemplate%2Fazlabtemplatedeploy.json" target="_blank"><img src="https://aka.ms/deploytoazurebutton"/></a>
 
-2.	You will be redirected to Azure Portal → custom deployment page where you should specify mandatory fields for deployment.
-3.	On the subscription field, select your **Azure subscription**.
-4.	On the resource group field, click on **Create new** and name it as **azlab** (you can pick any name you want or keep the default).
-5.	On the parameters section, select the closest data center **region** to your current location (all downstream resources will be created in the same region as the resource group).
-6. Select a password that will be used across services (such as credentials for virtual machines and SQL database)
-> Notice that password must be between 12 and 72 characters and have 3 of the following: 1 lower case, 1 upper case, 1 number and 1 special character.
-7.	Click **Review + create** to start the validation process. Once validation passed, click on **Create** to start the ARM deployment on your subscription.
-8.	The deployment takes about **10 minutes** to complete.<br>
+2.	You will be redirected to Azure Portal, the custom deployment page where you should specify mandatory fields for deployment. Configure the following settings:
+* **Subscription**: Select the Azure subscription that you want to deploy the resources into
+* **Resource Group**: Click on **Create New** → Name: azlab-rg
+* **Region**: Select an Azure region close to your current location
+* **Username**: Leave the default value
+* **Password**: Enter a complex password. This password will be used across services like VMs and SQL databases
+* **Storage Account Type**: Leave the default value
+* **Resource Tags**: Leave the default value
+* Click **Review and Create** 
+<br>
+<img src="../img/1-template-parameter.png?raw=true">
 
 > The *deployment is in progress* page continues to update and show the resources being uploaded to the environment assuming the deployment is successful.  
-> During the deployment, additional resource group will be created automatically for Kubernetes resources named as "asclab-aks".<br>
+> During the deployment, additional resource group will be created automatically for Kubernetes resources named as "azlab-aks".<br>
 
 ## Next steps
 
