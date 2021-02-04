@@ -40,19 +40,20 @@ azlab-kv-[uniqestring] | Key vault | Demonstrating Key Vault related recommendat
 * **Storage Account Type**: Leave the default value
 * **Resource Tags**: Leave the default value
 * Click **Review and Create**
-<br>
+
 ![template-parameter](../images/1-template-parameter.png)
 
 3. After the validation passed, click on **Create**
-<br>
+
 ![1-template-validation](../images/1-template-validation.png)
 
 > The *deployment is in progress* page continues to update and shows the resources as they deployed.  
-> Be aware than an additional resource group will be created automatically for Kubernetes resources named as "azlab-aks".<br>
+> Be aware than an additional resource group will be created automatically for Kubernetes resources named as "azlab-aks".
+
 ![1-template-deployment-progress](../images/1-template-deployment-progress.png)
 
 3. When the deployment is complete, you should see the view below. You can click on **Go to resource group** to view the deployed resources.
-<br>
+
 ![template-deployment-complete](../images/1-template-deployment-complete.png)
 
 ## Next steps
