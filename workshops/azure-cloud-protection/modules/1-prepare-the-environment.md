@@ -27,7 +27,7 @@ azlab-kv-[uniqestring] | Key vault | Demonstrating Key Vault related recommendat
 ![1-lab-environment](../images/1-lab-environment.png)
 
 ### Deploy Workshop Resources Using an ARM Template
-1. Click on the **Deploy to Azure** button below:
+1. CNTRL + Click (CMD + Click on MacOS) on the **Deploy to Azure** button below:
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fdavidokeyode%2Fprismacloud-workshops-labs%2Fmain%2Fworkshops%2Fazure-cloud-protection%2Ftemplate%2Fazlabtemplatedeploy.json" target="_blank"><img src="https://aka.ms/deploytoazurebutton"/></a>
 

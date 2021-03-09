@@ -29,7 +29,7 @@
         "resourceTags": {
             "type": "object",
             "defaultValue": {
-                "Workshop": "Prisma Cloud CWP"
+                "Workshop": "Prisma Cloud Azure Protection"
             }
         }
     },
@@ -60,7 +60,7 @@
         "sqlServerName": "[toLower(concat('azlab-sql-',uniqueString(subscription().subscriptionId)))]",
         "sqlDatabaseName": "azlab-db",
         "aksClusterName": "azlab-aks",
-        "aksVersion": "1.16.13",
+        "aksVersion": "1.19.7",
         "aksDNSPrefix": "azlab-aks",
         "aksNetworkPlugin": "kubenet"
     },
