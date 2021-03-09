@@ -51,7 +51,7 @@ In the previous module, you added your Azure subscription to Prisma Cloud. In th
    * **Application (Client) ID**: Enter the output value of **`application_client_id`** from Exercise 4 - Step 7 of the previous module
    * **Application Client Secret**: Enter the output value of **`application_client_secret`** from Exercise 4 - Step 7 of the previous module
    * **Enterprise Application Object ID**: Enter the output value of **`enterprise_application_object_id`** from Exercise 4 - Step 7 of the previous module
-![prisma-account-details-b](../images/3-prisma-account-details-b.png)
+   ![prisma-account-details-b](../images/3-prisma-account-details-b.png)
 
 5. In the **Accounts Groups** window, select **`Default Account Group`** and click **`Next`**
 
