@@ -81,7 +81,7 @@ In the previous module, you created the accounts that you need to complete the w
 
    ```
 5. Create a storage account and blob container that will be used to store the flow logs
-   >* Change the location to the region that you will be using for your lab
+   >* Change the location to the region that you are using for your lab
    ```
    # configure resource group name variable
    group=prismacloud-rg 
@@ -105,40 +105,47 @@ In the previous module, you created the accounts that you need to complete the w
    az storage container create --account-name $storagename --name $container 
    ```
 6. Enable flow log for your network security groups
-   * Go to the [Azure Portal](https://portal.azure.com) → All Services → Network Watcher → NSG flow logs → Select a NSG from the displayed list → Configure the following:
-      * **Status**: On
+   * Go to the [Azure Portal](https://portal.azure.com) → More Services → Network Watcher → NSG flow logs → Create NSG flow log → Configure the following:
+      * **Project details**
+         * **Subscription**: Select the Azure subscription that you are using for the lab
+         * **Network Security Group**: azlab-nsg
+      * **Instance details**
+         * **Subscription**: Select the Azure subscription that you are using for the lab
+         * **Storage Account**: Select the storage account that has a prefix of **`prismaflow`** **`OK`**
+         * **Retention Days**: 5
+         * Click **`Next: Configuration`**
+         ![azureflowlog-settings](../images/2-create-flow-log.png)
+
+7. In the **`Configuration`** tab, configure the following:
       * **Flow Logs Version**: Version 2
-      * **Storage Account**: Select the storage account that was created earlier and click **`OK`**
-      * **Retention Days**: 5
-      * **Traffic Analysis Status**: Off
-      * Click **`Save`** (top left corner)
-![azureflowlog-settings](../images/1-azureflowlog-settings.png)
+      * **Traffic Analysis Status**: Not selected
+      * Click **`Review + create`** then click on **`Create`**
+      ![azureflowlog-settings](../images/2-configure-flow-log.png)
 
-7. Repeat Step 6 for other NSGs.
-
+8. Repeat Steps 6 and 7 for the NSG that has a name prefix of **`aks-agentpool`**
 
 ## Exercise 4 - Add Azure Subscription in Prisma Cloud
 1. Open a web browser and go to your Prisma Cloud console 
-2. Go to **`Settings`** → **`Cloud Accounts`** → **`Add New`** → Select **`Azure`** 
+2. Go to **`Settings`** → **`Cloud Accounts`** → **`New Cloud Account`** → Select **`Azure`** 
    * **Cloud Account Name**: Enter the name of your Azure subscription
    * **Onboard**: Azure Subscription
    * **Azure Cloud Type**: Commercial
    * **Select Mode**: **`Monitor & Protect`**
    * Click **`Next`**
 >* The mode cannot be changed after an account has been onboarded. You will need to remove the account and re-onboard it to change the mode.
-![prisma-monitor-protect](../images/1-prisma-monitor-protect.png)
+![prisma-monitor-protect](../images/2-prisma-monitor-protect.png)
 
 3. In the **Configure Account** window, configure the following:
    * **Directory (Tenant) ID**: Enter the tenant ID that you made a note of in the previous exercise
    * **Subscription ID**: Enter the subscription ID that you made a note of in the previous exercise
    * Click **`Next`**
-![prisma-configure-account](../images/1-prisma-configure-account.png)
+![prisma-configure-account](../images/2-prisma-configure-account.png)
 
 4. In the **Account Details** window, download the terraform script
-![prisma-download-script](../images/1-prisma-download-script.png)
+![prisma-download-script](../images/2-prisma-download-script.png)
 
 5. In the **`Azure Cloud Shell`**, upload the terraform script that you just downloaded
-![azure-upload-terraform](../images/1-azure-upload-terraform.png)
+![azure-upload-terraform](../images/2-azure-upload-terraform.png)
 
 6. In **`Azure Cloud Shell`**, run the following commands:
    ```
@@ -152,7 +159,7 @@ In the previous module, you created the accounts that you need to complete the w
    * **`application_client_id`**
    * **`application_client_secret`**
    * **`enterprise_application_object_id`**
-![azure-terraform-output](../images/1-azure-terraform-output.png)
+![azure-terraform-output](../images/2-azure-terraform-output.png)
 
 8. Back in the Prisma Cloud console, in the **Account Details** window, enter the following:
    * **Application (Client) ID**: Enter the output value of **`application_client_id`** from Step 7
@@ -160,13 +167,13 @@ In the previous module, you created the accounts that you need to complete the w
    * **Enterprise Application Object ID**: Enter the output value of **`enterprise_application_object_id`** from Step 7
    * **Ingest and Monitor Network Security Group Flow Logs**: Selected
    * Click **`Next`**
-![prisma-account-details](../images/1-prisma-account-details.png)
+![prisma-account-details](../images/2-prisma-account-details.png)
 
 9. In the **Accounts Groups** window, select **`Default Account Group`** and click **`Next`**
-![prisma-account-group](../images/1-prisma-account-group.png)
+![prisma-account-group](../images/2-prisma-account-group.png)
 
 10. In the **Status** window, verify the status and click **`Done`**
-![prisma-status](../images/1-prisma-status.png)
+![prisma-status](../images/2-prisma-status.png)
 
 11. Click **`Close`**
 

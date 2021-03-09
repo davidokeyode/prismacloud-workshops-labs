@@ -27,11 +27,11 @@ azlab-kv-[uniqestring] | Key vault | Demonstrating Key Vault related recommendat
 ![1-lab-environment](../images/1-lab-environment.png)
 
 ### Deploy Workshop Resources Using an ARM Template
-1. CNTRL + Click (CMD + Click on MacOS) on the **Deploy to Azure** button below:
+1. **CNTRL + Click** (**CMD + Click** on MacOS) on the **Deploy to Azure** button below:
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fdavidokeyode%2Fprismacloud-workshops-labs%2Fmain%2Fworkshops%2Fazure-cloud-protection%2Ftemplate%2Fazlabtemplatedeploy.json" target="_blank"><img src="https://aka.ms/deploytoazurebutton"/></a>
 
-2.	You will be redirected to Azure Portal, the custom deployment page where you should specify mandatory fields for deployment. Configure the following settings:
+2.	You will be redirected to the Azure Portal, the custom deployment page where you should specify mandatory fields for deployment. Configure the following settings:
 * **Subscription**: Select the Azure subscription that you want to deploy the resources into
 * **Resource Group**: Click on **Create New** → Name: azlab-rg
 * **Region**: Select an Azure region close to your current location
@@ -52,7 +52,7 @@ azlab-kv-[uniqestring] | Key vault | Demonstrating Key Vault related recommendat
 
 ![1-template-deployment-progress](../images/1-template-deployment-progress.png)
 
-3. When the deployment is complete, you should see the view below. You can click on **Go to resource group** to view the deployed resources.
+4. When the deployment is complete, you should see the view below. You can click on **Go to resource group** to view the deployed resources.
 
 ![template-deployment-complete](../images/1-template-deployment-complete.png)
 
