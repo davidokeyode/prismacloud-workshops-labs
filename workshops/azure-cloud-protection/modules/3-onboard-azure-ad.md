@@ -19,8 +19,8 @@ In the previous module, you added your Azure subscription to Prisma Cloud. In th
 
 1. Open a web browser tab and go to the [Azure Portal](https://portal.azure.com) 
 
-2. Go to **`Azure Active Directory`** → **`App Registrations`** → Click on **`All Applications`** → Click on the Prisma Cloud App that was created by the terraform template in the previous module. It has the naming format **`Prisma Cloud Onboarding xxxxxx`** 
-![aad-app](../images/1-aad-app.png)
+2. Go to **`Azure Active Directory`** → **`App Registrations`** → Click on **`All Applications`** → Click on the Prisma Cloud App that was created by the terraform template in the previous module. It has the naming format **`Prisma Cloud App xxxxxx`** 
+![aad-app](../images/3-aad-app.png)
 
 3. In the application window that opened, click on **`API Permissions`** → **`Add Permission`** → **`Microsoft Graph`**
 ![aad-permissions](../images/1-aad-permissions.png)
@@ -37,26 +37,26 @@ In the previous module, you added your Azure subscription to Prisma Cloud. In th
 1. Open a web browser and go to your Prisma Cloud console 
 2. Go to **`Settings`** → **`Cloud Accounts`** → **`Add New`** → Select **`Azure`** 
    * **Cloud Account Name**: Enter the name of your Azure AD Tenant
-   * **Onboard**: Azure Active Directory
+   * **Onboard**: Azure Tenant
    * **Azure Cloud Type**: Commercial
    * Click **`Next`**
-![prisma-aad-add](../images/1-prisma-aad-add.png)
+![prisma-aad-add](../images/3-prisma-aad-add.png)
 
 3. In the **Configure Account** window, configure the following:
    * **Directory (Tenant) ID**: Enter the tenant ID that you made a note of in the previous module
    * Click **`Next`**
-![aad-tenant-id](../images/1-aad-tenant-id.png)
+![aad-tenant-id](../images/3-aad-tenant-id.png)
 
 4. In the **Account Details** window, enter the following:
    * **Application (Client) ID**: Enter the output value of **`application_client_id`** from Exercise 4 - Step 7 of the previous module
    * **Application Client Secret**: Enter the output value of **`application_client_secret`** from Exercise 4 - Step 7 of the previous module
    * **Enterprise Application Object ID**: Enter the output value of **`enterprise_application_object_id`** from Exercise 4 - Step 7 of the previous module
-![prisma-account-details-b](../images/1-prisma-account-details-b.png)
+![prisma-account-details-b](../images/3-prisma-account-details-b.png)
 
 5. In the **Accounts Groups** window, select **`Default Account Group`** and click **`Next`**
 
 10. In the **Status** window, verify the status and click **`Done`**
-![prisma-aad-status](../images/1-prisma-aad-status.png)
+![prisma-aad-status](../images/3-prisma-aad-status.png)
 
 11. Click **`Close`**
 
