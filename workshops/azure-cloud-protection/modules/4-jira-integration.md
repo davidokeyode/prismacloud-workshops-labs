@@ -12,6 +12,7 @@ In the previous module, you added your Azure AD tenant to Prisma Cloud. In this 
 >* Configure JIRA integration in your Prisma Cloud account
 >* Create a JIRA notification template in your Prisma Cloud account
 >* Create an alert rule in Prisma Cloud to raise tasks in JIRA
+>* Verify Prisma Cloud alerts in JIRA
 
 ## Exercise 1 - Prepare JIRA for integration
 >* In order to integrate Prisma Cloud with JIRA, we need to create a Prisma Cloud Application link in JIRA. This process requires an account that has administrative privileges in JIRA.
@@ -22,7 +23,7 @@ In the previous module, you added your Azure AD tenant to Prisma Cloud. In this 
 
 ![jira-products](../images/4-jira-products.png)
 
-3. In the **Configure Application Links** window, enter your Prisma Cloud console URL and click **`Create new link`**
+3. On the **Products** page, click on **`Application links`**. In the **Configure Application Links** window, enter your Prisma Cloud console URL and click **`Create new link`**
 >* You can get a full list of the console URLs [from this document](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin/get-started-with-prisma-cloud/access-prisma-cloud.html)
 >* Make sure you use your console URL for your Prisma cloud tenant.
 
@@ -51,8 +52,6 @@ In the previous module, you added your Azure AD tenant to Prisma Cloud. In this 
    * Click **`Continue`**
 
 ![jira-app-link-config](../images/4-jira-app-link-config-b.png)
-
-
 
 ## Exercise 2 - Configure JIRA integration in Prisma Cloud
 1. Open a web browser and go to your Prisma Cloud console 
@@ -94,7 +93,9 @@ In the previous module, you added your Azure AD tenant to Prisma Cloud. In this 
 
 9. Click on **`SAVE`**
 
+10. The JIRA integration status should show a green check mark.
 
+![prisma-jira-status](../images/4-prisma-jira-status.png)
 
 ## Exercise 3 - Create notification template in Prisma Cloud
 1. In the Prisma Cloud console, go to **`Alerts`** → **`Notification Templates`** → **`Add New`**.
@@ -135,12 +136,18 @@ In the previous module, you added your Azure AD tenant to Prisma Cloud. In this 
       <$PolicyRecommendation>
    ```
    * Click **`Next`**
+
 ![prisma-jira-alert-format](../images/4-prisma-jira-alert-format.png)
+
+**For more information on the alert payload field, please refer to this document: [Prisma Cloud Alert Payload](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin/manage-prisma-cloud-alerts/alert-payload)**
 
 5. In the **Review** section, click **`Test`** then click **`Save`**
 
 ![prisma-jira-template-test](../images/4-prisma-jira-template-test.png)
 
+6. You should see a success message in the top right corner. Also, the JIRA integration status should show a green check mark.
+
+![prisma-jira-template-status](../images/4-prisma-jira-template-status.png)
 
 ## Exercise 4 - Create alert rule in Prisma Cloud
 1. In the Prisma Cloud console, go to **`Alerts`** → **`Alert Rules`** → **`Add New`**.
@@ -177,9 +184,19 @@ In the previous module, you added your Azure AD tenant to Prisma Cloud. In this 
 ![](../images/4-prisma-jira-notification.png)
 
 
+## Exercise 5 - Verify alerts in JIRA
+1. Back in the JIRA console, go to the **`Azure-Cloud-Security`** project that you created in the pre-requisite section.
+
+2. In the **Kanban board** of the project, you should see a sample alert that was sent as a test from Prisma Cloud.
+
+![prisma-alertrule-run](../images/4-jira-alert-01.png)
+
+3. Other alerts will be sent into JIRA as we continue through the workshop.
+
 ## Learn more
 * [Integrate Prisma Cloud with Jira](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin/configure-external-integrations-on-prisma-cloud/integrate-prisma-cloud-with-jira.html)
 * [Create an Alert Rule for Run-Time Checks](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin/manage-prisma-cloud-alerts/create-an-alert-rule.html)
+* [Prisma Cloud Alert Payload](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin/manage-prisma-cloud-alerts/alert-payload)
 
 ## Next steps
 In this module, you completed the following:
@@ -187,6 +204,7 @@ In this module, you completed the following:
 >* Configured JIRA integration in your Prisma Cloud account
 >* Created a JIRA notification template in your Prisma Cloud account
 >* Created an alert rule in Prisma Cloud to raise tasks in JIRA
+>* Verified Prisma Cloud alerts in JIRA
 
-In the next module, you will deploy a vulnerable by design template in your Azure subscription. Click here to proceed to the next module:
-> [Deploy vulnerable workload using terraform](5-deploy-vulnearble-workload.md)
+In the next module, you will review and remediate issues with your Azure subscription, in Prisma Cloud. Click here to proceed to the next module:
+> [Review and remediate issues with Prisma Cloud](5-respond-and-remediate.md)
