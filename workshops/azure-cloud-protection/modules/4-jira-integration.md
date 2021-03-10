@@ -206,5 +206,5 @@ In this module, you completed the following:
 >* Created an alert rule in Prisma Cloud to raise tasks in JIRA
 >* Verified Prisma Cloud alerts in JIRA
 
-In the next module, you will review and remediate issues with your Azure subscription, in Prisma Cloud. Click here to proceed to the next module:
+In the next module, you will review and remediate security risks and compliance violations with Prisma Cloud. Click here to proceed to the next module:
 > [Review and remediate issues with Prisma Cloud](5-respond-and-remediate.md)

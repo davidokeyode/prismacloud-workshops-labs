@@ -161,7 +161,15 @@ In the previous module, you created the accounts that you need to complete the w
    * **`enterprise_application_object_id`**
 ![azure-terraform-output](../images/2-azure-terraform-output.png)
 
-8. Back in the Prisma Cloud console, in the **Account Details** window, enter the following:
+8. Run the following commands to grant the Prisma Cloud App contributor permissions on the subscription. This will be needed for remediation in later modules.
+
+```
+subid=$(az account show --query id --output tsv)
+
+az role assignment create --assignee <application_client_id> --role "Contributor" --scope $subid
+```
+
+9. Back in the Prisma Cloud console, in the **Account Details** window, enter the following:
    * **Application (Client) ID**: Enter the output value of **`application_client_id`** from Step 7
    * **Application Client Secret**: Enter the output value of **`application_client_secret`** from Step 7
    * **Enterprise Application Object ID**: Enter the output value of **`enterprise_application_object_id`** from Step 7
@@ -169,15 +177,15 @@ In the previous module, you created the accounts that you need to complete the w
    * Click **`Next`**
 ![prisma-account-details](../images/2-prisma-account-details.png)
 
-9. In the **Accounts Groups** window, select **`Default Account Group`** and click **`Next`**
+10. In the **Accounts Groups** window, select **`Default Account Group`** and click **`Next`**
 ![prisma-account-group](../images/2-prisma-account-group.png)
 
-10. In the **Status** window, verify the status and click **`Done`**
+11. In the **Status** window, verify the status and click **`Done`**
 ![prisma-status](../images/2-prisma-status.png)
 
-11. Click **`Close`**
+12. Click **`Close`**
 
-12. Your Azure subscription should now be onboarded in Prisma Cloud
+13. Your Azure subscription should now be onboarded in Prisma Cloud
 
 ## Learn more
 * [Azure Cloud Account Onboarding Checklist](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin/connect-your-cloud-platform-to-prisma-cloud/onboard-your-azure-account/azure-onboarding-checklist.html)
