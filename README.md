@@ -7,6 +7,5 @@ Welcome to the Prisma Cloud workshops! Prisma™ Cloud is a cloud security postu
 ### Workshops
 Please find the current list of workshops below:
 
-* [Azure CSPM Workshop](https://github.com/davidokeyode/prismacloud-workshops-labs/tree/main/workshops/azure-cspm)
-* [Azure Container Security Workshop](https://github.com/davidokeyode/prismacloud-workshops-labs/tree/main/workshops/azure-containers)
+* [Azure Cloud Protection](https://github.com/davidokeyode/prismacloud-workshops-labs/tree/main/workshops/azure-cloud-protection)
 * [Azure RedHat OpenShift Workshop](https://github.com/davidokeyode/prismacloud-workshops-labs/tree/main/workshops/azure-redhat-openshift)
