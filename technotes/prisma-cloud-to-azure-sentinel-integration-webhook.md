@@ -425,7 +425,7 @@ This tech note walks you through how to integrate Prisma Cloud alerts into Azure
 
 ![4-prisma-cloud-alert](./images/prisma-cloud-alert-4.png)
 
-5. Verify that the logs are shown in Log Analytics, under **Custom Logs**
+5. Verify that the alerts are shown in Log Analytics, under **Custom Logs**
 
 ![4-logic-app](./images/log-analytics-b.png)
 
@@ -433,7 +433,7 @@ You can also review the new alerts being processed by Logic Apps
 
 ![1-logic-app](./images/logic-app-01b.png)
 
-6. Verify that the logs are shown in Azure Sentinel
+6. Verify that the alerts are shown in Azure Sentinel
 
 ![5-logic-app](./images/azure-sentinel-b.png)
 
