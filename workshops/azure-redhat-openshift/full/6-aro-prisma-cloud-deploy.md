@@ -1,9 +1,9 @@
 ---
-Title: 6 - Deploy Self-Hosted Prisma Cloud Compute (Formerly Twistlock) on Azure RedHat OpenShift (ARO)
+Title: 6 - Deploy the Self-Hosted Prisma Cloud Compute Solution (Formerly Twistlock) on Azure RedHat OpenShift (ARO)
 Description: Follow these instructions to deploy the Prisma Cloud Compute Security Solution on an Azure RedHat OpenShift (ARO) cluster
 Author: David Okeyode
 ---
-# Lesson: Create an Azure Red Hat OpenShift 4 cluster
+# Lesson: Deploy the Self-Hosted Prisma Cloud Compute Solution (Formerly Twistlock) on Azure RedHat OpenShift (ARO)
 
 In this workshop lesson, you will deploy the Prisma Cloud Compute Security Solution on an Azure RedHat OpenShift (ARO) cluster. Here are the tasks that we will be completing in this lesson:
 
@@ -30,107 +30,133 @@ In this workshop lesson, you will deploy the Prisma Cloud Compute Security Solut
 ### Deploy the Prisma Cloud Compute Console
 
 1. **Set the following variables in the cloud shell environment**. This will set variables for the cluster name, resource group, location, kubeadmin password, api server URL.
-   ```
-   LOCATION=uksouth
-   RESOURCEGROUP=aro-workshop-rg
-   CLUSTER=arocluster
+```
+LOCATION=uksouth
+RESOURCEGROUP=aro-workshop-rg
+CLUSTER=arocluster
 
-   kubeadminpass=$(az aro list-credentials \
-      --name $CLUSTER \
-      --resource-group $RESOURCEGROUP \
-      --query kubeadminPassword -o tsv)
+kubeadminpass=$(az aro list-credentials \
+   --name $CLUSTER \
+   --resource-group $RESOURCEGROUP \
+   --query kubeadminPassword -o tsv)
    
-   apiServer=$(az aro show -g $RESOURCEGROUP -n $CLUSTER --query apiserverProfile.url -o tsv)
+apiServer=$(az aro show -g $RESOURCEGROUP -n $CLUSTER --query apiserverProfile.url -o tsv)
 
-   ```
+```
+
 2. **Login to the OpenShift cluster's API server using the kubeadmin credentials**
 ```
 oc login $apiServer -u kubeadmin -p $kubeadminpass
 ```
 You should receive a **Login successful** response after running the command
 
-5. Create the twistlock project on the cluster using the following `oc` command:
+3. Create the twistlock project on the cluster using the following `oc` command:
 ```
 oc new-project twistlock
 ```
 
-6. Download the Prisma Cloud Compute solution using the command below. Replace the **`<DOWNLOAD_LINK>`** placeholder with the link that you copied earlier. This could take a few minutes to download.
-    ```
-    curl <DOWNLOAD_LINK> -o pcc.tar.gz 
-  
-    ```
-7. Create a directory and unpack the release tarball to it. The tarball is bundled with different versions of the **`twistcli`** tool (Linux, macOS, and Windows). The twistcli tool is used later to generate YAML files or a Helm chart for deploying Prisma Cloud Compute Console.
+4. Download the Prisma Cloud Compute solution using the command below. Replace the **`<DOWNLOAD_LINK>`** placeholder with the link that you copied earlier. This could take a few minutes to download.
+```
+curl <DOWNLOAD_LINK> -o pcc.tar.gz 
+```
 
-   ```   
-   mkdir pcc
-   tar xvzf pcc.tar.gz -C pcc
+5. Create a directory and unpack the release tarball to it. The tarball is bundled with different versions of the **`twistcli`** tool (Linux, macOS, and Windows). The twistcli tool is used later to generate YAML files or a Helm chart for deploying Prisma Cloud Compute Console.
+```   
+mkdir pcc
+tar xvzf pcc.tar.gz -C pcc
+```
 
-   ```
-
-8. Generate the YAML manifest for deploying Prisma Cloud Compute Console. To pull the images from the Prisma Cloud cloud registry, we will specify our access token which is provided as part of our license (Replace the **`<Prisma_Cloud_Access_Token>** placeholder with the actual value). We are also specifying the **`LoadBalancer`** service type for external access.
-
-   ```   
-   PRISMACLOUD_ACCESS=<Prisma_Cloud_Access_Token>
+6. Generate the YAML manifest for deploying Prisma Cloud Compute Console. To pull the images from the Prisma Cloud cloud registry, we will specify our access token which is provided as part of our license (Replace the **`<Prisma_Cloud_Access_Token>** placeholder with the actual value). We are also specifying the **`LoadBalancer`** service type for external access.
+```   
+PRISMACLOUD_ACCESS=<Prisma_Cloud_Access_Token>
    
-   cd pcc/
+cd pcc/
 
-   linux/twistcli console export openshift --registry-token "$PRISMACLOUD_ACCESS" --service-type LoadBalancer
-
-   ``` 
+linux/twistcli console export openshift --registry-token "$PRISMACLOUD_ACCESS" --service-type LoadBalancer
+``` 
 This step results in a YAML file called **`twistlock_console.yaml`** in the current working directory which will be used to deploy the console on ARO.
 
-9. Deploy the console using the command below:
-   ``` 
-   oc create -f ./twistlock_console.yaml
+7. Deploy the console using the command below:
+``` 
+oc create -f ./twistlock_console.yaml
 
-   oc get project twistlock -w
+oc get project twistlock -w
 
-   oc get svc -n twistlock
-   ``` 
+oc get svc -n twistlock
+``` 
 
-10. Obtain the public IP of the console's service using the command below:
-   ``` 
-   oc get svc -n twistlock
-   ``` 
+8. Obtain the cluster IP and the external IP of the Prisma Cloud compute service using the command below. Make a note of both IP addresses. The external IP will be needed in the next step when we access the console. The cluster IP will be needed when we deploy the defenders.
+``` 
+oc get svc -n twistlock
+``` 
 ![PCC service ](../img/6-oc-get-console-service.png)
 
-11. Connect to the public IP on port 8083
-   ``` 
-      https://<public_ip>:8083
-   ``` 
+9. Connect to the external IP on port 8083
+``` 
+https://<external_ip>:8083
+``` 
 
-12. Create admin username and password
+10. Create admin username and password. Make a note of these values as they will be needed later.
 
 ![PCC First Login ](../img/6-pcc-first-login.png)
 
-13. In the **`Manage/System`** window, enter your Prisma Cloud license and click on **`Register`**.
+11. In the **`Manage/System`** window, enter your Prisma Cloud license and click on **`Register`**.
 
 ![PCC License ](../img/6-pcc-license.png)
 
 
 ### Deploy Prisma Cloud Compute Defenders
 
-1. **Set the following variables in the cloud shell environment**. This will set variables for the cluster name, resource group, location, kubeadmin password, api server URL.
-   ```
-   LOCATION=uksouth
-   RESOURCEGROUP=aro-workshop-rg
-   CLUSTER=arocluster
+1. Review the command options to generate the deployment manifest file
+```  
+~/pcc/linux/twistcli defender export openshift -h
+```  
 
+2. **Generate the YAML file for deploying the defenders by running the commands below**. Replace the following placeholders with the values that you made a note of earlier:
+> * **`<external_ip>`**: the external IP address value of the console service
+> * **`<cluster_ip>`**: the cluster IP address value of the console service
+> * **`<username>`**: the prisma cloud console username that you created earlier
+> * **`<password>`**: the prisma cloud console password that you specified earlier
 
+```   
+EXTERNAL_IP=<external_ip>
+CLUSTER_IP=<cluster_ip>
+PCC_USER=<username>
+PCC_PASSWORD=<password>
+   
+cd ~/pcc
 
-- https://docs.twistlock.com/docs/compute_edition/install/install_openshift_4.html
+linux/twistcli defender export openshift --address https://$EXTERNAL_IP:8083 --cluster-address $CLUSTER_IP --selinux-enabled --cri --user $PCC_USER --password $PCC_PASSWORD
 
+linux/twistcli defender export openshift --address https://$EXTERNAL_IP:8083 --cluster-address twistlock-console --selinux-enabled --cri --user $PCC_USER --password $PCC_PASSWORD
 
+``` 
+![PCC Defender Export ](../img/6-pcc-defender-a.png)
 
+3. Deploy the defender daemonset using the command below
+``` 
+oc create -f ./defender.yaml
+``` 
 
+![PCC Defender Deploy ](../img/6-pcc-defender-b.png)
 
+This will deploy the new defender pods into the twistlock project. You can verify that all pods in the project are in the Running state, or wait until they are:
+``` 
+oc get pods -n twistlock --watch
+``` 
+
+![PCC Defender Verify ](../img/6-pcc-defender-c.png)
+
+## Learn more
+* [Prisma Cloud Console and Defenders Overview](https://docs.twistlock.com/docs/compute_edition/install/getting_started.html)
+* [Prisma Cloud OpenShift 4 Overview](https://docs.twistlock.com/docs/compute_edition/install/install_openshift_4.html)
 
 ## Next steps
 
 In this lesson, you completed the following:
-> * Setup the prerequisites required for your Azure environment
-> * Create the required virtual network and subnets for the ARO cluster
-> * Create the ARO cluster
+> * Deployed the Prisma Cloud Compute Console using twistcli
+> * Deployed Prisma Cloud Defender Daemonset using twistcli
 
 Proceed to the next lesson:
-> [Connect to the ARO cluster](7-connect-aro-cluster.md)
+> [Deploy OpenShift Registry](7a-registry-aro-cluster.md)
+> [Deploy JFrog Registry](7b-deploy-jfrog-aro-cluster.md)

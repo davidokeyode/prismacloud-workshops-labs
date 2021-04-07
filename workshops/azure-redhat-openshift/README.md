@@ -26,8 +26,8 @@ The workshop is designed to take approximately 5-6 hours to complete. It can be 
 | 02 | [Connect to the ARO cluster](full/2-connect-aro-cluster.md) | Hands on Lab |
 | 03 | [Configure Azure AD authentication for ARO](full/3-configure-aro-azuread.md)                | Hands on Lab |
 | 04 | [Setup Go Microservices project](full/4-aro-go-microservices.md) | Hands on Lab |
-| 05 | Explore ARO Internals              | Hands on Lab |
-| 06 | Deploy the Prisma Cloud Compute console and defenders  | Hands on Lab |
+| 05 | [Explore ARO Internals](full/5-explore-aro-internals.md)              | Hands on Lab |
+| 06 | [Deploy the Prisma Cloud Compute console and defenders](full/6-aro-prisma-cloud-deploy.md)  | Hands on Lab |
 | 07 | Explore Prisma Cloud Compute capabilities                  | Hands on Lab |
 | 08 | Wrap / Clean Up     | Hands on Lab |
 ----
