@@ -85,7 +85,7 @@ oc get project twistlock -w
 oc get svc -n twistlock
 ``` 
 
-8. Obtain the cluster IP and the external IP of the Prisma Cloud compute service using the command below. Make a note of both IP addresses. The external IP will be needed in the next step when we access the console. The cluster IP will be needed when we deploy the defenders.
+8. Obtain the external IP of the Prisma Cloud compute service using the command below. Make a note of it. The external IP will be needed in the next step when we access the console and later when we deploy the defenders.
 ``` 
 oc get svc -n twistlock
 ``` 
@@ -114,19 +114,15 @@ https://<external_ip>:8083
 
 2. **Generate the YAML file for deploying the defenders by running the commands below**. Replace the following placeholders with the values that you made a note of earlier:
 > * **`<external_ip>`**: the external IP address value of the console service
-> * **`<cluster_ip>`**: the cluster IP address value of the console service
 > * **`<username>`**: the prisma cloud console username that you created earlier
 > * **`<password>`**: the prisma cloud console password that you specified earlier
 
 ```   
 EXTERNAL_IP=<external_ip>
-CLUSTER_IP=<cluster_ip>
 PCC_USER=<username>
 PCC_PASSWORD=<password>
    
 cd ~/pcc
-
-linux/twistcli defender export openshift --address https://$EXTERNAL_IP:8083 --cluster-address $CLUSTER_IP --selinux-enabled --cri --user $PCC_USER --password $PCC_PASSWORD
 
 linux/twistcli defender export openshift --address https://$EXTERNAL_IP:8083 --cluster-address twistlock-console --selinux-enabled --cri --user $PCC_USER --password $PCC_PASSWORD
 
@@ -158,5 +154,5 @@ In this lesson, you completed the following:
 > * Deployed Prisma Cloud Defender Daemonset using twistcli
 
 Proceed to the next lesson:
-> [Deploy OpenShift Registry](7a-registry-aro-cluster.md)
-> [Deploy JFrog Registry](7b-deploy-jfrog-aro-cluster.md)
+> * [Deploy OpenShift Registry](7a-registry-aro-cluster.md)
+> * [Deploy JFrog Registry](7b-deploy-jfrog-aro-cluster.md)
