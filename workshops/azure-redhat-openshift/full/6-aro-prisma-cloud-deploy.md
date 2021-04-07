@@ -3,7 +3,7 @@ Title: 6 - Deploy the Self-Hosted Prisma Cloud Compute Solution (Formerly Twistl
 Description: Follow these instructions to deploy the Prisma Cloud Compute Security Solution on an Azure RedHat OpenShift (ARO) cluster
 Author: David Okeyode
 ---
-# Lesson: Deploy the Self-Hosted Prisma Cloud Compute Solution (Formerly Twistlock) on Azure RedHat OpenShift (ARO)
+# Lesson 6: Deploy the Self-Hosted Prisma Cloud Compute Solution (Formerly Twistlock) on Azure RedHat OpenShift (ARO)
 
 In this workshop lesson, you will deploy the Prisma Cloud Compute Security Solution on an Azure RedHat OpenShift (ARO) cluster. Here are the tasks that we will be completing in this lesson:
 
