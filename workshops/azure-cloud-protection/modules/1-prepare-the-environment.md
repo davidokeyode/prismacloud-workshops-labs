@@ -39,6 +39,8 @@ azlab-kv-[uniqestring] | Key vault | Demonstrating Key Vault related recommendat
 * **Password**: Enter a complex password. This password will be used across services like VMs and SQL databases
 * **Storage Account Type**: Leave the default value
 * **Resource Tags**: Leave the default value
+* **_artifacts Location**: Leave the default value
+* **_artifacts Location Sas Token**: Leave the default value
 * Click **Review and Create**
 
 ![template-parameter](../images/1-template-parameter.png)

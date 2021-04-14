@@ -288,7 +288,7 @@
         {
             "type": "Microsoft.Compute/virtualMachines/extensions",
             "apiVersion": "2019-07-01",
-            "name": "installscript1",
+            "name": "[concat(variables('vmNameWindows'),'/installscript1')]",
             "location": "[resourceGroup().location]",
             "tags": {
                 "displayName": "Install script for Windows VM"
