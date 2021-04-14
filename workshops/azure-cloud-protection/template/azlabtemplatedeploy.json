@@ -31,6 +31,20 @@
             "defaultValue": {
                 "Workshop": "Prisma Cloud Azure Protection"
             }
+        },
+        "_artifactsLocation": {
+            "type": "string",
+            "metadata": {
+                "description": "The base URI where artifacts required by this template are located including a trailing '/'"
+            },
+            "defaultValue": "[deployment().properties.templateLink.uri]"
+        },
+        "_artifactsLocationSasToken": {
+            "type": "securestring",
+            "defaultValue": "",
+            "metadata": {
+                "description": "SAS Token for accessing script path"
+            }
         }
     },
     "variables": {
@@ -62,7 +76,8 @@
         "aksClusterName": "azlab-aks",
         "aksVersion": "1.19.7",
         "aksDNSPrefix": "azlab-aks",
-        "aksNetworkPlugin": "kubenet"
+        "aksNetworkPlugin": "kubenet",
+        "scriptUrl": "[uri(parameters('_artifactsLocation'),concat('installscript.ps1',parameters('_artifactsLocationSasToken')))]"
     },
     "resources": [
                 {
@@ -271,6 +286,32 @@
             }
         },
         {
+            "type": "Microsoft.Compute/virtualMachines/extensions",
+            "apiVersion": "2019-07-01",
+            "name": "installscript1",
+            "location": "[resourceGroup().location]",
+            "tags": {
+                "displayName": "Install script for Windows VM"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/virtualMachines', variables('vmNameWindows'))]"
+            ],
+            "properties": {
+                "publisher": "Microsoft.Compute",
+                "type": "CustomScriptExtension",
+                "typeHandlerVersion": "1.10",
+                "autoUpgradeMinorVersion": true,
+                "settings": {
+                    "fileUris": [
+                        "[variables('scriptUrl')]"
+                    ]
+                },
+                "protectedSettings": {
+                    "commandToExecute": "[concat('powershell -ExecutionPolicy Bypass -file installscript.ps1 -UserName ',parameters('username'))]"
+                }
+            }
+        },
+        {
             "apiVersion": "2018-10-01",
             "type": "Microsoft.Compute/virtualMachines",
             "name": "[concat(variables('vmNameLinux'))]",
@@ -314,6 +355,27 @@
                             "id": "[resourceId('Microsoft.Network/networkinterfaces', concat(variables('vmNameLinux'),'-nic'))]"
                         }
                     ]
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Compute/virtualMachines/extensions",
+            "name": "[concat(variables('vmNameLinux'),'/linuxpostinstall')]",
+            "apiVersion": "2020-06-01",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/virtualMachines/', variables('vmNameLinux'))]"
+            ],
+            "properties": {
+                "publisher": "Microsoft.Azure.Extensions",
+                "type": "CustomScript",
+                "typeHandlerVersion": "2.0",
+                "autoUpgradeMinorVersion": true,
+                "settings": {
+                "fileUris": [
+                    "[uri(parameters('_artifactsLocation'), concat('linuxpostinstall.sh', parameters('_artifactsLocationSasToken')))]"
+                ],
+                "commandToExecute": "sh linuxpostinstall.sh"
                 }
             }
         },
