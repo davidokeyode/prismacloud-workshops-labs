@@ -28,8 +28,9 @@ The workshop is designed to take approximately 5-6 hours to complete. It can be 
 | 04 | [Setup Go Microservices project](full/4-aro-go-microservices.md) | Hands on Lab |
 | 05 | [Explore ARO Internals](full/5-explore-aro-internals.md)              | Hands on Lab |
 | 06 | [Deploy the Prisma Cloud Compute console and defenders](full/6-aro-prisma-cloud-deploy.md)  | Hands on Lab |
-| 07 | Explore Prisma Cloud Compute capabilities                  | Hands on Lab |
-| 08 | Wrap / Clean Up     | Hands on Lab |
+| 07b | [Deploy JFrog Artifactory on the ARO Cluster](full/7b-deploy-jfrog-aro-cluster)                 | Hands on Lab |
+| 08 | Explore Prisma Cloud Compute capabilities                  | Hands on Lab |
+| 09 | Wrap / Clean Up     | Hands on Lab |
 ----
 
 [Next](full/1-create-aro-cluster.md)

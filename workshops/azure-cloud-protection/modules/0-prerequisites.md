@@ -7,14 +7,15 @@ Author: David Okeyode
 
 In this workshop lesson, you will be setting up accounts that you need to follow the lessons in this workshop. Here are the exercises that we will complete in this lesson:
 
-> * Create an Azure free trial subscription 
+> * Create an Azure Free Trial Subscription
+> * Create an Azure DevOps Organization
 > * Create a Prisma Cloud Enterprise trial Account
 > * Create a JIRA account
 > * Create a Slack account
 
 Feel free to skip any exercise where you already have an existing account that you can use.
 
-## Exercise 1: Create an Azure free trial subscription
+## Exercise 1: Create an Azure Free Trial Subscription
 >* You need an "Outlook" account to complete this exercise. If you do not have one, you can go to [this link](https://outlook.live.com/owa/) and click on the **"Create free account"** option to create a free outlook account.
 >* A credit card will be needed to validate your identity. This card will not be charged unless you upgrade. It will only be used to validate user identity.
 
@@ -22,28 +23,42 @@ Feel free to skip any exercise where you already have an existing account that y
 2. Click on **`Start for free`**
 3. Sign in with your Outlook account.
 4. In **`Your profile`** section, complete the following:
-   * Country/Region: Select your country/region
-   * First Name: Enter your first name
-   * Last Name: Enter your last name
-   * Email address: Your outlook email address
-   * Phone: Your phone number without the country code
-   * Company VatID: Leave empty
+   * **Country/Region**: Select your country/region
+   * **First Name**: Enter your first name
+   * **Last Name**: Enter your last name
+   * **Email address**: Your outlook email address
+   * **Phone**: Your phone number without the country code
+   * **Company VatID**: Leave empty
    * Click **`Next`**
 5. In the **`Identity verification by phone`** section, verify that your phone number is correct and click **`Text me`**.
    >* A verification code will be sent in a text message to your phone. Enter the code and click **`Verify code`**
 6. In the **`Identity verification by card`** section, complete the following:
-   * Cardholder Name: Enter your name as it appears on your card
-   * Card Number: Enter your card number
-   * Expires: Select the expiry month and year
-   * CVV: Enter the CVV information
-   * Address Line 1: Enter the first line of your address
-   * City: Enter your city
-   * Postal Code: Enter your address post code
+   * **Cardholder Name**: Enter your name as it appears on your card
+   * **Card Number**: Enter your card number
+   * **Expires**: Select the expiry month and year
+   * **CVV**: Enter the CVV information
+   * **Address Line 1**: Enter the first line of your address
+   * **City**: Enter your city
+   * **Postal Code**: Enter your address post code
    * Click **`Next`**
 7. In the **Agreement** section, select the option `I agree to the subscription agreement, offer fetails, and privacy statement` and click **`Sign up`**. 
    >* Wait for a few minutes for the subscription to be created.
 8. You can go to [https://portal.azure.com](https://portal.azure.com) to verify your subscription once it has finished creating.
 
+
+## Exercise 2: Create an Azure DevOps Organization
+>* You need an "Outlook" account to complete this exercise. If you do not have one, you can go to [this link](https://outlook.live.com/owa/) and click on the **"Create free account"** option to create a free outlook account.
+>* A credit card will be needed to validate your identity. This card will not be charged unless you upgrade. It will only be used to validate user identity.
+
+1. Open a web browser tab and go to [https://aex.dev.azure.com/?WT.mc_id=DOP-MVP-5003870](https://aex.dev.azure.com/?WT.mc_id=DOP-MVP-5003870). When prompted, enter the following:
+   * **Your name**: Enter your name
+   * **We'll reach you at**: Enter your email address
+   * **From**: Select your location
+   * Click on **Continue**
+
+2. In the Get started with Azure DevOps window, click on **Create new organization** and click on **Continue** and complete the following:
+   * **Name your Azure DevOps organization**: Enter an organization name
+   * **We'll host your projects in**: Select a location close to you
 
 ## Exercise 2: Create a Prisma Cloud Enterprise trial Account
 >* You need a corporate email address to complete this exercise. It CANNOT be a public email like "outlook.com" or "yahoo.com". Public email domains are restricted from signing up.
@@ -53,17 +68,16 @@ Feel free to skip any exercise where you already have an existing account that y
 3. In the **`Sign In or Create Account`** window, enter your email address and select the **`I'm not a robot`** option to complete the captcha.
    >* Complete the captcha.
 4. Complete the following information:
-   * First Name: Enter your first name
-   * Last Name: Enter your last name
-   * Company Name: Enter your company's name
-   * Street Address: Enter your company's street address
-   * City: Enter your company's city
-   * Country: Select your company's country
-   * ZIP Code: Enter your post code
+   * **First Name**: Enter your first name
+   * **Last Name**: Enter your last name
+   * **Company Name**: Enter your company's name
+   * **Street Address**: Enter your company's street address
+   * **City**: Enter your company's city
+   * **Country**: Select your company's country
+   * **ZIP Code**: Enter your post code
    * Select **`I accept the Privacy Agreement`**
    * Click **`Create Account`**   
 5. Wait for the account to be created. You will receive an email in your corporate mailbox once the account is ready.
-
 
 ## Exercise 3: Create a JIRA account
 1. Open a web browser tab and go to [https://www.atlassian.com/software/jira/free](https://www.atlassian.com/software/jira/free).
@@ -71,10 +85,10 @@ Feel free to skip any exercise where you already have an existing account that y
 ![jira-selection](../images/0-jira-selection.png)
 
 3. Click on **`Sign up with email`** and complete the following:
-   * Work email: Enter your Outlook email address (the same one that you used to sign up for your Azure subscription).
-   * Password: Enter your password
-   * First Name: Enter your first name
-   * Last Name: Enter your last name
+   * **Work email**: Enter your Outlook email address (the same one that you used to sign up for your Azure subscription).
+   * **Password**: Enter your password
+   * **First Name**: Enter your first name
+   * **Last Name**: Enter your last name
    * Click **`Agree`**
    * Complete the captcha that you are presented
 >* A verification email will be sent to your email address
@@ -116,7 +130,8 @@ Feel free to skip any exercise where you already have an existing account that y
 ## Next steps
 
 In this lesson, you completed the following:
-> * Created an Azure free trial subscription 
+> * Created an Azure Free Trial Subscription
+> * Created an Azure DevOps Organization
 > * Created a Prisma Cloud Enterprise trial Account
 > * Created a JIRA account
 > * Created a Slack account
