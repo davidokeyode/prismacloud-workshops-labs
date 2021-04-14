@@ -593,35 +593,35 @@
         }
     ],
     "outputs": {
-        "virtual network": {
+        "Linux VM Hostname": {
             "type": "string",
-            "value": "[variables('vNetName')]"
+            "value": "[reference(concat(variables('vmNameLinux'), '-pip')).dnsSettings.fqdn]"
         },
-        "subnet": {
+        "Linux VM SSH Command": {
             "type": "string",
-            "value": "[variables('subnetName')]"
+            "value": "[concat('ssh ', parameters('username'), '@', reference(concat(variables('vmNameLinux'), '-pip')).dnsSettings.fqdn)]"
         },
-        "network security group": {
+        "Windows VM Username": {
             "type": "string",
-            "value": "[variables('nsgName')]"
+            "value": "[parameters('username')]"
         },
-        "windows virtual machine": {
+        "Windows VM Hostname": {
             "type": "string",
-            "value": "[variables('vmNameWindows')]"
+            "value": "[reference(concat(variables('vmNameWindows'), '-pip')).dnsSettings.fqdn]"
         },
-        "linux virtual machine": {
+        "AKS Control Plane FQDN": {
             "type": "string",
-            "value": "[variables('vmNameLinux')]"
+            "value": "[reference(variables('aksClusterName')).fqdn]"
         },
-        "key vault": {
+        "Container Registry FQDN": {
+            "value": "[reference(resourceId('Microsoft.ContainerRegistry/registries',variables('containerRegistryName')),'2019-12-01-preview').loginServer]",
+            "type": "string"
+        },
+        "Key Vault": {
             "type": "string",
             "value": "[variables('kvName')]"
         },
-        "container registry": {
-            "type": "string",
-            "value": "[variables('containerRegistryName')]"
-        },
-        "sql database": {
+        "SQL Database": {
             "type": "string",
             "value": "[variables('sqlDatabaseName')]"
         }
