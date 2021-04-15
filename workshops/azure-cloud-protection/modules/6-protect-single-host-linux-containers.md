@@ -160,7 +160,7 @@ fi
 mkdir nodeapp
 echo "super sensitive" > nodeapp/sensitive.txt
 
-curl https://github.com/davidokeyode/prismacloud-workshops-labs/blob/main/workshops/azure-cloud-protection/template/nodeapp/Dockerfile -O nodeapp/Dockerfile
+wget -P nodeapp/Dockerfile https://raw.githubusercontent.com/davidokeyode/prismacloud-workshops-labs/main/workshops/azure-cloud-protection/template/nodeapp/Dockerfile
 
 docker build -t nodeapp:v1 nodeapp/.
 ```
