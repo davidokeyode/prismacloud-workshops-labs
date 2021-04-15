@@ -14,10 +14,3 @@ chmod +x /usr/local/bin/docker-compose
 
 # Install kubectl
 az aks install-cli
-
-vim nodeapp/sensitive.txt (sensitive info)
-
-vim nodeapp/Dockerfile
-COPY sensitive.txt /tmp/sensitive.txt
-
-docker build -t nodeapp:v1 nodeapp/.

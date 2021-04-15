@@ -54,9 +54,9 @@ azlab-kv-[uniqestring] | Key vault | Demonstrating Key Vault related recommendat
 
 ![1-template-deployment-progress](../images/1-template-deployment-progress.png)
 
-4. When the deployment is complete, you should see the view below. You can click on **Go to resource group** to view the deployed resources.
+4. When the deployment is complete, you should see the view below. You can click on **Outputs** to view some information that you will need for subsequent labs. Make note of the information here.
 
-![template-deployment-complete](../images/1-template-deployment-complete.png)
+![template-deployment-output](../images/1-template-deployment-output.png)
 
 ## Next steps
 
