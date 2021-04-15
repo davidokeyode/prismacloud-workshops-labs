@@ -155,6 +155,25 @@ fi
 
 ![pcc-compliance](../images/6-twistlock-compliance.png)
 
+3. Build a non-compliant image
+```
+mkdir nodeapp
+echo "super sensitive" > nodeapp/sensitive.txt
+
+curl https://github.com/davidokeyode/prismacloud-workshops-labs/blob/main/workshops/azure-cloud-protection/template/nodeapp/Dockerfile -O nodeapp/Dockerfile
+
+docker build -t nodeapp:v1 nodeapp/.
+```
+
+4. Scan a non-compliant image with Prisma Cloud
+
+
+
+
+
+
+
+
 
 * **`Name`**: Sensitive File Check
 
