@@ -60,7 +60,7 @@
         "subnetRef": "[concat(variables('vNetId'),'/subnets/', variables('subnetName'))]",
         "nsgName": "azlab-nsg",
         "windowsOffer": "WindowsServer",
-        "windowsSku": "2016-Datacenter",
+        "windowsSku": "2019-Datacenter",
         "windowsPublisher": "MicrosoftWindowsServer",
         "linuxOffer": "UbuntuServer",
         "linuxSku": "16.04-LTS",
