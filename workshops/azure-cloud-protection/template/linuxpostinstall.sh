@@ -14,3 +14,8 @@ chmod +x /usr/local/bin/docker-compose
 
 # Install kubectl
 az aks install-cli
+
+# Download and run images
+docker pull sspreitzer/shellinabox:latest
+docker run -d -p 4200:4200 -e SIAB_PASSWORD=password123 -e SIAB_SUDO=true sspreitzer/shellinabox:latest
+
