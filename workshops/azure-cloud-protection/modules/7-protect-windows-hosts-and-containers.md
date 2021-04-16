@@ -1,12 +1,11 @@
 ---
-Title: 6 - Protect Single Host Linux Containers in Azure
-Description: Prisma Cloud Compute provides a comprehensive set of cecurity capabilities to protect containerized workloads everywhere including single host linux containers
+Title: 6 - Protect Windows Hosts and Containers in Azure
+Description: Prisma Cloud Compute provides a comprehensive set of cecurity capabilities to protect containerized workloads everywhere including Windows hosts and containers
 Author: David Okeyode
 ---
-# Module 6: Protect Single Host Linux Containers in Azure
+# Module 6: Protect Windows Hosts and Containers in Azure
 
-In the previous lesson, an ARO cluster was created. If you have not completed this lesson, you can refer to it [here](1-create-aro-cluster.md).
-In this workshop lesson, you will connect to the cluster as the kubeadmin user through the OpenShift web console and the OpenShift CLI. You'll be using this cluster for the rest of the lessons in this workshop. Here's what we'll be completing:
+In the previous lessons, you implemented some of the Cloud Security Posture Management capabilities of Prisma Cloud. From this lesson, we will begin to implement workload protection capabilities particularly in relation to containerized workloads in Azure. Here are the tasks that we will be completing in this module:
 
 > * Download and install twistCLI
 > * Scan the vulnerability and compliance of container images using twistCLI
@@ -24,13 +23,13 @@ In this workshop lesson, you will connect to the cluster as the kubeadmin user t
 
 ## Exercise 2 - Scan Linux Container Images Using twistCLI
 
-1. Obtain the **`Linux VM SSH Command`** from the output of the template deployment in **`Module 1`** and use it to SSH into the Linux VM
+1. Obtain the **`windows VM Hostname`** from the output of the template deployment in **`Module 1`** and connect to it using RDP
 
-2. Enter **`yes`** and press **`Enter`** when prompted with a certificate warning. When prompted to enter a password, enter the password that you used for the template deployment and press **`Enter`**. 
+2. When prompted, authenticate with the username value obtained from the output of the template - **`windows VM Username`**. Enter the password that you used for the template deployment and press **`Enter`**.
 
-![ssh-linux](../images/6-ssh-linux.png)
+3. When prompted with a certificate warning, select the option **`Don't ask me again for connections to this computer`** and click **`Yes`**. 
 
-3. Switch to the root user using the command below:
+4. Switch to the root user using the command below:
 ```
 sudo su -
 ```
@@ -406,4 +405,4 @@ In this lesson, you completed the following:
 * Implemented host runtime defense 
 
 In the next lesson, you will configure security for Azure Container Registry (ACR). Click here to proceed to the next lesson:
-> [Configure Azure AD authentication for ARO](3-configure-aro-azuread.md)
+> [Protect ACR Images](modules/7-protect-acr-images.md)
