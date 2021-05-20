@@ -206,5 +206,5 @@ In this module, you completed the following:
 >* Created an alert rule in Prisma Cloud to raise tasks in JIRA
 >* Verified Prisma Cloud alerts in JIRA
 
-In the next module, you will review and remediate security risks and compliance violations with Prisma Cloud. Click here to proceed to the next module:
-> [Review and remediate issues with Prisma Cloud](5-respond-and-remediate.md)
+In the next module, you will integrate your JIRA project with Prisma Cloud (Compute). Click here to proceed to the next module:
+> [Configure JIRA integration in Prisma Cloud (Compute)](4b-jira-integration-cwpp.md)

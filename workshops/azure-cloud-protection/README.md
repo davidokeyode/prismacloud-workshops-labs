@@ -28,7 +28,8 @@ The workshop is designed to take approximately 5-6 hours to complete. It can be 
 | 01 | [Prepare Your Azure Environment](modules/1-prepare-the-environment.md) | Hands on Lab |
 | 02 | [Onboard Azure Subscription to Prisma Cloud](modules/2-onboard-azure-sub.md) | Hands on Lab |
 | 03 | [Onboard Azure Active Directory (AAD) Tenant to Prisma Cloud](modules/3-onboard-azure-ad.md)                | Hands on Lab |
-| 04 | [Configure JIRA integration in Prisma Cloud](modules/4-jira-integration.md) | Hands on Lab |
+| 04a | [Configure JIRA integration in Prisma Cloud (CSPM)](modules/4a-jira-integration-cspm.md) | Hands on Lab |
+| 04b | [Configure JIRA integration in Prisma Cloud (CSPM)](modules/4b-jira-integration-cwpp.md) | Hands on Lab |
 | 05 | [Remediate Security Risks and Compliance Violations with Prisma Cloud](modules/5-respond-and-remediate.md)  | Hands on Lab |
 | 06 | [Protect Linux Hosts and Containers in Azure](modules/6-protect-linux-hosts-and-containers.md) | Hands on Lab |
 | 07 | [Protect Windows Hosts and Containers in Azure](modules/6-protect-linux-host-and-containers.md) | Hands on Lab |

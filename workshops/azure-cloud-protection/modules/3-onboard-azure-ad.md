@@ -70,4 +70,4 @@ In this module, you completed the following:
 > * Add AAD tenant in Prisma Cloud
 
 In the next module, you will Configure JIRA integration in Prisma Cloud. Click here to proceed to the next lesson:
-> [Configure JIRA integration in Prisma Cloud](4-jira-integration.md)
+> [Configure JIRA integration in Prisma Cloud](4a-jira-integration-cspm.md)
