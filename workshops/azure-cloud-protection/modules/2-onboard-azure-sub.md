@@ -166,7 +166,7 @@ In the previous module, you created the accounts that you need to complete the w
 ```
 subid=$(az account show --query id --output tsv)
 
-az role assignment create --assignee <application_client_id> --role "Contributor" --scope $subid
+az role assignment create --assignee <application_client_id> --role "Contributor"
 ```
 
 9. Back in the Prisma Cloud console, in the **Account Details** window, enter the following:

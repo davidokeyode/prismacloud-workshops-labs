@@ -16,12 +16,11 @@ In the previous lessons, you implemented some of the Cloud Security Posture Mana
 
 ## Exercise 1 - Obtain the twistCLI Download URL
 
-1. Log into the Prisma Cloud Console and obtain the twistCLI download URL from the following location: **`Compute`** → **`Manage`** → **`System`** → **`Downloads`** → Copy the URL for the twistcli tool (Linux platform)
-* Make a note of the copied download command
+1. Log into the Prisma Cloud Console and obtain the twistCLI download URL from the following location: **`Compute`** → **`Manage`** → **`System`** → **`Downloads`** → Click to download the twistcli tool (Windows platform)
 
-![twistcli-download](../images/6-twistcli-download.png)
+![twistcli-download](../images/7-twistcli-download.png)
 
-## Exercise 2 - Scan Linux Container Images Using twistCLI
+## Exercise 2 - Scan Windows Container Images Using twistCLI
 
 1. Obtain the **`windows VM Hostname`** from the output of the template deployment in **`Module 1`** and connect to it using RDP
 
@@ -29,22 +28,20 @@ In the previous lessons, you implemented some of the Cloud Security Posture Mana
 
 3. When prompted with a certificate warning, select the option **`Don't ask me again for connections to this computer`** and click **`Yes`**. 
 
-4. Switch to the root user using the command below:
-```
-sudo su -
-```
+4. In the task bar, right click the docker icon and switch to Windows containers as shown below:
 
-4. In the SSH session to the Linux VM, download sample container images using the commands below:
+![switch-docker](../images/7-switch-docker.png)
+
+5. In the RDP session to the Windows VM, open PowerShell as an administrator, download sample container images using the commands below:
 ```
-docker pull node:13.5-alpine
-docker pull node:current-alpine
+docker pull mcr.microsoft.com/dotnet/samples:aspnetapp
+
+./twistcli images scan mcr.microsoft.com/dotnet/samples:aspnetapp --address $TWISTLOCK_CONSOLE -u $TWISTLOCK_USER -p $TWISTLOCK_PASSWORD
+
 docker image ls
 ```
 
-5. Download the twistCLI tool using the command that you made a note of in Exercise 1. The command will be in the following format:
-```
-curl --progress-bar -L -k --header "authorization: Bearer <PRISMA_CONSOLE_TOKEN>" <PRISMA_CONSOLE_URL> > twistcli; chmod a+x twistcli;
-```
+6. Copy the twistCLI tool that you downloaded in Exercise 1 into the Windows VM
 
 ## Exercise 3 - Create Scanning Credentials
 To begin scanning, we need two main pieces of information. First the console address of our Prisma Cloud console and second, API credentials that can be used for authenticating the scan request. We'll obtain both of these information in this exercise.
@@ -81,7 +78,6 @@ To begin scanning, we need two main pieces of information. First the console add
 	* Leave other settings at default value
 	* Click on **`Save`**
 
-
 ## Exercise 5 - Configure Prisma Cloud Host and Container Compliance Rules
 1. Configure a container image compliance assessment rule by going to the following location: 
 * **`Compute`** → **`Defend`** → **`Compliance`** → **`Containers and Images`** → **`CI`** → **`Add Rule`**
@@ -103,9 +99,9 @@ To begin scanning, we need two main pieces of information. First the console add
 ## Exercise 6 - Scan Images Using twistCLI
 1. Go back to the SSH session of the Linux VM and configure the following environment variables. Replace the placeholder values with the values that you made note of in Exercise 3.
 ```
-TWISTLOCK_CONSOLE=<PRISMA_CLOUD_CONSOLE_URL>
-TWISTLOCK_USER=<PRISMA_CLOUD_ACCESS_KEY_ID>
-TWISTLOCK_PASSWORD=<PRISMA_CLOUD_SECRET_KEY>
+$TWISTLOCK_CONSOLE="<PRISMA_CLOUD_CONSOLE_URL>"
+$TWISTLOCK_USER="<PRISMA_CLOUD_ACCESS_KEY_ID>"
+$TWISTLOCK_PASSWORD="<PRISMA_CLOUD_SECRET_KEY>"
 ```
 
 2. Review twistCLI commands using the commands below:
@@ -225,11 +221,13 @@ docker build -t nodeapp:v2 nodeapp/.
 ## Exercise 8 - Install Prisma Cloud Defender 
 1. In the Prisma Cloud console, go to **`Compute`** → **`Manage`** → **`Defenders`** → **`Deploy`** → **`Defenders`** 
 * **`Deployment method`**: Single Defender
-* **`Choose the Defender type`**: Container Defender - Linux
+* **`Choose the Defender type`**: Container Defender - Windows
 * Leave other settings at default values
 * Copy the install command in **`Step 7`**
 
-![pcc-defender](../images/6-pcc-defender-a.png)
+![install-defender](../images/7-install-defender.png)
+
+
 
 2. Go to the SSH session of the Linux VM, paste the command that you copied in the previous step to install the Prisma Cloud defender. The command will have the following format.
 
@@ -385,14 +383,8 @@ docker run --rm -d servethehome/monero_cpu_minergate
 
 
 ## Learn more
-* [Prisma Cloud Runtime Defense Overview](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/runtime_defense/runtime_defense_overview.html)
-* [Prisma Cloud Runtime Defense For Processes](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/runtime_defense/runtime_defense_processes.html)
-* [Prisma Cloud Runtime Defense For Networking](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/runtime_defense/runtime_defense_networking.html)
-* [Prisma Cloud Runtime Defense For File Systems](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/runtime_defense/runtime_defense_fs.html)
-* [Prisma Cloud Block Container Effect](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/runtime_defense/blocked_containers.html)
-* [Prisma Cloud Runtime Defense Custom Rules](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/runtime_defense/custom_runtime_rules.html)
-* [Prisma Cloud Advanced Threat Protection](https://docs.paloaltonetworks.com/prisma/prisma-cloud/20-04/prisma-cloud-compute-edition-admin/technology_overviews/twistlock_advanced_threat_protection.html)
-* [Prisma Cloud Host Protection Overview](https://blog.paloaltonetworks.com/prisma-cloud/runtime-protection-prisma-cloud/)
+* [Prisma Cloud Windows Containers](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/install/install_windows.html)
+
 
 ## Next steps
 

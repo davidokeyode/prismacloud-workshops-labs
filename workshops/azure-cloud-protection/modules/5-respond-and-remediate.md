@@ -28,11 +28,15 @@ Author: David Okeyode
    * **Assets By Classification**: 
 >* The Asset inventory dashboard provides a snapshot of the current state of all cloud resources or assets that you are monitoring and securing using Prisma Cloud. To understand the different sections of this dashboard, please refer to this document: [Prisma Cloud Asset Inventory Dashboard](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin/prisma-cloud-dashboards/asset-inventory.html).
 
-4. In the left hand menu, click on **`Policies`**. In the filter pane, select only **`Azure`** for the **`CLOUD TYPE`** filter. If you don't currently have the **`CLOUD TYPE`** filter, you can add it using the add button as shown below:
+4. In the left hand menu, click on **`Policies`**. Click on the **`Add Filter`** button, and select **`Cloud Type`**.
 
-![jira-products](../images/5-prisma-policy-filter.png)
+![jira-products](../images/5-prisma-filter-policies.png)
 
-5. Review the following columns of the built-in policies. These are the built-in policies that are used to assess your Azure resources. You can filter based on any of these.
+5. In the **`Select Cloud Type`** drop down, select only **`Azure`**. In the Policies Drilldown section, review the **`Top 5 Policies by Alert`**.
+
+![jira-products](../images/5-prisma-policy-drilldown.png)
+
+6. At the bottom of the page, review the following columns of the built-in policies. These are the built-in policies that are used to assess your Azure resources. You can filter based on any of these.
    * **Policy Type**:
       * **Config**: Based on cloud resource misconfigurations. They could be aligned with security best practices or compliance frameworks. Examples are misconfigured cloud database or storage services.
       * **Audit event**: Based on suspicious user activities. 
@@ -50,17 +54,17 @@ Author: David Okeyode
    * **Remediable**: Auto-remediation is available for alerts based on the policy
 >* To understand the the pre-defined Prisma Cloud policies, please refer to this document: [Manage Prisma Cloud Policies](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin/prisma-cloud-policies/manage-prisma-cloud-policies.html).
 
-5. In the left hand menu, click on **`Compliance`** → **`Standards`**. Review the compliance standards that Prisma Cloud supports out of the box. 
+7. In the left hand menu, click on **`Compliance`** → **`Standards`**. Review the compliance standards that Prisma Cloud supports out of the box. 
 
-6. In the left hand menu, click on **`Compliance`** → **`Overview`**. Review the compliance standards that Prisma Cloud supports out of the box. 
+8. In the left hand menu, click on **`Compliance`** → **`Overview`**. Review the compliance standards that Prisma Cloud supports out of the box. 
 >* The Compliance dashboard provides an overview of your overall compliance posture across various compliance standards. To understand the different sections of this dashboard, please refer to this document: [Prisma Cloud Compliance Dashboard](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin/prisma-cloud-compliance/compliance-dashboard.html).
 
-7. In the left hand menu, click on **`Settings`** → **`Anomaly Settings`**. Review the anomaly settings options. 
+9. In the left hand menu, click on **`Settings`** → **`Anomaly Settings`**. Review the anomaly settings options. 
 >* To understand the different settings, please refer to this document: [Prisma Cloud Anomaly Policy Thresholds](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin/manage-prisma-cloud-administrators/define-prisma-cloud-enterprise-settings.html)
 
 ## Exercise 2 - Review and remediate Prisma Cloud Alerts
 
-1. In the left hand menu, click on **`Alerts`** → **`Overview`**. Review the alerts and the filter options
+1. In the left hand menu, click on **`Alerts`** → **`Overview`**. Review the alerts and the filter options.
 
 2. In the search box, type **`Key Vault`** and press **`Enter`**. This shows all alerts related to the Azure Key Vault resource. Click on **`1`** in front of the **`Azure Key Vault audit logging is disabled`**.
 
@@ -79,15 +83,14 @@ Author: David Okeyode
 ![jira-products](../images/5-prisma-alert-04.png)
 
 6. In the **Diagnostic setting** blade, configure the following:
-* **Policy Type**:
-      * **Diagnostic setting name**: azlab-kv-diag
-      * **AuditEvent**: Selected 
-      * **AllMetrics**: Selected
-      * **Archive to a storage account**: Selected
-      * **Subscription**: Select your Azure subscription
-      * **Storage account**: Select the storage account that has a name prefix of **prismaflow**
-      * Leave other settings at default values
-      * Click on **`Save`**
+* **Diagnostic setting name**: azlab-kv-diag
+* **AuditEvent**: Selected 
+* **AllMetrics**: Selected
+* **Archive to a storage account**: Selected
+* **Subscription**: Select your Azure subscription
+* **Storage account**: Select the storage account that has a name prefix of **prismaflow** or **azlabs**
+* Leave other settings at default values
+* Click on **`Save`**
 
 ![jira-products](../images/5-prisma-alert-05.png)
 
@@ -116,7 +119,7 @@ You have now remediated a policy violation manually using the instructions provi
 
 ## Exercise 3 - Configure Auto-remediation in Prisma Cloud
 
-1. In the Prisma Cloud console, go to **`Alerts`** → **`Alert Rules`** → **`Add New`**.
+1. In the Prisma Cloud console, go to **`Alerts`** → **`Alert Rules`** → **`New Alert Rule`**.
 
 ![jira-products](../images/5-prisma-auto-01.png)
 
@@ -152,4 +155,4 @@ In this lesson, you completed the following:
 * Configure Auto-remediation in Prisma Cloud
 
 In the next lesson, you will protect Azure Kubernetes Service (AKS) workloads using Prisma Cloud Compute:
-> [Protect Azure Kubernetes Service (AKS) Workloads](6-protect-aks-workloads.md)
+> [Protect Linux Hosts and Containers](6-protect-linux-hosts-and-containers.md)
