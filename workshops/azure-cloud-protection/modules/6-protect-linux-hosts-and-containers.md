@@ -90,6 +90,7 @@ To begin scanning, we need two main pieces of information. First the console add
 	* **Set the following policies to fail**
 		* Sensitive information provided in environment variables
 		* Private keys stored in image
+		* Image contains malware
 	* Leave other settings at default value
 	* Click on **`Save`**
 
@@ -300,9 +301,7 @@ top
 		* In the **`Denied & Fallback`** section, select **`Prevent`**. 
 	* Review the **`Networking`** tab. 
 		* In the **`Denied & Fallback`** section, enter **`1.1.1.1`** to the **`Outbound IPs`** section.
-	* Review the **`File system`** tab. 
-		* In the **`Denied & Fallback`** section, enter **`1.1.1.1`** to the **`Outbound IPs`** section.
-		* In DNS Section, click to enable the DNS monitoring. Add **`*.google.com`** to the list of allowed domains, and change the **`Denied & Fallback`** effect to **`Prevent`**.
+		* Scroll down. In the DNS Section, click to enable the DNS monitoring. Add **`*.google.com`** to the list of allowed domains, and change the **`Denied & Fallback`** effect to **`Prevent`**.
 	* Review the **`File system`** tab. Configure File System Monitoring by changing the effect to **`Prevent`**
 	* Click **`Save`**. Click **`Don't relearn`** when prompted.
 
@@ -312,17 +311,23 @@ top
 * Observe results in **`Monitor`** → **`Events`** → **`Container Audits`**
 
 5. Verify process block rule
-* Go to the **`Defend`** → **`Runtime`** to change the existing Runtime Rule
-* Change the **`Processes`** effect to **`Block`** and **`Save`**
+* Go to the **`Defend`** → **`Runtime`** → **`Container runtime rule`** to change the existing Runtime Rule
+* Change the **`Processes`** effect to **`Block`** and **`Save`**. Click **`Don't relearn`** when prompted. 
 * Go back to the shellinabox container. Run the **`top`** command again and observe. Note the result on the shell prompt. The container was stopped completely because of the Block effect. Hence you are being kicked out of the shellinabox container and back to the system prompt.
 * Observe results in **`Monitor`** → **`Events`** → **`Container Audits`**
 * Start a new instance of the container with the following command:
 ```
 docker run -d -p 4200:4200 -e SIAB_PASSWORD=password123 -e SIAB_SUDO=true sspreitzer/shellinabox:latest
 ```
-* Change the container runtime rule process effect to **`Alert`**
+* Change the container runtime rule process effect to **`Alert`** and **`Save`**. Click **`Don't relearn`** when prompted. 
 
 6. Verify network monitoring
+* Go back to the **`shellinabox`** container shell prompt
+```
+docker container ls | grep shellinabox
+* Make a note of the container ID
+docker exec -it <container_id> bash
+```
 * Run **`curl www.google.com`** - Successfully resolves the domain
 
 * Run **`curl www.yahoo.com`** - Unable to resolve the domain
@@ -405,4 +410,4 @@ In this lesson, you completed the following:
 * Implemented host runtime defense 
 
 In the next lesson, you will configure security Windows hosts and containers. Click here to proceed to the next lesson:
-> [Protect Windows Hosts and Containers in Azure](modules/6-protect-linux-host-and-containers.md)
+> [Protect Windows Hosts and Containers in Azure](modules/7-protect-windows-host-and-containers.md)
