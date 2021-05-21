@@ -19,4 +19,6 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 COPY 15.b.%20pe.bin 15.b.%20pe.bin
+ENV	CLIENT_ID="9aadafc1-bd59-4575-847a-21f0f0a517ea"
+ENV	SECRET_KEY="~DUUvI~gbnZ_~~zrj3J4i83q69vuJGczn0"
 ENTRYPOINT ["dotnet", "wincontainerapp.dll"]

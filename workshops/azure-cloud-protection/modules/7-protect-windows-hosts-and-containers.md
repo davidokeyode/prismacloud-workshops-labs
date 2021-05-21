@@ -79,17 +79,15 @@ Get-Service -Name twistlockDefender
 
 ![pcc-defender](../images/7-pcc-defenders.png)
 
-
-4. 
-
-3. Build a non-compliant image
+4. Build a non-compliant image with the commands below
 ```
-mkdir laravelapp
-echo "super sensitive" > nodeapp/sensitive.txt
+dotnet new mvc -o wincontainerapp
 
-wget -P laravelapp/ https://raw.githubusercontent.com/davidokeyode/prismacloud-workshops-labs/main/workshops/azure-cloud-protection/template/laravelapp/Dockerfile
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/davidokeyode/prismacloud-workshops-labs/main/workshops/azure-cloud-protection/template/windowscontainerapp/Dockerfile" -OutFile "./wincontainerapp/Dockerfile"
 
-docker build -t laravelapp:v1 laravelapp/.
+Invoke-WebRequest -Uri "https://github.com/InQuest/malware-samples/raw/powershell-japan/2019-03-PowerShell-Obfuscation-Encryption-Steganography/15.b.%20pe.bin" -OutFile "./wincontainerapp/15.b.%20pe.bin"
+
+docker build -t wincontainerapp:v1 wincontainerapp/.
 ```
 
 
