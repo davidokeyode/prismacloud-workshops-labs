@@ -1,12 +1,13 @@
 ---
-Title: 6 - Protect Windows Hosts and Containers in Azure
+Title: 7 - Protect Windows Hosts and Containers in Azure
 Description: Prisma Cloud Compute provides a comprehensive set of cecurity capabilities to protect containerized workloads everywhere including Windows hosts and containers
 Author: David Okeyode
 ---
-# Module 6: Protect Windows Hosts and Containers in Azure
+# Module 7: Protect Windows Hosts and Containers in Azure
 
 In the previous lessons, you implemented some of the Cloud Security Posture Management capabilities of Prisma Cloud. From this lesson, we will begin to implement workload protection capabilities particularly in relation to containerized workloads in Azure. Here are the tasks that we will be completing in this module:
 
+> * Switch Docker to Windows Containers
 > * Download and install twistCLI
 > * Scan the vulnerability and compliance of container images using twistCLI
 > * Implement custom compliance scan for container images 
@@ -14,14 +15,7 @@ In the previous lessons, you implemented some of the Cloud Security Posture Mana
 > * Implement container runtime defense 
 > * Implement host runtime defense 
 
-## Exercise 1 - Obtain the twistCLI Download URL
-
-1. Log into the Prisma Cloud Console and obtain the twistCLI download URL from the following location: **`Compute`** → **`Manage`** → **`System`** → **`Downloads`** → Click to download the twistcli tool (Windows platform)
-
-![twistcli-download](../images/7-twistcli-download.png)
-
-## Exercise 2 - Scan Windows Container Images Using twistCLI
-
+## Exercise 1 - Switch Docker to Windows Containers
 1. Obtain the **`windows VM Hostname`** from the output of the template deployment in **`Module 1`** and connect to it using RDP
 
 2. When prompted, authenticate with the username value obtained from the output of the template - **`windows VM Username`**. Enter the password that you used for the template deployment and press **`Enter`**.
@@ -32,220 +26,72 @@ In the previous lessons, you implemented some of the Cloud Security Posture Mana
 
 ![switch-docker](../images/7-switch-docker.png)
 
-5. In the RDP session to the Windows VM, open PowerShell as an administrator, download sample container images using the commands below:
-```
-docker pull mcr.microsoft.com/dotnet/samples:aspnetapp
-
-./twistcli images scan mcr.microsoft.com/dotnet/samples:aspnetapp --address $TWISTLOCK_CONSOLE -u $TWISTLOCK_USER -p $TWISTLOCK_PASSWORD
-
-docker image ls
-```
-
-6. Copy the twistCLI tool that you downloaded in Exercise 1 into the Windows VM
-
-## Exercise 3 - Create Scanning Credentials
-To begin scanning, we need two main pieces of information. First the console address of our Prisma Cloud console and second, API credentials that can be used for authenticating the scan request. We'll obtain both of these information in this exercise.
-
-1. Obtain the Prisma Cloud console address by going to the following location: 
-* **`Compute`** → **`Manage`** → **`System`** → **`Downloads`** → Copy the **`Path to console`**
-
-![prisma-console](../images/6-prisma-console.png)
-
-2. (Prisma Cloud SaaS) Generate credentials for scanning by doing the following:
-* **`Prisma Cloud`** → **`Settings`** → **`Access Keys`** → **`Add New`** 
-	* **`Name`**: DevSecOps-Scan
-	* **`Key Expiry`**: Select 30 days from current date
-	* Click on **`Create`**
-	* Make a note of both the **Access Key ID** and the **Secret Key**
-
-## Exercise 4 - Configure Prisma Cloud Host and Container Vulnerability Scanning Rules
-1. Configure a container image vulnerability assessment rule by going to the following location: 
-* **`Compute`** → **`Defend`** → **`Vulnerabilities`** → **`Images`** → **`CI`** → **`Add Rule`**
-	* **Rule Name**: Org Baseline Container Vulnerability Rule
-	* **Alert Threshold**: Low
-	* **Failure Threshold**: Medium
-	* **Expand Advanced Settings**
-		* **Apply rule only when vendor fixes are available**: On
-	* Leave other settings at default value
-	* Click on **`Save`**
-
-2. Configure a host vulnerability assessment rule by going to the following location: 
-* **`Compute`** → **`Defend`** → **`Vulnerabilities`** → **`Hosts`** → **`Running Hosts`** → **`Add Rule`**
-	* **Rule Name**: Org Baseline Host Vulnerability Rule
-	* **Alert Threshold**: Low
-	* **Expand Advanced Settings**
-		* **Apply rule only when vendor fixes are available**: On
-	* Leave other settings at default value
-	* Click on **`Save`**
-
-## Exercise 5 - Configure Prisma Cloud Host and Container Compliance Rules
-1. Configure a container image compliance assessment rule by going to the following location: 
-* **`Compute`** → **`Defend`** → **`Compliance`** → **`Containers and Images`** → **`CI`** → **`Add Rule`**
-	* **Rule Name**: Org Baseline Container Compliance Rule
-	* **Compliance Template**: NIST SP 800-190
-	* **Set the following policies to fail**
-		* Sensitive information provided in environment variables
-		* Private keys stored in image
-	* Leave other settings at default value
-	* Click on **`Save`**
-
-2. Configure a host compliance assessment rule by going to the following location: 
-* **`Compute`** → **`Defend`** → **`Compliance`** → **`Hosts`** → **`Running Hosts`** → **`Add Rule`**
-	* **Rule Name**: Org Baseline Host Compliance Rule
-	* **Compliance Template**: GDPR
-	* Leave other settings at default value
-	* Click on **`Save`**
-
-## Exercise 6 - Scan Images Using twistCLI
-1. Go back to the SSH session of the Linux VM and configure the following environment variables. Replace the placeholder values with the values that you made note of in Exercise 3.
+5. Set environment variables for scanning. Replace the placeholder values with the values that you made note of Module 6. Place the values in quotes.
 ```
 $TWISTLOCK_CONSOLE="<PRISMA_CLOUD_CONSOLE_URL>"
 $TWISTLOCK_USER="<PRISMA_CLOUD_ACCESS_KEY_ID>"
 $TWISTLOCK_PASSWORD="<PRISMA_CLOUD_SECRET_KEY>"
 ```
 
-2. Review twistCLI commands using the commands below:
-```
-./twistcli -h
-./twistcli images -h
-```
+## Exercise 2 - Download and install twistCLI
 
-3. Perform both vulnerability and compliance assessments of the two container images using twistCLI
-```
-./twistcli images scan node:13.5-alpine --address $TWISTLOCK_CONSOLE -u $TWISTLOCK_USER -p $TWISTLOCK_PASSWORD
-```
+1. Log into the Prisma Cloud Console and obtain the twistCLI download URL from the following location: **`Compute`** → **`Manage`** → **`System`** → **`Downloads`** → Click to download the twistcli tool (Windows platform). Copy the downloaded tool into the Windows VM.
 
-![twistcli-scan-results](../images/6-twistcli-scan-results-3.png)
+![twistcli-download](../images/7-twistcli-download.png)
 
+2. Open PowerShell as an administrator, download sample container images using the commands below:
 ```
-./twistcli images scan node:current-alpine --address $TWISTLOCK_CONSOLE -u $TWISTLOCK_USER -p $TWISTLOCK_PASSWORD
+docker pull mcr.microsoft.com/dotnet/samples:aspnetapp
+docker image ls
 ```
 
-![twistcli-scan-results](../images/6-twistcli-scan-results-4.png)
-
-* From the above result, we can see that using **`node:current-alpine`** as a base image is a better choice than using **`node:13.5-alpine`**
-
-4. Get details of container scans (vulnerability and compliance)
+3. Perform both vulnerability and compliance assessments of the container image using twistCLI
 ```
-./twistcli images scan node:13.5-alpine --address $TWISTLOCK_CONSOLE -u $TWISTLOCK_USER -p $TWISTLOCK_PASSWORD --details 
+./twistcli images scan mcr.microsoft.com/dotnet/samples:aspnetapp --address $TWISTLOCK_CONSOLE -u $TWISTLOCK_USER -p $TWISTLOCK_PASSWORD --details
 ```
+![twistcli-scan](../images/7-twistcli-scan.png)
 
-```
-./twistcli images scan node:current-alpine --address $TWISTLOCK_CONSOLE -u $TWISTLOCK_USER -p $TWISTLOCK_PASSWORD --details 
-```
+4. 
 
-* The criteria for passing or failing a scan can be refined with any of the following parameters: **`--compliance-threshold`**, **`--vulnerability-threshold`**, and **`--only-fixed`**.
+## Exercise 3 - Deploying Prisma Cloud Defender on Windows
 
-5. View results in the Prisma Cloud console. This is useful to track adoption of shift-left scans by developers.
-* **`Compute`** → **`Monitor`** → **`Vulnerabilities`** → **`Images`** → **`CI`**
-
-6. Specify if twistCLI scans will be saved in the console.
-* **`Compute`** → **`System`** → **`Scan`** → **`CI scan results`**
-
-7. Define collections and tags that can be used for filtering and policy assignment.
-* **`Compute`** → **`Manage`** → **`Collections and Tags`**
-
-8. Customize threat feeds and information
-* **`Compute`** → **`Manage`** → **`System`** → **`Custom feeds`** → **`Custom vulnerabilities`**
-* **`Compute`** → **`Manage`** → **`System`** → **`Custom feeds`** → **`Malware signatures`**
-
-## Exercise 7 - Implement custom compliance scan 
-1. In the Prisma Cloud console, go to **`Defend`** → **`Compliance`** → **`Custom`** → **`Add check`**
-* **`Name`**: Sensitive File Check
-* **`Description`**: Checks for sensitive file on container image
-* **`Severity`**: high
-* Check
-```
-if [ -f /tmp/sensitive.txt ]; then
-    echo "File not found!"
-    exit 1
-```
-* Click on **`Save`**
-
-2. In the Prisma Cloud console, go to **`Defend`** → **`Compliance`** → **`Containers and images`** → **`CI`** → Click the **`Org Baseline Container Compliance Rule`**
-* Set the new custom compliance to fail if violated
-* Click on **`Save`**
-
-![pcc-compliance](../images/6-twistlock-compliance.png)
-
-3. Build a non-compliant image
-```
-mkdir nodeapp
-echo "super sensitive" > nodeapp/sensitive.txt
-
-wget -P nodeapp/ https://raw.githubusercontent.com/davidokeyode/prismacloud-workshops-labs/main/workshops/azure-cloud-protection/template/nodeapp/Dockerfile
-
-docker build -t nodeapp:v1 nodeapp/.
-```
-
-4. Scan a non-compliant image with Prisma Cloud
-```
-./twistcli images scan nodeapp:v1 --address $TWISTLOCK_CONSOLE -u $TWISTLOCK_USER -p $TWISTLOCK_PASSWORD
-
-./twistcli images scan nodeapp:v1 --address $TWISTLOCK_CONSOLE -u $TWISTLOCK_USER -p $TWISTLOCK_PASSWORD --details
-```
-
-* The scan should identify two compliance issues for the image.
-
-![pcc-compliance-2](../images/6-twistlock-compliance-b.png)
-
-5. Fix the compliance issues and scan again
-* Edit the dockerfile using the command below:
-
-```
-vim nodeapp/Dockerfile
-```
-
-* Remove the following lines and save:
-
-```
-COPY    sensitive.txt /tmp/sensitive.txt
-ENV     CLIENT_ID="9aadafc1-bd59-4575-847a-21f0f0a517ea"
-ENV     SECRET_KEY="~DUUvI~gbnZ_~~zrj3J4i83q69vuJGczn0"
-```
-
-* Build a new version of the image using the following command:
-
-```
-docker build -t nodeapp:v2 nodeapp/.
-```
-
-* Scan the new version of the image:
-
-```
-./twistcli images scan nodeapp:v2 --address $TWISTLOCK_CONSOLE -u $TWISTLOCK_USER -p $TWISTLOCK_PASSWORD
-
-./twistcli images scan nodeapp:v2 --address $TWISTLOCK_CONSOLE -u $TWISTLOCK_USER -p $TWISTLOCK_PASSWORD --details
-```
-
-## Exercise 8 - Install Prisma Cloud Defender 
 1. In the Prisma Cloud console, go to **`Compute`** → **`Manage`** → **`Defenders`** → **`Deploy`** → **`Defenders`** 
 * **`Deployment method`**: Single Defender
 * **`Choose the Defender type`**: Container Defender - Windows
 * Leave other settings at default values
 * Copy the install command in **`Step 7`**
 
-![install-defender](../images/7-install-defender.png)
+![install-defender](../images/7-copy-defender-script.png)
 
+2. Go to the PowerShell session in the Windows VM, paste the command that you copied in the previous step and press enter to install the Prisma Cloud defender. The output will be similar to the screenshot below.
 
-
-2. Go to the SSH session of the Linux VM, paste the command that you copied in the previous step to install the Prisma Cloud defender. The command will have the following format.
-
-```
-curl -sSL -k --header "authorization: Bearer <TOKEN>" -X POST https://<CONSOLE_URL>/api/v1/scripts/defender.sh  | sudo bash -s -- -c "<CONSOLE_ADDRESS>" -d "none"   
-```
+![pcc-defender](../images/7-pcc-defender-win.png)
 
 3. Verify the installation
-* On the Linux VM:
+* On the Windows VM:
 
 ```
-docker container ls
+Get-Service -Name twistlockDefender
 ```
 
 * In Prisma Cloud:
 	* **`Compute`** → **`Manage`** → **`Defenders`** → **`Manage`** → **`Defenders`** 
 
-![pcc-defender](../images/6-pcc-defender-b.png)
+![pcc-defender](../images/7-pcc-defenders.png)
+
+
+4. 
+
+3. Build a non-compliant image
+```
+mkdir laravelapp
+echo "super sensitive" > nodeapp/sensitive.txt
+
+wget -P laravelapp/ https://raw.githubusercontent.com/davidokeyode/prismacloud-workshops-labs/main/workshops/azure-cloud-protection/template/laravelapp/Dockerfile
+
+docker build -t laravelapp:v1 laravelapp/.
+```
+
 
 4. Review Container vulnerability and compliance information
 * **`Compute`** → **`Monitor`** → **`Vulnerabilities`** → **`Images`** → **`Deployed`** → **`Select image`** 

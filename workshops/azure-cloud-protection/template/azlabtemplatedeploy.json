@@ -51,6 +51,7 @@
         "vmNameWindows": "azlab-win",
         "vmNameLinux": "azlab-linux",
         "vmSize": "Standard_B1ms",
+        "vmSizeWin": "Standard_D2s_v3",
         "availabilitySetName": "azlab-as",
         "vNetName": "azlab-vnet",
         "vNetAddressPrefix": "10.10.0.0/16",
@@ -253,7 +254,7 @@
                     "id": "[resourceId('Microsoft.Compute/availabilitySets/', variables('availabilitySetName'))]"
                 },
                 "hardwareprofile": {
-                    "vmsize": "[variables('vmSize')]"
+                    "vmsize": "[variables('vmSizeWin')]"
                 },
                 "osProfile": {
                     "computerName": "[concat(variables('vmNameWindows'))]",
