@@ -1,0 +1,22 @@
+{
+	"Name": "Prisma Cloud Compute Role",
+	"IsCustom": true,
+	"Description": "Role used by Prisma Cloud for Cloud discovery, Registry Scanning and Serverless scanning",
+	"Actions": [
+	  "Microsoft.Web/sites/publishxml/action",
+	  "Microsoft.Web/sites/Read",
+	  "Microsoft.Web/sites/config/Read",
+	  "Microsoft.Web/sites/functions/read",
+	  "Microsoft.Web/sites/config/list/action",
+	  "Microsoft.ContainerRegistry/registries/read",
+	  "Microsoft.ContainerRegistry/registries/metadata/read",
+	  "Microsoft.ContainerService/managedClusters/read",
+	  "Microsoft.ContainerInstance/containerGroups/read"
+	],
+	"NotActions": [
+  
+	],
+	"AssignableScopes": [
+	  "/subscriptions/$subscription_id"
+	]
+  }

@@ -5,19 +5,28 @@ Author: David Okeyode
 ---
 
 ## Introduction
-Prisma Cloud can secure Windows containers running on Windows Server 2016 and Windows Server 2019 hosts anywhere including in Azure. Prisma Cloud’s Intelligence Stream includes vulnerability data from Microsoft, so as new CVEs are reported, Prisma Cloud can detect them in your Windows images, containers and hosts. Here are the security capabilities that Prisma cloud offers for Windows images, containers and hosts.
+Prisma Cloud can scan both Linux and Windows container images in Azure Container Registries (ACR) for vulnerability, malware and compliance. Prisma Cloud can scan images in both private and public ACR instances.
 
-* Windows container vulnerability scan (Built-in and customer added intelligence feeds)
-* Windows container compliance scan (Built-in and custom compliance checks)
-* Windows host vulnerability scan (Built-in and customer added intelligence feeds)
-* Windows host compliance scan (Built-in and custom compliance checks)
-* Runtime defense for Windows containers (Process and network protection) 
+* Assess Linux and Windows images in the registry for vulnerabilities, malware (static and dymanic) and compliance
+* Assess images in ACR instances with access limited with a firewall, service endpoint, or private endpoints such as Azure Private Link
+* Prevent vulnerable, compromised or non-compliant images from being committed by scanning in your pipelines
 * [Prisma Cloud Windows Containers features](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/install/install_windows.html)
 
-# Lesson 2: Connect to the ARO cluster
+## Module Exercises
+In this module, we will begin to walk through some of the protection capabilities that Prisma Cloud supports for container registries in Azure. Here are the exercises that we will complete:
 
-In the previous lesson, an ARO cluster was created. If you have not completed this lesson, you can refer to it [here](1-create-aro-cluster.md).
-In this workshop lesson, you will connect to the cluster as the kubeadmin user through the OpenShift web console and the OpenShift CLI. You'll be using this cluster for the rest of the lessons in this workshop. Here's what we'll be completing:
+> * Create Azure Credential for Registry Scanning
+> * Configure Prisma Cloud ACR integration
+> * Test Prisma Cloud ACR images scan
+> * Configure Webhook integration
+> * Test Webhook integration
+
+
+## Pre-Requisites
+
+## Exercise 1: Create Azure Credential for Registry Scanning
+
+In this exercise, we will create the credential that Prisma Cloud will use to scan images in our Azure container registries. The credential created here can also be used for serverless and cloud discovery scans:
 
 > * Connect to the ARO cluster using the OpenShift web console
 > * Connect to the ARO cluster using the OpenShift CLI
