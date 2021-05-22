@@ -10,6 +10,7 @@
 	  "Microsoft.Web/sites/config/list/action",
 	  "Microsoft.ContainerRegistry/registries/read",
 	  "Microsoft.ContainerRegistry/registries/metadata/read",
+	  "Microsoft.ContainerRegistry/registries/pull/read",
 	  "Microsoft.ContainerService/managedClusters/read",
 	  "Microsoft.ContainerInstance/containerGroups/read"
 	],

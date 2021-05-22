@@ -8,8 +8,16 @@ Author: David Okeyode
 In the previous lesson, an ARO cluster was created. If you have not completed this lesson, you can refer to it [here](1-create-aro-cluster.md).
 In this workshop lesson, you will connect to the cluster as the kubeadmin user through the OpenShift web console and the OpenShift CLI. You'll be using this cluster for the rest of the lessons in this workshop. Here's what we'll be completing:
 
-> * Connect to the ARO cluster using the OpenShift web console
-> * Connect to the ARO cluster using the OpenShift CLI
+> * Configure Cloud Scan
+Defend -> Compliance -> Cloud Platforms -> Add Account
+
+> * Protect Azure Function
+Radars -> Cloud -> Filter for Azure -> Select Region -> Click Protect in front of functions 
+Registry already protected as we implemented earlier
+
+
+
+
 
 ## Connect to the cluster using the OpenShift web console
 In this section, we will be completing the following tasks

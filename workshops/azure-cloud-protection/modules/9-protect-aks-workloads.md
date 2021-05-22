@@ -84,5 +84,5 @@ http://<EXTERNAL-IP>
 In this lesson, you completed the following:
 * 
 
-In the next lesson, you will configure Azure AD authentication for your ARO cluster. Click here to proceed to the next lesson:
-> [Configure Azure AD authentication for ARO](3-configure-aro-azuread.md)
+In the next lesson, you will implement protection for Azure Serverless Service workloads (Functions, App Services, Container Instances). Click here to proceed to the next lesson:
+> [Protect Windows Hosts and Containers in Azure](7-protect-windows-hosts-and-containers.md)
