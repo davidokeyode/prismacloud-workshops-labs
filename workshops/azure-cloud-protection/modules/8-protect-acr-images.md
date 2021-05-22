@@ -1,8 +1,19 @@
 ---
-Title: 2 - Connect to the ARO cluster
-Description: Follow these instructions to connect to the ARO cluster that was created in the last lesson
+Title: 8 - Protect ACR Images
+Description: Follow these instructions to implement Azure Container Registry (ACR)scanning using Prisma Cloud Compute
 Author: David Okeyode
 ---
+
+## Introduction
+Prisma Cloud can secure Windows containers running on Windows Server 2016 and Windows Server 2019 hosts anywhere including in Azure. Prisma Cloud’s Intelligence Stream includes vulnerability data from Microsoft, so as new CVEs are reported, Prisma Cloud can detect them in your Windows images, containers and hosts. Here are the security capabilities that Prisma cloud offers for Windows images, containers and hosts.
+
+* Windows container vulnerability scan (Built-in and customer added intelligence feeds)
+* Windows container compliance scan (Built-in and custom compliance checks)
+* Windows host vulnerability scan (Built-in and customer added intelligence feeds)
+* Windows host compliance scan (Built-in and custom compliance checks)
+* Runtime defense for Windows containers (Process and network protection) 
+* [Prisma Cloud Windows Containers features](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/install/install_windows.html)
+
 # Lesson 2: Connect to the ARO cluster
 
 In the previous lesson, an ARO cluster was created. If you have not completed this lesson, you can refer to it [here](1-create-aro-cluster.md).
