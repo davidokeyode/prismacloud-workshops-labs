@@ -31,6 +31,29 @@ In this exercise, we will create the credential that Prisma Cloud will use to sc
 > * Connect to the ARO cluster using the OpenShift web console
 > * Connect to the ARO cluster using the OpenShift CLI
 
+1. Open a web browser tab and go to the [Azure Cloud Shell](https://shell.azure.com). Sign in with your Azure credentials. Ensure that you are in the **`Bash`** terminal.
+
+2. Create a custom role that will be used by the credential by using the commands below:
+```
+curl https://raw.githubusercontent.com/davidokeyode/prismacloud-workshops-labs/main/workshops/azure-cloud-protection/template/pccrole.json -o pccrole.json
+
+subscription_id=$(az account show --query id | tr -d '"')
+
+sed -i.bak4 's/"$subscription_id"/"'"$subscription_id"'"/' ~/pccrole.json
+
+az role definition create --role-definition ~/pccrole.json
+```
+
+2. Create a service principal for Prisma Cloud Compute and assign the newly create role to it using the command below:
+
+```
+az ad sp create-for-rbac -n "prismacloud-compute-azure-cred" --role "Prisma Cloud Compute Role" --scopes /subscriptions/$subscription_id
+```
+
+
+
+
+
 ## Connect to the cluster using the OpenShift web console
 In this section, we will be completing the following tasks
 * Obtain `kubeadmin` credentials for your ARO cluster
