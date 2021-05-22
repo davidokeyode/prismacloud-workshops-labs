@@ -1,15 +1,26 @@
 ---
-Title: 6 - Protect Azure Kubernetes Service (AKS) Workloads
-Description: Prisma Cloud Compute provides a comprehensive set of cecurity capabilities to protect containerized workloads everywhere including AKS
+Title: 9 - Protect Azure Kubernetes Service (AKS) Workloads
+Description: Prisma Cloud Compute provides a comprehensive set of security capabilities to protect containerized workloads everywhere including AKS
 Author: David Okeyode
 ---
-# Module 6: Protect Azure Kubernetes Service (AKS) Workloads
+## Module 9 Introduction: Protect Azure Kubernetes Service (AKS) Workloads
 
-In the previous lesson, an ARO cluster was created. If you have not completed this lesson, you can refer to it [here](1-create-aro-cluster.md).
-In this workshop lesson, you will connect to the cluster as the kubeadmin user through the OpenShift web console and the OpenShift CLI. You'll be using this cluster for the rest of the lessons in this workshop. Here's what we'll be completing:
+In this module, we will implement protection for AKS workloads. Here's what we'll be completing:
 
 > * Connect to the ARO cluster using the OpenShift web console
 > * Connect to the ARO cluster using the OpenShift CLI
+
+## Module 9 Exercises
+
+In this module, we will begin to walk through some of the protection capabilities that Prisma Cloud supports for container registries in Azure. Here are the exercises that we will complete:
+
+> * Deploy Sample App to AKS
+> * Add Azure Credential in Prisma Cloud
+> * Configure Prisma Cloud ACR integration
+> * Configure protection for Windows pool in AKS
+> * Configure and teat ACR webhook integration
+> * Troubleshooting ACR Integration
+
 
 ## Exercise 1 - Deploy Sample App to AKS
 

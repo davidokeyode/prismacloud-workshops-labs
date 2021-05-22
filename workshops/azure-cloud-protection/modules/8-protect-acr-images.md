@@ -4,7 +4,7 @@ Description: Follow these instructions to implement Azure Container Registry (AC
 Author: David Okeyode
 ---
 
-## Introduction
+## Module 8 Introduction - Protect ACR Images
 Prisma Cloud can scan both Linux and Windows container images in Azure Container Registries (ACR) for vulnerability, malware and compliance. Prisma Cloud can scan images in both private and public ACR instances.
 
 * Assess Linux and Windows images in the registry for vulnerabilities, malware (static and dymanic) and compliance
@@ -12,7 +12,7 @@ Prisma Cloud can scan both Linux and Windows container images in Azure Container
 * Prevent vulnerable, compromised or non-compliant images from being committed by scanning in your pipelines
 * [Prisma Cloud Windows Containers features](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/install/install_windows.html)
 
-## Module Exercises
+## Module 8 Exercises
 In this module, we will begin to walk through some of the protection capabilities that Prisma Cloud supports for container registries in Azure. Here are the exercises that we will complete:
 
 > * Create Azure Credential for Registry Scanning
