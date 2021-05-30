@@ -61,11 +61,12 @@ Feel free to skip any exercise where you already have an existing account that y
    * **Name your Azure DevOps organization**: Enter an organization name
    * **We'll host your projects in**: Select a location close to you
 
-## Exercise 3: Create a Prisma Cloud Enterprise trial Account
+## Exercise 3: Deploy the Prisma Cloud Compute Edition on AKS
 >* You need a corporate email address to complete this exercise. It CANNOT be a public email like "outlook.com" or "yahoo.com". Public email domains are restricted from signing up.
 
-1. Open a web browser tab and go to [https://marketplace.paloaltonetworks.com/s/](https://marketplace.paloaltonetworks.com/s/)
-2. In the top right corner, click on "Create Account".
+1. Obtain the download URL of Prisma Cloud Compute Edition from the [Palo Alto Networks Customer Support portal](https://support.paloaltonetworks.com/)
+2. Software --> Updates --> select Prisma Cloud Compute Edition from the drop down list --> Open the releases notes PDF --> Scroll down to the release information to get the link
+
 3. In the **`Sign In or Create Account`** window, enter your email address and select the **`I'm not a robot`** option to complete the captcha.
    >* Complete the captcha.
 4. Complete the following information:
