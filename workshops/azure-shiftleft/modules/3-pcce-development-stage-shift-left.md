@@ -1,9 +1,9 @@
 ---
-Title: 2 - Prisma Cloud - Development Shift Left
+Title: 3 - Prisma Cloud - Development Stage Shift Left
 Description: Follow these instructions to test Prisma Cloud's Shift Left capabilities for the development stage
 Author: David Okeyode
 ---
-# Module 2: Prisma Cloud - Development Shift Left
+# Module 3: Prisma Cloud - Development Stage Shift Left
 
 In this workshop lesson, you will be setting up accounts that you need to follow the lessons in this workshop. Here are the exercises that we will complete in this lesson:
 

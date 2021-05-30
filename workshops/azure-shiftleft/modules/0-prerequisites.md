@@ -61,28 +61,7 @@ Feel free to skip any exercise where you already have an existing account that y
    * **Name your Azure DevOps organization**: Enter an organization name
    * **We'll host your projects in**: Select a location close to you
 
-## Exercise 3: Deploy the Prisma Cloud Compute Edition on AKS
->* You need a corporate email address to complete this exercise. It CANNOT be a public email like "outlook.com" or "yahoo.com". Public email domains are restricted from signing up.
-
-1. Obtain the download URL of Prisma Cloud Compute Edition from the [Palo Alto Networks Customer Support portal](https://support.paloaltonetworks.com/)
-2. Software --> Updates --> select Prisma Cloud Compute Edition from the drop down list --> Open the releases notes PDF --> Scroll down to the release information to get the link
-
-3. In the **`Sign In or Create Account`** window, enter your email address and select the **`I'm not a robot`** option to complete the captcha.
-   >* Complete the captcha.
-4. Complete the following information:
-   * **First Name**: Enter your first name
-   * **Last Name**: Enter your last name
-   * **Company Name**: Enter your company's name
-   * **Street Address**: Enter your company's street address
-   * **City**: Enter your company's city
-   * **Country**: Select your company's country
-   * **ZIP Code**: Enter your post code
-   * Select **`I accept the Privacy Agreement`**
-   * Click **`Create Account`**   
-5. Wait for the account to be created. You will receive an email in your corporate mailbox once the account is ready.
-
-
-## Exercise 4a: Create a Bridegecrew trial Account
+## Exercise 3a: Create a Bridegecrew trial Account
 >* You need a corporate email address to complete this exercise. It CANNOT be a public email like "outlook.com" or "yahoo.com". Public email domains are restricted from signing up.
 
 1. Open a web browser tab and go to [https://bridgecrew.io/](https://bridgecrew.io/)
@@ -90,7 +69,7 @@ Feel free to skip any exercise where you already have an existing account that y
 3. Select your preferred sign-up option and complete the process
    >* Configure your organization name when prompted and save
 
-## Exercise 4b - Obtain and record the Bridgecrew API token
+## Exercise 3b - Obtain and record the Bridgecrew API token
 To integrate Bridgecrew with IDEs like VS Code and CICD tools like Azure Pipelines and GitHub Actions, we need to obtain an API token.
 
 1. Open a web browser tab and go to [https://www.bridgecrew.cloud](https://www.bridgecrew.cloud). Authenticate to the platform.
@@ -100,7 +79,7 @@ To integrate Bridgecrew with IDEs like VS Code and CICD tools like Azure Pipelin
 ![bc-apitoken](../images/0-bc-apitoken.png)
 
 
-## Exercise 5: Create a JIRA account
+## Exercise 4: Create a JIRA account
 1. Open a web browser tab and go to [https://www.atlassian.com/software/jira/free](https://www.atlassian.com/software/jira/free).
 2. Under **`Jira Software`**, click on **`Choose one`**
 ![jira-selection](../images/0-jira-selection.png)
@@ -136,7 +115,7 @@ To integrate Bridgecrew with IDEs like VS Code and CICD tools like Azure Pipelin
 ![jira-project](../images/0-jira-kanban.png)
 
 
-## Exercise 4: Create a Slack account
+## Exercise 5: Create a Slack account
 1. Open a web browser tab and go to [https://slack.com/get-started#/createnew](https://slack.com/get-started#/createnew).
 2. Enter your Outlook email address and click **`Continue`**
    >* Ignore the message about using your work email
@@ -153,7 +132,7 @@ To integrate Bridgecrew with IDEs like VS Code and CICD tools like Azure Pipelin
 In this lesson, you completed the following:
 > * Created an Azure Free Trial Subscription
 > * Created an Azure DevOps Organization
-> * Created a Prisma Cloud Enterprise trial Account
+> * Created a Bridegecrew trial Account and obtained an API token
 > * Created a JIRA account
 > * Created a Slack account
 

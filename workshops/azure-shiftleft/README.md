@@ -9,8 +9,7 @@ This workshop was created as a walkthrough for Prisma Cloud shift-left capabilit
 ### Pre-requisites
 
 * An Azure Subscription
-  * This can be any Azure subscription where you have the owner role assignment. We will also be performing some actions in Azure AD and other services that may require the Application Administrator or Global Administrator level of access on the tenant level.
-
+  * This can be any Azure subscription where you have the owner role assignment.
 * A Prisma Cloud Compute Edition License
   * Prisma Cloud will be used to protect your Azure environment and services
 * Bridgecrew License
@@ -27,8 +26,8 @@ The workshop is designed to take approximately 5-6 hours to complete. It can be 
 |----|--------------------------|--------------|
 | 00 | [Setup Pre-Requisites](modules/0-prerequisites.md)                         | Hands on Lab |
 | 01 | [Prepare Your Azure Environment](modules/1-prepare-the-environment.md) | Hands on Lab |
-| 02 | [Onboard Azure Subscription to Prisma Cloud](modules/2-onboard-azure-sub.md) | Hands on Lab |
-| 03 | [Onboard Azure Active Directory (AAD) Tenant to Prisma Cloud](modules/3-onboard-azure-ad.md)                | Hands on Lab |
+| 02 | [Deploy Prisma Cloud Compute Edition (PCCE) on AKS](modules/2-pcce-aks-deploy.md) | Hands on Lab |
+| 03 | [Development Stage Shift Left](modules/pcce-development-stage-shift-left.md)                | Hands on Lab |
 | 04a | [Configure JIRA integration in Prisma Cloud (CSPM)](modules/4a-jira-integration-cspm.md) | Hands on Lab |
 | 04b | [Configure JIRA integration in Prisma Cloud (CWPP)](modules/4b-jira-integration-cwpp.md) | Hands on Lab |
 | 05 | [Remediate Security Risks and Compliance Violations with Prisma Cloud](modules/5-respond-and-remediate.md)  | Hands on Lab |

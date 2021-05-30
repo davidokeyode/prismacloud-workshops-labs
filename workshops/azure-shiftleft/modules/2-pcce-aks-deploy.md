@@ -110,7 +110,7 @@ watch kubectl get all -n twistlock
 * **`Password`**: Specify a complex password
 * Click on **Create account**
 
-7. In the Prisma Cloud license blade, enter the **`Licekse key`** value from your Prisma Cloud license file and click **`Register`**.
+7. In the Prisma Cloud license blade, enter the **`License key`** value from your Prisma Cloud license file and click **`Register`**.
 
 
 ## Exercise 4: Deploy the defender daemonset on the AKS cluster
