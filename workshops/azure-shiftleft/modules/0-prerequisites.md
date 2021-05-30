@@ -81,7 +81,7 @@ Feel free to skip any exercise where you already have an existing account that y
 5. Wait for the account to be created. You will receive an email in your corporate mailbox once the account is ready.
 
 
-## Exercise 4: Create a Bridegecrew trial Account
+## Exercise 4a: Create a Bridegecrew trial Account
 >* You need a corporate email address to complete this exercise. It CANNOT be a public email like "outlook.com" or "yahoo.com". Public email domains are restricted from signing up.
 
 1. Open a web browser tab and go to [https://bridgecrew.io/](https://bridgecrew.io/)
@@ -89,20 +89,14 @@ Feel free to skip any exercise where you already have an existing account that y
 3. Select your preferred sign-up option and complete the process
    >* Configure your organization name when prompted and save
 
-In the **`Sign In or Create Account`** window, enter your email address and select the **`I'm not a robot`** option to complete the captcha.
-   >* Complete the captcha.
-4. Complete the following information:
-   * **First Name**: Enter your first name
-   * **Last Name**: Enter your last name
-   * **Company Name**: Enter your company's name
-   * **Street Address**: Enter your company's street address
-   * **City**: Enter your company's city
-   * **Country**: Select your company's country
-   * **ZIP Code**: Enter your post code
-   * Select **`I accept the Privacy Agreement`**
-   * Click **`Create Account`**   
-5. Wait for the account to be created. You will receive an email in your corporate mailbox once the account is ready.
+## Exercise 4b - Obtain and record the Bridgecrew API token
+To integrate Bridgecrew with IDEs like VS Code and CICD tools like Azure Pipelines and GitHub Actions, we need to obtain an API token.
 
+1. Open a web browser tab and go to [https://www.bridgecrew.cloud](https://www.bridgecrew.cloud). Authenticate to the platform.
+
+2. In the Bridgecrew console, click on Integrations, then click on API Token. Copy the API token that is displayed. Make a not of it as it will be needed in later modules.
+
+![bc-apitoken](../images/0-bc-apitoken.png)
 
 
 ## Exercise 5: Create a JIRA account

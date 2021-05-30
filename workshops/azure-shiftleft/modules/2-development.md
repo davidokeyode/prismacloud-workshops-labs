@@ -1,166 +1,70 @@
 ---
-Title: 0 - Setup Pre-Requisites
-Description: Follow these instructions to setup the pre-requisites needed to complete this workshop
+Title: 2 - Prisma Cloud - Development Shift Left
+Description: Follow these instructions to test Prisma Cloud's Shift Left capabilities for the development stage
 Author: David Okeyode
 ---
-# Module 0: Setup Pre-Requisites
+# Module 2: Prisma Cloud - Development Shift Left
 
 In this workshop lesson, you will be setting up accounts that you need to follow the lessons in this workshop. Here are the exercises that we will complete in this lesson:
 
-> * Create an Azure Free Trial Subscription
-> * Create an Azure DevOps Organization
-> * Create a Prisma Cloud Compute Edition License
-> * Bridgecrew License
-> * Create a JIRA account
-> * Create a Slack account
+> * Install and configure the Checkov Visual Studio code extension 
+> * Clone a Git repository. Verify Prisma Cloud infrastructure code scan and inline fix
 
-Feel free to skip any exercise where you already have an existing account that you can use.
+## Exercise 1 - Install and configure the Checkov Visual Studio code extension 
 
-## Exercise 1: Create an Azure Free Trial Subscription
->* You need an "Outlook" account to complete this exercise. If you do not have one, you can go to [this link](https://outlook.live.com/owa/) and click on the **"Create free account"** option to create a free outlook account.
->* A credit card will be needed to validate your identity. This card will not be charged unless you upgrade. It will only be used to validate user identity.
+1. Obtain the **`windows VM Hostname`** from the output of the template deployment in **`Module 1`** and connect to it using RDP
 
-1. Open a web browser tab and go to [https://bit.ly/azure-free-sub-trial](https://bit.ly/azure-free-sub-trial)
-2. Click on **`Start for free`**
-3. Sign in with your Outlook account.
-4. In **`Your profile`** section, complete the following:
-   * **Country/Region**: Select your country/region
-   * **First Name**: Enter your first name
-   * **Last Name**: Enter your last name
-   * **Email address**: Your outlook email address
-   * **Phone**: Your phone number without the country code
-   * **Company VatID**: Leave empty
-   * Click **`Next`**
-5. In the **`Identity verification by phone`** section, verify that your phone number is correct and click **`Text me`**.
-   >* A verification code will be sent in a text message to your phone. Enter the code and click **`Verify code`**
-6. In the **`Identity verification by card`** section, complete the following:
-   * **Cardholder Name**: Enter your name as it appears on your card
-   * **Card Number**: Enter your card number
-   * **Expires**: Select the expiry month and year
-   * **CVV**: Enter the CVV information
-   * **Address Line 1**: Enter the first line of your address
-   * **City**: Enter your city
-   * **Postal Code**: Enter your address post code
-   * Click **`Next`**
-7. In the **Agreement** section, select the option `I agree to the subscription agreement, offer fetails, and privacy statement` and click **`Sign up`**. 
-   >* Wait for a few minutes for the subscription to be created.
-8. You can go to [https://portal.azure.com](https://portal.azure.com) to verify your subscription once it has finished creating.
+2. When prompted, authenticate with the username value obtained from the output of the template - **`windows VM Username`**. Enter the password that you used for the template deployment and press **`Enter`**.
 
+3. When prompted with a certificate warning, select the option **`Don't ask me again for connections to this computer`** and click **`Yes`**. 
 
-## Exercise 2: Create an Azure DevOps Organization
->* You need an "Outlook" account to complete this exercise. If you do not have one, you can go to [this link](https://outlook.live.com/owa/) and click on the **"Create free account"** option to create a free outlook account.
->* A credit card will be needed to validate your identity. This card will not be charged unless you upgrade. It will only be used to validate user identity.
+4. On the Desktop, double click the **`Visual Studio Code`** icon to open it.
 
-1. Open a web browser tab and go to [https://aex.dev.azure.com/?WT.mc_id=DOP-MVP-5003870](https://aex.dev.azure.com/?WT.mc_id=DOP-MVP-5003870). When prompted, enter the following:
-   * **Your name**: Enter your name
-   * **We'll reach you at**: Enter your email address
-   * **From**: Select your location
-   * Click on **Continue**
+5. In Visual Studio Code, click on **`Extensions`** and search for **`Checkov`**. Click on **`Install`** to download and install the extension. The extension requires Python 3.7 which is already installed as part of the environment setup. It will also install the latest version of Checkov.
 
-2. In the Get started with Azure DevOps window, click on **Create new organization** and click on **Continue** and complete the following:
-   * **Name your Azure DevOps organization**: Enter an organization name
-   * **We'll host your projects in**: Select a location close to you
+![bc-vscode-checkov-extension](../images/2-vscode-checkov-extension.png)
 
-## Exercise 3: Create a Prisma Cloud Enterprise trial Account
->* You need a corporate email address to complete this exercise. It CANNOT be a public email like "outlook.com" or "yahoo.com". Public email domains are restricted from signing up.
+6. Once the extension has finished installing, click on the **`Manage`** option, then click on **`Extension Settings`**.
 
-1. Open a web browser tab and go to [https://marketplace.paloaltonetworks.com/s/](https://marketplace.paloaltonetworks.com/s/)
-2. In the top right corner, click on "Create Account".
-3. In the **`Sign In or Create Account`** window, enter your email address and select the **`I'm not a robot`** option to complete the captcha.
-   >* Complete the captcha.
-4. Complete the following information:
-   * **First Name**: Enter your first name
-   * **Last Name**: Enter your last name
-   * **Company Name**: Enter your company's name
-   * **Street Address**: Enter your company's street address
-   * **City**: Enter your company's city
-   * **Country**: Select your company's country
-   * **ZIP Code**: Enter your post code
-   * Select **`I accept the Privacy Agreement`**
-   * Click **`Create Account`**   
-5. Wait for the account to be created. You will receive an email in your corporate mailbox once the account is ready.
+![bc-vscode-checkov-extension](../images/2-vscode-checkov-extension-settings.png)
 
+7. In the **`Checkov: Token`** window, enter the value of the Bridgecrew API token that you made a note of from **`Module 1 - Exercise 4b`**. When prompted to add the token, click to add it.
 
-## Exercise 4: Create a Bridegecrew trial Account
->* You need a corporate email address to complete this exercise. It CANNOT be a public email like "outlook.com" or "yahoo.com". Public email domains are restricted from signing up.
+![bc-vscode-checkov-extension](../images/2-vscode-checkov-extension-token.png)
 
-1. Open a web browser tab and go to [https://bridgecrew.io/](https://bridgecrew.io/)
-2. In the top right corner, click on **`"SIGN UP"`**.
-3. Select your preferred sign-up option and complete the process
-   >* Configure your organization name when prompted and save
+## Exercise 2 - Clone a Git repository. Verify Prisma Cloud infrastructure code scan and inline fix.  
 
-In the **`Sign In or Create Account`** window, enter your email address and select the **`I'm not a robot`** option to complete the captcha.
-   >* Complete the captcha.
-4. Complete the following information:
-   * **First Name**: Enter your first name
-   * **Last Name**: Enter your last name
-   * **Company Name**: Enter your company's name
-   * **Street Address**: Enter your company's street address
-   * **City**: Enter your company's city
-   * **Country**: Select your company's country
-   * **ZIP Code**: Enter your post code
-   * Select **`I accept the Privacy Agreement`**
-   * Click **`Create Account`**   
-5. Wait for the account to be created. You will receive an email in your corporate mailbox once the account is ready.
+1. In Visual Studio Code, press **`F1`** to display the command pallette, type **`Git: Clone`** and press **`Enter`**. Paste the following URL: **`https://github.com/davidokeyode/prismacloud-shiftleft`** and press **`Enter`**.
 
+2. When prompted to Select Folder, create a new folder called **`GitHub-Repos`**, select it and click on **`Select Repository Location`**. When prompted if you would like to open the cloned repository, click on **`Open`**.
 
+![bc-vscode-open-repository](../images/2-vscode-open-repository.png)
 
-## Exercise 5: Create a JIRA account
-1. Open a web browser tab and go to [https://www.atlassian.com/software/jira/free](https://www.atlassian.com/software/jira/free).
-2. Under **`Jira Software`**, click on **`Choose one`**
-![jira-selection](../images/0-jira-selection.png)
+3. In the opened repository in VS code, expand **`templates`** → **`arm`** and click on **`azuredeploy.json`**. Checkov will perform a scan of the template. In the lower left corner, click on the **`issues`** icon to reveal the detected issues.
 
-3. Click on **`Sign up with email`** and complete the following:
-   * **Work email**: Enter your Outlook email address (the same one that you used to sign up for your Azure subscription).
-   * **Password**: Enter your password
-   * **First Name**: Enter your first name
-   * **Last Name**: Enter your last name
-   * Click **`Agree`**
-   * Complete the captcha that you are presented
->* A verification email will be sent to your email address
-![jira-signup](../images/0-jira-signup.png)
+![bc-vscode-open-repository](../images/2-vscode-issues.png)
 
-4. Go to your email inbox and click **`Yes, verify me`** to verify your email.
-![jira-email-verify](../images/0-jira-email-verify.png)
+4. On the list of displayed issues, you can click on the icon on **`error`** icon to review **`Quick Fix`** options.
 
-5. In the **`Let's get started`** window, enter a name for your site and click **`Continue`**
->* This is like an organization name
-![jira-email-verify](../images/0-jira-site-name.png)
+![bc-vscode-open-repository](../images/2-vscode-quickfix.png)
 
-6. You can skip the questions that you are presented and the option to invite team mates
-7. Select **`Kanban*`** for the template
-![jira-kanban](../images/0-jira-kanban.png)
+5. Repeat steps 3 and 4 of this exercise for the following files:
+* **`templates`** → **`terraform`** → **`storage.tf`**
+* **`templates`** → **`kubernetes`** → **`deploy.yml`**
 
-8. In the **`Create Project`** window, complete the following:
-   * Name: Azure-Cloud-Security
-   * Key: ACS
-   * Click **`Create`**
-![jira-project](../images/0-jira-project.png)
-
-9. You should now be able to access your JIRA console
-![jira-project](../images/0-jira-kanban.png)
-
-
-## Exercise 4: Create a Slack account
-1. Open a web browser tab and go to [https://slack.com/get-started#/createnew](https://slack.com/get-started#/createnew).
-2. Enter your Outlook email address and click **`Continue`**
-   >* Ignore the message about using your work email
-   >* A verification code will be sent to your email address
-4. Go to your email inbox to obtain the verification code. Enter the verification code.
-5. Click on **`Create a Workspace`**.
-6. In the **`What's the name of your company or team?`** window, enter your company name and click **`Next`**.
-7. In the **`What's your team working on right now?`** window, enter **`azure-security`** and click **`Next`**.
-8. In the **`Who do you email most about azure-security?`**, click **`Skip this step`** and click **`Skip Step`**.
-9. You should now be able to access your slack workspace and channel
-
-## Next steps
+## Summary
 
 In this lesson, you completed the following:
-> * Created an Azure Free Trial Subscription
-> * Created an Azure DevOps Organization
-> * Created a Prisma Cloud Enterprise trial Account
-> * Created a JIRA account
-> * Created a Slack account
+> * Installed and configured the Checkov VS Code extension 
+> * Cloned a Git repository for testing
+> * Verified Prisma Cloud infrastructure code scan and inline fix
 
-Proceed to the next lesson:
-> [Prepare Your Azure Environment](1-prepare-the-environment.md)
+## Learn More
+
+> * [Bridgecrew announces automated cloud security in VS Code](https://www.helpnetsecurity.com/2021/03/03/bridgecrew-vs-code/) 
+> * [Obtain a Bridgecrew API token](https://docs.bridgecrew.io/docs/get-api-token)
+> * [Inline IaC scanning and fixes with the Checkov Visual Studio Code extension](https://bridgecrew.io/blog/vs-code-extension-inline-iac-scanning-fixes/)
+
+
+## Proceed to the next lesson:
+> [Pre-Commit](1-prepare-the-environment.md)
