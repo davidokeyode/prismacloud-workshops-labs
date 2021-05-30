@@ -7,5 +7,6 @@ Welcome to the Prisma Cloud workshops! Prisma™ Cloud is a cloud security postu
 ### Workshops
 Please find the current list of workshops below:
 
-* [Azure Cloud Protection](https://github.com/davidokeyode/prismacloud-workshops-labs/tree/main/workshops/azure-cloud-protection)
+* [Prisma Cloud - Azure Cloud Protection](https://github.com/davidokeyode/prismacloud-workshops-labs/tree/main/workshops/azure-cloud-protection)
+* [Prisma Cloud - Azure Shift Left](https://github.com/davidokeyode/prismacloud-workshops-labs/tree/main/workshops/azure-shiftleft)
 * [Azure RedHat OpenShift Workshop](https://github.com/davidokeyode/prismacloud-workshops-labs/tree/main/workshops/azure-redhat-openshift)

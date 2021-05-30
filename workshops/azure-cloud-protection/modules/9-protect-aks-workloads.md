@@ -7,8 +7,11 @@ Author: David Okeyode
 
 In this module, we will implement protection for AKS workloads. Here's what we'll be completing:
 
-> * Connect to the ARO cluster using the OpenShift web console
-> * Connect to the ARO cluster using the OpenShift CLI
+> * Assess Linux and Windows images in the registry for vulnerabilities, malware (static and dymanic) and compliance
+> * Assess images in ACR instances with access limited with a firewall, service endpoint, or private endpoints such as Azure Private Link
+> * Prevent vulnerable, compromised or non-compliant images from being committed by scanning in your pipelines
+> * Prevent untrusted images from being deployed to AKS
+> * [Prisma Cloud Windows Containers features](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/install/install_windows.html)
 
 ## Module 9 Exercises
 
@@ -16,7 +19,7 @@ In this module, we will begin to walk through some of the protection capabilitie
 
 > * Deploy Sample App to AKS
 > * Add Azure Credential in Prisma Cloud
-> * Configure Prisma Cloud ACR integration
+> * Prevent untrusted images from being deployed to AKS
 > * Configure protection for Windows pool in AKS
 > * Configure and teat ACR webhook integration
 > * Troubleshooting ACR Integration
