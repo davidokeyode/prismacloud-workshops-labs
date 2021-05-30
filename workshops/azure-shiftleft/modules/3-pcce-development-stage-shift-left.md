@@ -67,4 +67,4 @@ In this lesson, you completed the following:
 
 
 ## Proceed to the next lesson:
-> [Pre-Commit](1-prepare-the-environment.md)
+> 
