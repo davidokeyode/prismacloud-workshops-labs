@@ -6,12 +6,12 @@
     {
       "entryPoint": [ "entry.sh" ],
       "portMappings": [],
-      "command": null,
+      "command": [],
       "image": "matthewabq/twistlock-fargate-auto",
-      "name": "twistlock-fargate-task"
+      "name": "prisma-fargate-task"
     }
   ],
-  "family": "twistlock-fargate-task",
+  "family": "prisma-fargate-task",
   "volumes": [],
   "networkMode": "awsvpc",
   "memory": "512",
