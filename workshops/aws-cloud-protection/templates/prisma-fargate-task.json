@@ -8,10 +8,10 @@
       "portMappings": [],
       "command": null,
       "image": "matthewabq/twistlock-fargate-auto",
-      "name": "prisma-fargate-task"
+      "name": "twistlock-fargate-task"
     }
   ],
-  "family": "prisma-fargate-task",
+  "family": "twistlock-fargate-task",
   "volumes": [],
   "networkMode": "awsvpc",
   "memory": "512",
