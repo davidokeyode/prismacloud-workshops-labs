@@ -87,6 +87,46 @@ http://<EXTERNAL-IP>
 
 ## Exercise 3 - Implement Vulnerability Assessment
 
+1. Configure a container image vulnerability assessment rule by going to the following location: 
+* **`Compute`** → **`Defend`** → **`Vulnerabilities`** → **`Images`** → **`CI`** → **`Add Rule`**
+	* **Rule Name**: Org Baseline Container Vulnerability Rule
+	* **Alert Threshold**: Low
+	* **Failure Threshold**: Medium
+	* **Expand Advanced Settings**
+		* **Apply rule only when vendor fixes are available**: On
+	* Leave other settings at default value
+	* Click on **`Save`**
+
+2. Configure a host vulnerability assessment rule by going to the following location: 
+* **`Compute`** → **`Defend`** → **`Vulnerabilities`** → **`Hosts`** → **`Running Hosts`** → **`Add Rule`**
+	* **Rule Name**: Org Baseline Host Vulnerability Rule
+	* **Alert Threshold**: Low
+	* **Expand Advanced Settings**
+		* **Apply rule only when vendor fixes are available**: On
+	* Leave other settings at default value
+	* Click on **`Save`**
+
+
+## Exercise 5 - Configure Prisma Cloud Host and Container Compliance Rules
+1. Configure a container image compliance assessment rule by going to the following location: 
+* **`Compute`** → **`Defend`** → **`Compliance`** → **`Containers and Images`** → **`CI`** → **`Add Rule`**
+	* **Rule Name**: Org Baseline Container Compliance Rule
+	* **Compliance Template**: NIST SP 800-190
+	* **Set the following policies to fail**
+		* Sensitive information provided in environment variables
+		* Private keys stored in image
+		* Image contains malware
+	* Leave other settings at default value
+	* Click on **`Save`**
+
+2. Configure a host compliance assessment rule by going to the following location: 
+* **`Compute`** → **`Defend`** → **`Compliance`** → **`Hosts`** → **`Running Hosts`** → **`Add Rule`**
+	* **Rule Name**: Org Baseline Host Compliance Rule
+	* **Compliance Template**: GDPR
+	* Leave other settings at default value
+	* Click on **`Save`**
+
+
 ## Exercise 4 - Implement Compliance Assessment
 
 ## Exercise 5 - Implement Runtime Protection
