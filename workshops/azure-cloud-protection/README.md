@@ -32,12 +32,11 @@ The workshop is designed to take approximately 5-6 hours to complete. It can be 
 | 04b | [Configure JIRA integration in Prisma Cloud (CWPP)](modules/4b-jira-integration-cwpp.md) | Hands on Lab |
 | 05 | [Remediate Security Risks and Compliance Violations with Prisma Cloud](modules/5-respond-and-remediate.md)  | Hands on Lab |
 | 06 | [Protect Linux Hosts and Containers in Azure](modules/6-protect-linux-hosts-and-containers.md) | Hands on Lab |
-| 07 | [Protect Windows Hosts and Containers in Azure](modules/6-protect-linux-host-and-containers.md) | Hands on Lab |
+| 07 | [Protect Windows Hosts and Containers in Azure](modules/7-protect-windows-hosts-and-containers.md) | Hands on Lab |
 | 08 | [Protect Azure Container Registry (ACR) Images](modules/8-protect-acr-images.md)    | Hands on Lab |
 | 09 | [Protect Azure Kubernetes Service (AKS) Workloads](modules/9-protect-aks-workloads.md) | Hands on Lab |
 | 10 | [Protect Serverless Container Workloads](modules/10-protect-serverless-workloads.md)    | Hands on Lab |
-| 11 | Implement Shift Left Security for Azure    | Hands on Lab |
-| 12 | Wrap / Clean Up     | Hands on Lab |
+| 11 | Wrap / Clean Up     | Hands on Lab |
 ----
 
 [Next](modules/0-prerequisites.md)
