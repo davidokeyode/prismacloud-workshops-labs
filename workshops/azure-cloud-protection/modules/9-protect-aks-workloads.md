@@ -224,7 +224,7 @@ exit
 9. Review forensics information
 
 ```
-wget https://raw.githubusercontent.com/davidokeyode/prismacloud-workshops-labs/main/workshops/azure-cloud-protection/template/monitor_cpu_minergate.yaml
+wget https://raw.githubusercontent.com/davidokeyode/prismacloud-workshops-labs/main/workshops/azure-cloud-protection/template/monero_cpu_minergate.yaml
 
 kubectl apply -f monitor_cpu_minergate.yaml
 ```
