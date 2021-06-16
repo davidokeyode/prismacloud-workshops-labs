@@ -64,7 +64,7 @@
     "variables": {
         "vmNameWindows": "azlab-win",
         "vmNameLinux": "azlab-linux",
-        "vmSize": "Standard_B1ms",
+        "vmSize": "Standard_D2s_v3",
         "vmSizeWin": "Standard_D2s_v3",
         "availabilitySetName": "azlab-as",
         "vNetName": "azlab-vnet",
