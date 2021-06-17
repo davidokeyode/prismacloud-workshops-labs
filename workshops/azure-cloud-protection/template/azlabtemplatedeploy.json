@@ -527,10 +527,10 @@
                     {
                         "name": "agentpool",
                         "count": 1,
-                        "vmSize": "Standard_B2s",
+                        "vmSize": "[variables('vmSize')]",
                         "osType": "Linux",
                         "storageProfile": "ManagedDisks",
-                        "type": "AvailabilitySet",
+                        "type": "VirtualMachineScaleSets",
                         "mode": "System"
                     }
                 ],
