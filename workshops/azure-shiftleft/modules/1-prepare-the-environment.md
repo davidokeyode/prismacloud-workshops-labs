@@ -35,12 +35,11 @@ azlab-kv-[uniqestring] | Key vault | Demonstrating Key Vault related recommendat
 * **Subscription**: Select the Azure subscription that you want to deploy the resources into
 * **Resource Group**: Click on **Create New** → Name: azlab-rg
 * **Region**: Select an Azure region close to your current location
-* **Username**: Leave the default value
-* **Password**: Enter a complex password. This password will be used across services like VMs and SQL databases
+* **Prisma Cloud User**: Enter the username for prisma cloud scanning
+* **Prisma Cloud Password**: Enter the password for the prisma cloud scanning user
+* **Aks Version**: Leave the default value or select the version of Kubernetes to use
 * **Storage Account Type**: Leave the default value
 * **Resource Tags**: Leave the default value
-* **_artifacts Location**: Leave the default value
-* **_artifacts Location Sas Token**: Leave the default value
 * Click **Review and Create**
 
 ![template-parameter](../images/1-template-parameter.png)
