@@ -282,8 +282,7 @@
                 "[variables('configStoreName')]"
             ],
             "properties": {
-                "value": "[variables('gitScanValue')]",
-                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8"
+                "value": "[variables('gitScanValue')]"
             }
         },
         {
@@ -294,8 +293,7 @@
                 "[variables('configStoreName')]"
             ],
             "properties": {
-                "value": "[variables('dockerFileScanValue')]",
-                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8"
+                "value": "[variables('dockerFileScanValue')]"
             }
         },
             {
