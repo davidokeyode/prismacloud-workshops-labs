@@ -42,38 +42,19 @@
         "resourceTags": {
             "type": "object",
             "defaultValue": {
-                "Workshop": "Prisma Cloud Azure Protection"
-            }
-        },
-        "_artifactsLocation": {
-            "type": "string",
-            "metadata": {
-                "description": "The base URI where artifacts required by this template are located including a trailing '/'"
-            },
-            "defaultValue": "[deployment().properties.templateLink.uri]"
-        },
-        "_artifactsLocationSasToken": {
-            "type": "securestring",
-            "defaultValue": "",
-            "metadata": {
-                "description": "SAS Token for accessing script path"
+                "Workshop": "Prisma Cloud Azure Shift-Left"
             }
         }
     },
     "variables": {
         "vmSize": "Standard_D2s_v3",
-        "vNetName": "azlab-vnet",
-        "vNetAddressPrefix": "10.10.0.0/16",
-        "subnetName": "default",
-        "subnetAddressPrefix": "10.10.1.0/24",
-        "nsgName": "azlab-nsg",
         "storageName": "[toLower(concat('azlabsa', uniqueString(subscription().subscriptionId)))]",
         "appServicePlanName": "azlab-splan",
         "appServiceName": "[toLower(concat('azlab-app-', uniqueString(subscription().subscriptionId)))]",
         "kvName": "[toLower(concat('azlab-kv-',uniqueString(subscription().subscriptionId)))]",
         "configStoreName":"azlabconfigstore",
-        "pcuser": "PC_USER",
-        "pcpass": "PC_PASS",
+        "pcuser": "PCUSER",
+        "pcpass": "PCPASS",
         "functionName": "[toLower(concat('azlab-fa-',uniqueString(subscription().subscriptionId)))]",
         "containerRegistryName": "[toLower(concat('azlabcr', uniqueString(subscription().subscriptionId)))]",
         "aksClusterName": "azlab-aks",
@@ -105,34 +86,6 @@
         "regScanStatusValue":"true"
     },
     "resources": [
-        {
-            "apiVersion": "2018-08-01",
-            "type": "Microsoft.Network/virtualNetworks",
-            "name": "[variables('vNetName')]",
-            "location": "[resourceGroup().location]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/networkSecurityGroups/', variables('nsgName'))]"
-            ],
-            "tags": "[parameters('resourceTags')]",
-            "properties": {
-                "addressSpace": {
-                    "addressPrefixes": [
-                        "[variables('vNetAddressPrefix')]"
-                    ]
-                },
-                "subnets": [
-                    {
-                        "name": "[variables('subnetName')]",
-                        "properties": {
-                            "addressPrefix": "[variables('subnetAddressPrefix')]",
-                            "networkSecurityGroup": {
-                                "id": "[resourceId('Microsoft.Network/networkSecurityGroups/', variables('nsgName'))]"
-                            }
-                        }
-                    }
-                ]
-            }
-        },
         {
             "name": "[variables('storageName')]",
             "type": "Microsoft.Storage/storageAccounts",
@@ -212,7 +165,7 @@
         {
             "type": "Microsoft.KeyVault/vaults/secrets",
             "apiVersion": "2019-09-01",
-            "name": "[concat(variables('kvName'), '/', variables('pcuser'))]",
+            "name": "[variables('pcuser')]",
             "location": "[resourceGroup().location]",
             "dependsOn": [
                 "[resourceId('Microsoft.KeyVault/vaults', variables('kvName'))]"
@@ -224,7 +177,7 @@
         {
             "type": "Microsoft.KeyVault/vaults/secrets",
             "apiVersion": "2019-09-01",
-            "name": "[concat(variables('kvName'), '/', variables('pcpass'))]",
+            "name": "[variables('pcpass')]",
             "location": "[resourceGroup().location]",
             "dependsOn": [
                 "[resourceId('Microsoft.KeyVault/vaults', variables('kvName'))]"
@@ -316,10 +269,10 @@
             "location": "[resourceGroup().location]",
             "sku": {
                 "name": "standard"
-            }
-        },
+            },
+        "resources": [
         {
-            "type": "Microsoft.AppConfiguration/configurationStores/keyValues",
+            "type": "keyValues",
             "apiVersion": "2020-07-01-preview",
             "name": "[variables('gitScan')]",
             "dependsOn": [
@@ -331,7 +284,7 @@
             }
         },
         {
-            "type": "Microsoft.AppConfiguration/configurationStores/keyValues",
+            "type": "keyValues",
             "apiVersion": "2020-07-01-preview",
             "name": "[variables('dockerFileScan')]",
             "dependsOn": [
@@ -340,131 +293,121 @@
             "properties": {
                 "value": "[variables('dockerFileScanValue')]",
                 "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8"
+            }
+        },
+            {
+                "type": "keyValues",
+                "apiVersion": "2020-07-01-preview",
+                "name": "[variables('imageScan')]",
+                "dependsOn": [
+                    "[variables('configStoreName')]"
+                ],
+                "properties": {
+                    "value": "[variables('imageScanValue')]"
 
+                }
+            },
+            {
+                "type": "keyValues",
+                "apiVersion": "2020-07-01-preview",
+                "name": "[variables('terraformScan')]",
+                "dependsOn": [
+                    "[variables('configStoreName')]"
+                ],
+                "properties": {
+                    "value": "[variables('terraformScanValue')]"
+                }
+            },
+            {
+                "type": "keyValues",
+                "apiVersion": "2020-07-01-preview",
+                "name": "[variables('armScan')]",
+                "dependsOn": [
+                    "[variables('configStoreName')]"
+                ],
+                "properties": {
+                    "value": "[variables('armScanValue')]"
+                }
+            },
+            {
+                "type": "keyValues",
+                "apiVersion": "2020-07-01-preview",
+                "name": "[variables('gitScanStatus')]",
+                "dependsOn": [
+                    "[variables('configStoreName')]"
+                ],
+                "properties": {
+                    "value": "[variables('gitScanStatusValue')]"
+                }
+            },
+            {
+                "type": "keyValues",
+                "apiVersion": "2020-07-01-preview",
+                "name": "[variables('dockerFileScanStatus')]",
+                "dependsOn": [
+                    "[variables('configStoreName')]"
+                ],
+                "properties": {
+                    "value": "[variables('dockerFileScanStatusValue')]"
+                }
+            },
+            {
+                "type": "keyValues",
+                "apiVersion": "2020-07-01-preview",
+                "name": "[variables('imageScanStatus')]",
+                "dependsOn": [
+                    "[variables('configStoreName')]"
+                ],
+                "properties": {
+                    "value": "[variables('imageScanStatusValue')]"
+                }
+            },
+            {
+                "type": "keyValues",
+                "apiVersion": "2020-07-01-preview",
+                "name": "[variables('terraformScanStatus')]",
+                "dependsOn": [
+                    "[variables('configStoreName')]"
+                ],
+                "properties": {
+                    "value": "[variables('terraformScanStatusValue')]"
+                }
+            },
+            {
+                "type": "keyValues",
+                "apiVersion": "2020-07-01-preview",
+                "name": "[variables('armScanStatus')]",
+                "dependsOn": [
+                    "[variables('configStoreName')]"
+                ],
+                "properties": {
+                    "value": "[variables('armScanStatusValue')]"
+                }
+            },
+            {
+                "type": "keyValues",
+                "apiVersion": "2020-07-01-preview",
+                "name": "[variables('regScanStatus')]",
+                "dependsOn": [
+                    "[variables('configStoreName')]"
+                ],
+                "properties": {
+                    "value": "[variables('regScanStatusValue')]"
+                }
+            },
+            {
+                "type": "keyValues",
+                "apiVersion": "2020-07-01-preview",
+                "name": "[variables('regScan')]",
+                "dependsOn": [
+                    "[variables('configStoreName')]"
+                ],
+                "properties": {
+                    "value": "[variables('regScanValue')]"
+                }
             }
+        ]
         },
-        {
-            "type": "Microsoft.AppConfiguration/configurationStores/keyValues",
-            "apiVersion": "2020-07-01-preview",
-            "name": "[variables('imageScan')]",
-            "dependsOn": [
-                "[variables('configStoreName')]"
-            ],
-            "properties": {
-                "value": "[variables('imageScanValue')]",
-                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8"
-
-            }
-        },
-        {
-            "type": "Microsoft.AppConfiguration/configurationStores/keyValues",
-            "apiVersion": "2020-07-01-preview",
-            "name": "[variables('terraformScan')]",
-            "dependsOn": [
-                "[variables('configStoreName')]"
-            ],
-            "properties": {
-                "value": "[variables('terraformScanValue')]",
-                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8"
-            }
-        },
-        {
-            "type": "Microsoft.AppConfiguration/configurationStores/keyValues",
-            "apiVersion": "2020-07-01-preview",
-            "name": "[variables('armScan')]",
-            "dependsOn": [
-                "[variables('configStoreName')]"
-            ],
-            "properties": {
-                "value": "[variables('armScanValue')]",
-                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8"
-            }
-        },
-        {
-            "type": "Microsoft.AppConfiguration/configurationStores/keyValues",
-            "apiVersion": "2020-07-01-preview",
-            "name": "[variables('gitScanStatus')]",
-            "dependsOn": [
-                "[variables('configStoreName')]"
-            ],
-            "properties": {
-                "value": "[variables('gitScanStatusValue')]",
-                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8"
-            }
-        },
-        {
-            "type": "Microsoft.AppConfiguration/configurationStores/keyValues",
-            "apiVersion": "2020-07-01-preview",
-            "name": "[variables('dockerFileScanStatus')]",
-            "dependsOn": [
-                "[variables('configStoreName')]"
-            ],
-            "properties": {
-                "value": "[variables('dockerFileScanStatusValue')]",
-                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8"
-            }
-        },
-        {
-            "type": "Microsoft.AppConfiguration/configurationStores/keyValues",
-            "apiVersion": "2020-07-01-preview",
-            "name": "[variables('imageScanStatus')]",
-            "dependsOn": [
-                "[variables('configStoreName')]"
-            ],
-            "properties": {
-                "value": "[variables('imageScanStatusValue')]",
-                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8"
-            }
-        },
-        {
-            "type": "Microsoft.AppConfiguration/configurationStores/keyValues",
-            "apiVersion": "2020-07-01-preview",
-            "name": "[variables('terraformScanStatus')]",
-            "dependsOn": [
-                "[variables('configStoreName')]"
-            ],
-            "properties": {
-                "value": "[variables('terraformScanStatusValue')]",
-                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8"
-            }
-        },
-        {
-            "type": "Microsoft.AppConfiguration/configurationStores/keyValues",
-            "apiVersion": "2020-07-01-preview",
-            "name": "[variables('armScanStatus')]",
-            "dependsOn": [
-                "[variables('configStoreName')]"
-            ],
-            "properties": {
-                "value": "[variables('armScanStatusValue')]",
-                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8"
-            }
-        },
-        {
-            "type": "Microsoft.AppConfiguration/configurationStores/keyValues",
-            "apiVersion": "2020-07-01-preview",
-            "name": "[variables('regScanStatus')]",
-            "dependsOn": [
-                "[variables('configStoreName')]"
-            ],
-            "properties": {
-                "value": "[variables('regScanStatusValue')]",
-                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8"
-            }
-        },
-        {
-            "type": "Microsoft.AppConfiguration/configurationStores/keyValues",
-            "apiVersion": "2020-07-01-preview",
-            "name": "[variables('regScan')]",
-            "dependsOn": [
-                "[variables('configStoreName')]"
-            ],
-            "properties": {
-                "value": "[variables('regScanValue')]",
-                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8"
-            }
-        },
-
         {
             "name": "[variables('containerRegistryName')]",
             "type": "Microsoft.ContainerRegistry/registries",
