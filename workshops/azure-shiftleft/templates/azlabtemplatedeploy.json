@@ -2,13 +2,6 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "username": {
-            "type": "string",
-            "defaultValue": "azadmin",
-            "metadata": {
-                "description": "Provide administrative user account for resources"
-            }
-        },
         "prismaCloudUser": {
             "type": "string",
             "metadata": {
@@ -19,12 +12,6 @@
             "type": "securestring",
             "metadata": {
                 "description": "Provide the password for prisma cloud"
-            }
-        },
-        "password": {
-            "type": "securestring",
-            "metadata": {
-                "description": "Provide password for resources"
             }
         },
         "aksVersion": {
@@ -79,8 +66,6 @@
         "vNetAddressPrefix": "10.10.0.0/16",
         "subnetName": "default",
         "subnetAddressPrefix": "10.10.1.0/24",
-        "vNetId": "[resourceId('Microsoft.Network/virtualNetworks', variables('vNetName'))]",
-        "subnetRef": "[concat(variables('vNetId'),'/subnets/', variables('subnetName'))]",
         "nsgName": "azlab-nsg",
         "storageName": "[toLower(concat('azlabsa', uniqueString(subscription().subscriptionId)))]",
         "appServicePlanName": "azlab-splan",
@@ -94,7 +79,6 @@
         "aksClusterName": "azlab-aks",
         "aksDNSPrefix": "azlab-aks",
         "aksNetworkPlugin": "kubenet",
-        "scriptUrl": "[uri(parameters('_artifactsLocation'),concat('installscript.ps1',parameters('_artifactsLocationSasToken')))]",
         "gitScan":"PRE_BUILD_GIT_SCAN_FLAG",
         "dockerFileScan":"PRE_BUILD_DOCKERFILE_SCAN_FLAG",
         "imageScan":"BUILD_IMAGE_SCAN_FLAG",
@@ -343,7 +327,7 @@
             ],
             "properties": {
                 "value": "[variables('gitScanValue')]",
-                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8",
+                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8"
             }
         },
         {
@@ -355,7 +339,7 @@
             ],
             "properties": {
                 "value": "[variables('dockerFileScanValue')]",
-                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8",
+                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8"
 
             }
         },
@@ -368,7 +352,7 @@
             ],
             "properties": {
                 "value": "[variables('imageScanValue')]",
-                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8",
+                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8"
 
             }
         },
@@ -381,8 +365,7 @@
             ],
             "properties": {
                 "value": "[variables('terraformScanValue')]",
-                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8",
-
+                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8"
             }
         },
         {
@@ -394,8 +377,7 @@
             ],
             "properties": {
                 "value": "[variables('armScanValue')]",
-                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8",
-
+                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8"
             }
         },
         {
@@ -407,8 +389,7 @@
             ],
             "properties": {
                 "value": "[variables('gitScanStatusValue')]",
-                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8",
-
+                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8"
             }
         },
         {
@@ -420,8 +401,7 @@
             ],
             "properties": {
                 "value": "[variables('dockerFileScanStatusValue')]",
-                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8",
-
+                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8"
             }
         },
         {
@@ -433,8 +413,7 @@
             ],
             "properties": {
                 "value": "[variables('imageScanStatusValue')]",
-                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8",
-
+                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8"
             }
         },
         {
@@ -446,8 +425,7 @@
             ],
             "properties": {
                 "value": "[variables('terraformScanStatusValue')]",
-                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8",
-
+                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8"
             }
         },
         {
@@ -459,8 +437,7 @@
             ],
             "properties": {
                 "value": "[variables('armScanStatusValue')]",
-                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8",
-
+                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8"
             }
         },
         {
@@ -472,8 +449,7 @@
             ],
             "properties": {
                 "value": "[variables('regScanStatusValue')]",
-                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8",
-
+                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8"
             }
         },
         {
@@ -485,8 +461,7 @@
             ],
             "properties": {
                 "value": "[variables('regScanValue')]",
-                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8",
-
+                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8"
             }
         },
 
