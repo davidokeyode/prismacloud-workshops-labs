@@ -433,9 +433,17 @@
             "value": "[reference(resourceId('Microsoft.ContainerRegistry/registries',variables('containerRegistryName')),'2019-12-01-preview').loginServer]",
             "type": "string"
         },
+        "App Service": {
+            "type": "string",
+            "value": "[variables('appServiceName')]"
+        },
         "Key Vault": {
             "type": "string",
             "value": "[variables('kvName')]"
+        },
+        "App Configuration": {
+            "type": "string",
+            "value": "[variables('configStoreName')]"
         }
     }
 }
