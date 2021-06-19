@@ -29,7 +29,6 @@ The workshop is designed to take approximately 5-6 hours to complete. It can be 
 | 02 | [Deploy Prisma Cloud Compute Edition (PCCE) on AKS](modules/2-pcce-aks-deploy.md) | Hands on Lab |
 | 03 | [Development Stage Shift Left](modules/3-pcce-development-stage-shift-left.md)                | Hands on Lab |
 | 04 | [Configure Email integration in Prisma Cloud (CWPP)](modules/4-email-integration-cwpp.md) | Hands on Lab |
-10-protect-serverless-workloads.md)    | Hands on Lab |
 | 05 | Implement Shift Left Security for Azure    | Hands on Lab |
 | 06 | Wrap / Clean Up     | Hands on Lab |
 ----
