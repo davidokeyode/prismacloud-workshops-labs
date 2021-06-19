@@ -1,0 +1,520 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "username": {
+            "type": "string",
+            "defaultValue": "azadmin",
+            "metadata": {
+                "description": "Provide administrative user account for resources"
+            }
+        },
+        "prismaCloudUser": {
+            "type": "string",
+            "metadata": {
+                "description": "Provide the username for prisma cloud"
+            }
+        },
+        "prismaCloudPassword": {
+            "type": "securestring",
+            "metadata": {
+                "description": "Provide the password for prisma cloud"
+            }
+        },
+        "password": {
+            "type": "securestring",
+            "metadata": {
+                "description": "Provide password for resources"
+            }
+        },
+        "aksVersion": {
+            "type": "string",
+            "metadata": {
+                "description": "Provide the version of Kubernetes to deploy"
+            },
+            "defaultValue": "1.19.11",
+            "allowedValues": [
+                "1.18.19",
+                "1.19.9",
+                "1.19.11",
+                "1.20.5",
+                "1.20.7"
+            ]
+        },
+        "storageAccountType": {
+            "type": "string",
+            "defaultValue": "Standard_LRS",
+            "allowedValues": [
+                "Standard_LRS",
+                "Standard_ZRS",
+                "Standard_GRS",
+                "Standard_RAGRS",
+                "Premium_LRS"
+            ]
+        },
+        "resourceTags": {
+            "type": "object",
+            "defaultValue": {
+                "Workshop": "Prisma Cloud Azure Protection"
+            }
+        },
+        "_artifactsLocation": {
+            "type": "string",
+            "metadata": {
+                "description": "The base URI where artifacts required by this template are located including a trailing '/'"
+            },
+            "defaultValue": "[deployment().properties.templateLink.uri]"
+        },
+        "_artifactsLocationSasToken": {
+            "type": "securestring",
+            "defaultValue": "",
+            "metadata": {
+                "description": "SAS Token for accessing script path"
+            }
+        }
+    },
+    "variables": {
+        "vmSize": "Standard_D2s_v3",
+        "vNetName": "azlab-vnet",
+        "vNetAddressPrefix": "10.10.0.0/16",
+        "subnetName": "default",
+        "subnetAddressPrefix": "10.10.1.0/24",
+        "vNetId": "[resourceId('Microsoft.Network/virtualNetworks', variables('vNetName'))]",
+        "subnetRef": "[concat(variables('vNetId'),'/subnets/', variables('subnetName'))]",
+        "nsgName": "azlab-nsg",
+        "storageName": "[toLower(concat('azlabsa', uniqueString(subscription().subscriptionId)))]",
+        "appServicePlanName": "azlab-splan",
+        "appServiceName": "[toLower(concat('azlab-app-', uniqueString(subscription().subscriptionId)))]",
+        "kvName": "[toLower(concat('azlab-kv-',uniqueString(subscription().subscriptionId)))]",
+        "configStoreName":"azlabconfigstore",
+        "pcuser": "PC_USER",
+        "pcpass": "PC_PASS",
+        "functionName": "[toLower(concat('azlab-fa-',uniqueString(subscription().subscriptionId)))]",
+        "containerRegistryName": "[toLower(concat('azlabcr', uniqueString(subscription().subscriptionId)))]",
+        "aksClusterName": "azlab-aks",
+        "aksDNSPrefix": "azlab-aks",
+        "aksNetworkPlugin": "kubenet",
+        "scriptUrl": "[uri(parameters('_artifactsLocation'),concat('installscript.ps1',parameters('_artifactsLocationSasToken')))]",
+        "gitScan":"PRE_BUILD_GIT_SCAN_FLAG",
+        "dockerFileScan":"PRE_BUILD_DOCKERFILE_SCAN_FLAG",
+        "imageScan":"BUILD_IMAGE_SCAN_FLAG",
+        "terraformScan":"PRE_DEPLOY_TERRAFORM_SCAN_FLAG",
+        "armScan":"PRE_DEPLOY_ARM_SCAN_FLAG",
+        "regScan":"PRE_DEPLOY_REG_SCAN_FLAG",
+        "gitScanStatus":"PRE_BUILD_GIT_SCAN_FLAG_STATUS",
+        "dockerFileScanStatus":"PRE_BUILD_DOCKERFILE_SCAN_FLAG_STATUS",
+        "imageScanStatus":"BUILD_IMAGE_SCAN_FLAG_STATUS",
+        "terraformScanStatus":"PRE_DEPLOY_TERRAFORM_SCAN_FLAG_STATUS",
+        "armScanStatus":"PRE_DEPLOY_ARM_SCAN_FLAG_STATUS",
+        "regScanStatus":"PRE_DEPLOY_REG_SCAN_FLAG_STATUS",
+        "gitScanValue":"true",
+        "dockerFileScanValue":"",
+        "imageScanValue":"true",
+        "terraformScanValue":"",
+        "armScanValue":"",
+        "regScanValue":"1",
+        "gitScanStatusValue":"true",
+        "dockerFileScanStatusValue":"true",
+        "imageScanStatusValue":"true",
+        "terraformScanStatusValue":"true",
+        "armScanStatusValue":"true",
+        "regScanStatusValue":"true"
+    },
+    "resources": [
+        {
+            "apiVersion": "2018-08-01",
+            "type": "Microsoft.Network/virtualNetworks",
+            "name": "[variables('vNetName')]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups/', variables('nsgName'))]"
+            ],
+            "tags": "[parameters('resourceTags')]",
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "[variables('vNetAddressPrefix')]"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "[variables('subnetName')]",
+                        "properties": {
+                            "addressPrefix": "[variables('subnetAddressPrefix')]",
+                            "networkSecurityGroup": {
+                                "id": "[resourceId('Microsoft.Network/networkSecurityGroups/', variables('nsgName'))]"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "name": "[variables('storageName')]",
+            "type": "Microsoft.Storage/storageAccounts",
+            "location": "[resourceGroup().location]",
+            "apiVersion": "2019-06-01",
+            "sku": {
+                "name": "[parameters('storageAccountType')]"
+            },
+            "dependsOn": [],
+            "tags": "[parameters('resourceTags')]",
+            "kind": "StorageV2",
+            "properties": {
+                "supportsHttpsTrafficOnly": false
+            }
+        },
+        {
+            "name": "[variables('appServicePlanName')]",
+            "type": "Microsoft.Web/serverfarms",
+            "location": "[resourceGroup().location]",
+            "apiVersion": "2015-08-01",
+            "sku": {
+                "name": "F1"
+            },
+            "dependsOn": [],
+            "tags": "[parameters('resourceTags')]",
+            "properties": {
+                "name": "[variables('appServicePlanName')]",
+                "numberOfWorkers": 1
+            }
+        },
+        {
+            "name": "[variables('appServiceName')]",
+            "type": "Microsoft.Web/sites",
+            "location": "[resourceGroup().location]",
+            "apiVersion": "2015-08-01",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]"
+            ],
+            "tags": "[parameters('resourceTags')]",
+            "properties": {
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]"
+            }
+        },
+        {
+            "type": "Microsoft.KeyVault/vaults",
+            "name": "[variables('kvName')]",
+            "apiVersion": "2016-10-01",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "sku": {
+                    "family": "A",
+                    "name": "standard"
+                },
+                "tenantId": "[subscription().tenantid]",
+                "accessPolicies": [
+                    {
+                        "tenantId": "[subscription().tenantid]",
+                        "objectId": "[reference(resourceId('Microsoft.Web/sites', variables('functionName')),'2019-08-01', 'full').identity.principalId]",
+                        "permissions": {
+                            "keys": [],
+                            "secrets": [
+                                "get"
+                            ],
+                            "certificates": []
+                        }
+                    }
+                ],
+                "enabledForDeployment": false,
+                "enabledForDiskEncryption": false,
+                "enabledForTemplateDeployment": false
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', variables('appServiceName'))]"
+            ],
+            "tags": "[parameters('resourceTags')]"
+        },
+        {
+            "type": "Microsoft.KeyVault/vaults/secrets",
+            "apiVersion": "2019-09-01",
+            "name": "[concat(variables('kvName'), '/', variables('pcuser'))]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.KeyVault/vaults', variables('kvName'))]"
+            ],
+            "properties": {
+                "value": "[parameters('prismaCloudUser')]"
+            }
+        },
+        {
+            "type": "Microsoft.KeyVault/vaults/secrets",
+            "apiVersion": "2019-09-01",
+            "name": "[concat(variables('kvName'), '/', variables('pcpass'))]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.KeyVault/vaults', variables('kvName'))]"
+            ],
+            "properties": {
+                "value": "[parameters('prismaCloudPassword')]"
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites",
+            "kind": "functionapp",
+            "name": "[variables('functionName')]",
+            "apiVersion": "2016-08-01",
+            "location": "[resourceGroup().location]",
+            "identity": {
+                "type": "SystemAssigned"
+            },
+            "properties": {
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]",
+                "siteConfig": {
+                    "appSettings": [
+                        {
+                            "name": "AzureWebJobsStorage",
+                            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageName'), ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('storageName')),'2015-05-01-preview').key1)]"
+                        },
+                        {
+                            "name": "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING",
+                            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageName'), ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('storageName')),'2015-05-01-preview').key1)]"
+                        },
+                        {
+                            "name": "WEBSITE_CONTENTSHARE",
+                            "value": "[toLower(variables('functionName'))]"
+                        },
+                        {
+                            "name": "FUNCTIONS_EXTENSION_VERSION",
+                            "value": "~2"
+                        },
+                        {
+                            "name": "WEBSITE_NODE_DEFAULT_VERSION",
+                            "value": "~10"
+                        },
+                        {
+                            "name": "FUNCTIONS_WORKER_RUNTIME",
+                            "value": "dotnet"
+                        }
+                    ]
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]"
+            ],
+            "tags": "[parameters('resourceTags')]"
+        },
+        {
+            "apiVersion": "2020-03-01",
+            "dependsOn": [],
+            "type": "Microsoft.ContainerService/managedClusters",
+            "location": "[resourceGroup().location]",
+            "name": "[variables('aksClusterName')]",
+            "properties": {
+                "kubernetesVersion": "[parameters('aksVersion')]",
+                "dnsPrefix": "[variables('aksDNSPrefix')]",
+                "agentPoolProfiles": [
+                    {
+                        "name": "agentpool",
+                        "count": 1,
+                        "vmSize": "[variables('vmSize')]",
+                        "osType": "Linux",
+                        "storageProfile": "ManagedDisks",
+                        "type": "VirtualMachineScaleSets",
+                        "mode": "System"
+                    }
+                ],
+                "nodeResourceGroup": "[variables('aksClusterName')]",
+                "networkProfile": {
+                    "loadBalancerSku": "standard",
+                    "networkPlugin": "[variables('aksNetworkPlugin')]"
+                }
+            },
+            "tags": "[parameters('resourceTags')]",
+            "identity": {
+                "type": "SystemAssigned"
+            }
+        },
+        {
+            "type": "Microsoft.AppConfiguration/configurationStores",
+            "apiVersion": "2020-07-01-preview",
+            "name": "[variables('configStoreName')]",
+            "location": "[resourceGroup().location]",
+            "sku": {
+                "name": "standard"
+            }
+        },
+        {
+            "type": "Microsoft.AppConfiguration/configurationStores/keyValues",
+            "apiVersion": "2020-07-01-preview",
+            "name": "[variables('gitScan')]",
+            "dependsOn": [
+                "[variables('configStoreName')]"
+            ],
+            "properties": {
+                "value": "[variables('gitScanValue')]",
+                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8",
+            }
+        },
+        {
+            "type": "Microsoft.AppConfiguration/configurationStores/keyValues",
+            "apiVersion": "2020-07-01-preview",
+            "name": "[variables('dockerFileScan')]",
+            "dependsOn": [
+                "[variables('configStoreName')]"
+            ],
+            "properties": {
+                "value": "[variables('dockerFileScanValue')]",
+                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8",
+
+            }
+        },
+        {
+            "type": "Microsoft.AppConfiguration/configurationStores/keyValues",
+            "apiVersion": "2020-07-01-preview",
+            "name": "[variables('imageScan')]",
+            "dependsOn": [
+                "[variables('configStoreName')]"
+            ],
+            "properties": {
+                "value": "[variables('imageScanValue')]",
+                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8",
+
+            }
+        },
+        {
+            "type": "Microsoft.AppConfiguration/configurationStores/keyValues",
+            "apiVersion": "2020-07-01-preview",
+            "name": "[variables('terraformScan')]",
+            "dependsOn": [
+                "[variables('configStoreName')]"
+            ],
+            "properties": {
+                "value": "[variables('terraformScanValue')]",
+                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8",
+
+            }
+        },
+        {
+            "type": "Microsoft.AppConfiguration/configurationStores/keyValues",
+            "apiVersion": "2020-07-01-preview",
+            "name": "[variables('armScan')]",
+            "dependsOn": [
+                "[variables('configStoreName')]"
+            ],
+            "properties": {
+                "value": "[variables('armScanValue')]",
+                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8",
+
+            }
+        },
+        {
+            "type": "Microsoft.AppConfiguration/configurationStores/keyValues",
+            "apiVersion": "2020-07-01-preview",
+            "name": "[variables('gitScanStatus')]",
+            "dependsOn": [
+                "[variables('configStoreName')]"
+            ],
+            "properties": {
+                "value": "[variables('gitScanStatusValue')]",
+                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8",
+
+            }
+        },
+        {
+            "type": "Microsoft.AppConfiguration/configurationStores/keyValues",
+            "apiVersion": "2020-07-01-preview",
+            "name": "[variables('dockerFileScanStatus')]",
+            "dependsOn": [
+                "[variables('configStoreName')]"
+            ],
+            "properties": {
+                "value": "[variables('dockerFileScanStatusValue')]",
+                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8",
+
+            }
+        },
+        {
+            "type": "Microsoft.AppConfiguration/configurationStores/keyValues",
+            "apiVersion": "2020-07-01-preview",
+            "name": "[variables('imageScanStatus')]",
+            "dependsOn": [
+                "[variables('configStoreName')]"
+            ],
+            "properties": {
+                "value": "[variables('imageScanStatusValue')]",
+                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8",
+
+            }
+        },
+        {
+            "type": "Microsoft.AppConfiguration/configurationStores/keyValues",
+            "apiVersion": "2020-07-01-preview",
+            "name": "[variables('terraformScanStatus')]",
+            "dependsOn": [
+                "[variables('configStoreName')]"
+            ],
+            "properties": {
+                "value": "[variables('terraformScanStatusValue')]",
+                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8",
+
+            }
+        },
+        {
+            "type": "Microsoft.AppConfiguration/configurationStores/keyValues",
+            "apiVersion": "2020-07-01-preview",
+            "name": "[variables('armScanStatus')]",
+            "dependsOn": [
+                "[variables('configStoreName')]"
+            ],
+            "properties": {
+                "value": "[variables('armScanStatusValue')]",
+                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8",
+
+            }
+        },
+        {
+            "type": "Microsoft.AppConfiguration/configurationStores/keyValues",
+            "apiVersion": "2020-07-01-preview",
+            "name": "[variables('regScanStatus')]",
+            "dependsOn": [
+                "[variables('configStoreName')]"
+            ],
+            "properties": {
+                "value": "[variables('regScanStatusValue')]",
+                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8",
+
+            }
+        },
+        {
+            "type": "Microsoft.AppConfiguration/configurationStores/keyValues",
+            "apiVersion": "2020-07-01-preview",
+            "name": "[variables('regScan')]",
+            "dependsOn": [
+                "[variables('configStoreName')]"
+            ],
+            "properties": {
+                "value": "[variables('regScanValue')]",
+                "contentType": "application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8",
+
+            }
+        },
+
+        {
+            "name": "[variables('containerRegistryName')]",
+            "type": "Microsoft.ContainerRegistry/registries",
+            "apiVersion": "2019-05-01",
+            "location": "[resourceGroup().location]",
+            "sku": {
+                "name": "Basic"
+            },
+            "properties": {
+                "adminUserEnabled": true
+            }
+        }
+    ],
+    "outputs": {
+        "AKS Control Plane FQDN": {
+            "type": "string",
+            "value": "[reference(variables('aksClusterName')).fqdn]"
+        },
+        "Container Registry FQDN": {
+            "value": "[reference(resourceId('Microsoft.ContainerRegistry/registries',variables('containerRegistryName')),'2019-12-01-preview').loginServer]",
+            "type": "string"
+        },
+        "Key Vault": {
+            "type": "string",
+            "value": "[variables('kvName')]"
+        }
+    }
+}
