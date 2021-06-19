@@ -28,16 +28,10 @@ The workshop is designed to take approximately 5-6 hours to complete. It can be 
 | 01 | [Prepare Your Azure Environment](modules/1-prepare-the-environment.md) | Hands on Lab |
 | 02 | [Deploy Prisma Cloud Compute Edition (PCCE) on AKS](modules/2-pcce-aks-deploy.md) | Hands on Lab |
 | 03 | [Development Stage Shift Left](modules/3-pcce-development-stage-shift-left.md)                | Hands on Lab |
-| 04a | [Configure JIRA integration in Prisma Cloud (CSPM)](modules/4a-jira-integration-cspm.md) | Hands on Lab |
-| 04b | [Configure JIRA integration in Prisma Cloud (CWPP)](modules/4b-jira-integration-cwpp.md) | Hands on Lab |
-| 05 | [Remediate Security Risks and Compliance Violations with Prisma Cloud](modules/5-respond-and-remediate.md)  | Hands on Lab |
-| 06 | [Protect Linux Hosts and Containers in Azure](modules/6-protect-linux-hosts-and-containers.md) | Hands on Lab |
-| 07 | [Protect Windows Hosts and Containers in Azure](modules/6-protect-linux-host-and-containers.md) | Hands on Lab |
-| 08 | [Protect Azure Container Registry (ACR) Images](modules/8-protect-acr-images.md)    | Hands on Lab |
-| 09 | [Protect Azure Kubernetes Service (AKS) Workloads](modules/9-protect-aks-workloads.md) | Hands on Lab |
-| 10 | [Protect Serverless Container Workloads](modules/10-protect-serverless-workloads.md)    | Hands on Lab |
-| 11 | Implement Shift Left Security for Azure    | Hands on Lab |
-| 12 | Wrap / Clean Up     | Hands on Lab |
+| 04 | [Configure Email integration in Prisma Cloud (CWPP)](modules/4-email-integration-cwpp.md) | Hands on Lab |
+10-protect-serverless-workloads.md)    | Hands on Lab |
+| 05 | Implement Shift Left Security for Azure    | Hands on Lab |
+| 06 | Wrap / Clean Up     | Hands on Lab |
 ----
 
 [Next](modules/0-prerequisites.md)
