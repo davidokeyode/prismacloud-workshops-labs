@@ -49,9 +49,7 @@ azlab-kv-[uniqestring] | Key vault | Demonstrating Key Vault related recommendat
 ![1-template-validation](../images/1-template-validation.png)
 
 > The *deployment is in progress* page continues to update and shows the resources as they deployed.  
-> Be aware than an additional resource group will be created automatically for Kubernetes resources named as "azlab-aks".
-
-![1-template-deployment-progress](../images/1-template-deployment-progress.png)
+> Be aware that an additional resource group will be created automatically for Kubernetes resources named as "azlab-aks".
 
 4. When the deployment is complete, you should see the view below. You can click on **Outputs** to view some information that you will need for subsequent labs. Make note of the information here.
 
