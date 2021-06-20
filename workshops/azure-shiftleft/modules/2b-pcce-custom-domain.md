@@ -1,19 +1,16 @@
 ---
-Title: 2 - Prisma Cloud - Deploy Prisma Cloud Compute Edition (PCCE) on AKS
-Description: Follow these instructions to deploy Prisma Cloud Compute Edition (PCCE) on AKS
+Title: 2 - Prisma Cloud - Configure Custom Domain for Prisma Cloud Compute Edition (PCCE)
+Description: Follow these instructions to configure a custom domain name for Prisma Cloud Compute Edition (PCCE)
 Author: David Okeyode
 ---
 
-# Module 2: Prisma Cloud - Deploy Prisma Cloud Compute Edition (PCCE) on AKS
+# Module 2: Prisma Cloud - Configure Custom Domain for Prisma Cloud Compute Edition (PCCE)
 
-In this workshop module, we will be deploying PCCE on the AKS cluster that was deployed using the ARM template in the last module. Here are the exercises that we will complete in this lesson:
+In this workshop module, we will be configure a custom domain name for PCCE. Here are the exercises that we will complete in this lesson:
 
 > * Register a domain name with a DNS registrar
 > * Generate a trusted certificate for the DNS name
 > * Upload PEM certificate to the Prisma cloud console
-
-## Pre-Requisites
-> * 
 
 ## Exercise 1: Register a domain name with a DNS registrar
 1. If you are exposing the console publicly. You could use providers like [Name Cheap](https://www.namecheap.com/) or [GoDaddy](https://uk.godaddy.com/)
@@ -42,4 +39,4 @@ In this workshop module, we will be deploying PCCE on the AKS cluster that was d
 > * [Prisma Cloud Subject Alternative Names](https://docs.paloaltonetworks.com/prisma/prisma-cloud/21-04/prisma-cloud-compute-edition-admin/configure/subject_alternative_names.html)
 
 ## Proceed to the next lesson:
-> [Development Stage Shift Left](3-pcce-development-stage-shift-left) 
+> [Prepare Azure DevOps Services](3-pcce-prepare-azdevops-services.md) 

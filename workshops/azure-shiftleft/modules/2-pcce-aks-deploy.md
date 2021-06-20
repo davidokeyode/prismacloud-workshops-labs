@@ -157,4 +157,5 @@ In this lesson, you completed the following:
 
 
 ## Proceed to the next lesson:
-> [Development Stage Shift Left](3-pcce-development-stage-shift-left) 
+> [Optional - Configure Custom Domain for Prisma Cloud Compute Edition (PCCE)](2b-pcce-custom-domain.md) 
+> > [Prepare Azure DevOps Services](3-pcce-prepare-azdevops-services.md) 
