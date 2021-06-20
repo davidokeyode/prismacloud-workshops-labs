@@ -13,19 +13,66 @@ In this workshop lesson, you will be setting up accounts that you need to follow
 
 Prepare Azure DevOps and Services
 
-## Exercise 1 - Install extensions in Azure DevOps
-1. Open a web browser and go to your Azure DevOps organization - **`https://dev.azure.com/<ORGANIZATION_NAME>`**. Replace **`<ORGANIZATION_NAME>`** with the name of your Azure DevOps organization. 
+## Exercise 1 - Create credential for Azure DevOps to use
+1. Open a web browser tab and go to the [Azure Cloud Shell](https://shell.azure.com). Sign in with your Azure credentials. Ensure that you are in the **`Bash`** terminal.
 
-2. Install the following extensions from the Visual Studio marketplace
-* **`Prisma Cloud extension`**: https://marketplace.visualstudio.com/items?itemName=Palo-Alto-Networks.build-release-task
+2. In the cloud shell environment, run the following commands to create the service principal that Azure DevOps will use to access your Azure subscription. Make a note of the following values from the output - **`appID`**, **`password`** and **`tenant`**.
 
-* **`Terraform Build & Release Tasks extension`**: https://marketplace.visualstudio.com/items?itemName=charleszipp.azure-pipelines-tasks-terraform
+```
+az ad sp create-for-rbac --name ado-serviceconn-cred --role contributor
+```
+
+![pcce](../images/3-ado-serviceconn.png)
+
+3. In the cloud shell environment, run the following commands to obtain the subscription ID. Make a note of the value from the output.
+
+```
+az account show --query id
+```
+
+![pcce](../images/3-account-id.png)
+
 
 ## Exercise 2 - Create Azure DevOps project
-1. In the Azure DevOps organization, create a new project called **`prismacloud-shiftleft`**
+1. In the Azure DevOps organization, create a new project called **`prismacloud-shiftleft`** with the visibility set to **`Private`**.
 
+![pcce](../images/3-ado-create-project.png)
 
-## Exercise 3 - Import code and pipelines into your Azure DevOps project
+## Exercise 3 - Configure Azure Service Connection
+> * In the Azure DevOps organization, create a service connection for Azure called **`pc-shiftleft-azure-connection`**
+
+1. In Azure DevOps, in the **`prismacloud-shiftleft`** project, go to **`Project Settings`** → **`Service connections`** → **`New service connection`**. 
+
+![pcce](../images/3-ado-create-serviceconn.png)
+
+2. In the **`New service connection`** blade, select **`Azure Resource Manager`** and click on **`Next`**.
+
+![pcce](../images/3-ado-arm-serviceconn.png)
+
+3. In the **`New Azure service connection`** blade, select **`Service principal (manual)`** and click on **`Next`**.
+
+4. In the **`New Azure service connection`** blade, configure the following:
+	* **Environment**: Azure Cloud
+	* **Scope Level**: Subscription
+	* **Subscription Id**: Enter the **`id`** output value from **`Exercise 1 - Step 3`** of this module
+	* **Subscription Name**: Azure Subscription 
+	* **Service Principal Id**: Enter the **`appId`** output value from **`Exercise 1 - Step 2`** of this module
+	* **Credential**: Service principal key
+	* **Service principal key**: Enter the **`password`** output value from Exercise 1 - Step 2 of this module
+	* **Tenant ID**: Enter the **`tenant`** output value from **`Exercise 1 - Step 2`** of this module
+	* Click on **`Verify`**. This should be successful.
+
+![pcce](../images/3-new-serviceconn.png)
+
+5. Still in the **`New Azure service connection`** blade, configure the following in the **`Details`** section:
+	* **Service connection name**: pc-shiftleft-azure-connection
+	* **Description**: Service connection to Azure
+	* **Grant access permission to all pipelines**: Selected. This option allows pipelines defined in YAML (which is the case in this workshop), which are not automatically authorized for service connections, to use this service connection.
+	*  Click on **`Verify and save`**.
+
+![pcce](../images/3-new-serviceconn-details.png)
+
+## Exercise 4 - Import code and pipelines into your Azure DevOps project
 1. In the Azure DevOps organization, create a new project called **`prismacloud-shiftleft`**
 
 2. 
@@ -47,6 +94,13 @@ Prepare Azure DevOps and Services
 1. In the Azure Portal, open the Key Vault resource that was created. Click 
 
 
+Install extensions in Azure DevOps
+1. Open a web browser and go to your Azure DevOps organization - **`https://dev.azure.com/<ORGANIZATION_NAME>`**. Replace **`<ORGANIZATION_NAME>`** with the name of your Azure DevOps organization. 
+
+2. Install the following extensions from the Visual Studio marketplace
+* **`Prisma Cloud extension`**: https://marketplace.visualstudio.com/items?itemName=Palo-Alto-Networks.build-release-task
+
+* **`Terraform Build & Release Tasks extension`**: https://marketplace.visualstudio.com/items?itemName=charleszipp.azure-pipelines-tasks-terraform
 
 
 
