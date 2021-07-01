@@ -628,7 +628,7 @@
             "value": "[reference(variables('aksClusterName')).fqdn]"
         },
         "ACR Name": {
-            "value": "variables('containerRegistryName')",
+            "value": "[variables('containerRegistryName')]",
             "type": "string"
         },
         "ACR FQDN": {
