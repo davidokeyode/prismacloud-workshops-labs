@@ -623,12 +623,20 @@
             "type": "string",
             "value": "[reference(concat(variables('vmNameWindows'), '-pip')).dnsSettings.fqdn]"
         },
-        "AKS Control Plane FQDN": {
+        "AKS FQDN": {
             "type": "string",
             "value": "[reference(variables('aksClusterName')).fqdn]"
         },
-        "Container Registry FQDN": {
+        "ACR Name": {
+            "value": "variables('containerRegistryName')",
+            "type": "string"
+        },
+        "ACR FQDN": {
             "value": "[reference(resourceId('Microsoft.ContainerRegistry/registries',variables('containerRegistryName')),'2019-12-01-preview').loginServer]",
+            "type": "string"
+        },
+        "SUBSCRIPTION ID": {
+            "value": "[subscription().subscriptionId]",
             "type": "string"
         },
         "Key Vault": {

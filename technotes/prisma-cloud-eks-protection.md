@@ -34,7 +34,7 @@ This tech note walks you through how to test Prisma Cloud capabilities on an EKS
 
 * **`AWS Management Console`** → **`IAM`** → **`Create role`**
     * **Trusted Entity**: **`AWS service`**
-    * **Use Case**: **`EC2`** → **`AmazonEKSWorkerNodePolicy`** and **`AmazonEC2ContainerRegistryReadOnly`**
+    * **Use Case**: **`EC2`** → **`AmazonEKSWorkerNodePolicy`**;  **`AmazonEC2ContainerRegistryReadOnly`** and **`AmazonEKS_CNI_Policy`** 
     * **Policy Name**: **`AWSServiceRoleForAmazonEKSNodegroup`**
     * **Role Name**: **`do-eks-node-role`**
 
