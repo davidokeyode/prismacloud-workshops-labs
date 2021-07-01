@@ -117,7 +117,7 @@ Leave this window open as we will need to configure some variables before we can
 
 ## Exercise 6 - Run the Git repository scan task
 1. In Prisma Cloud, configure the policy that will be enforced:
-**a. Create code repo vulnerability scan policy**
+* **a. Create code repo vulnerability scan policy**
    * **`Defend`** → **`Vulnerabilities`** → **`Code repositories`** → **`CI`** → **`Add Rule`**
       * **Rule Name**: Org Baseline - Code Dependencies Vulnerability Policy
       * **Alert threshold**: Low
@@ -128,7 +128,7 @@ Leave this window open as we will need to configure some variables before we can
       * Click on **`Save`**
 ![azure-pipelines](../images/13-git-repo-vuln.png)
 
-**b. Create code repo compliance scan policy**
+* **b. Create code repo compliance scan policy**
    * **`Defend`** → **`Compliance`** → **`Code repositories`** → **`CI`** → **`Add Rule`**
       * **Rule Name**: Org Baseline - Code Dependencies Compliance Policy
       *  **Alert threshold**: Low
@@ -142,39 +142,39 @@ Leave this window open as we will need to configure some variables before we can
 
 2. In the pipeline, the following flags controls the behaviour of this task:
 
-**PRE_BUILD_GIT_SCAN_FLAG**:
-**`'true'`** - exit on failed security checks
-**`'false'`** - ignore failed security checks
+* **PRE_BUILD_GIT_SCAN_FLAG**:
+   * **`'true'`** - exit on failed security checks
+   * **`'false'`** - ignore failed security checks
 
-**Prisma Cloud - Scan Code Repo Task**
-**`enabled: 'true'`** - execute git repo scan task
-**`enabled: 'false'`** - disable git repo scan task
+* **Prisma Cloud - Scan Code Repo Task**
+   * **`enabled: 'true'`** - execute git repo scan task
+   * **`enabled: 'false'`** - disable git repo scan task
 
 3. Results can be verified right in the pipeline
 
 4. Results can also be monitored in Prisma Cloud
-**a. Verify vulnerability scan results**
-* **`Monitor`** → **`Vulnerabilities`** → **`Code repositories`** → **`CI`**
+* **a. Verify vulnerability scan results**
+   * **`Monitor`** → **`Vulnerabilities`** → **`Code repositories`** → **`CI`**
 
-**b. Verify compliance scan results**
-* **`Monitor`** → **`Compliance`** → **`Code repositories`** → **`CI`**
+* **b. Verify compliance scan results**
+   * **`Monitor`** → **`Compliance`** → **`Code repositories`** → **`CI`**
 
 ## Exercise 7 - Run the Dockerfile scan task
 1. In the pipeline, the following flags controls the behaviour of this task:
 
-**PRE_BUILD_DOCKERFILE_SCAN_FLAG**:
-**`''`** - exit on failed security checks
-**`'--soft-fail'`** - ignore failed security checks
+* **PRE_BUILD_DOCKERFILE_SCAN_FLAG**:
+   * **`''`** - exit on failed security checks
+   * **`'--soft-fail'`** - ignore failed security checks
 
-**Prisma Cloud - Scan Dockerfile**
-**`enabled: 'true'`** - execute dockerfile scan task
-**`enabled: 'false'`** - disable dockerfile scan task
+* **Prisma Cloud - Scan Dockerfile**
+   * **`enabled: 'true'`** - execute dockerfile scan task
+   * **`enabled: 'false'`** - disable dockerfile scan task
 
 2. Results can be verified right in the pipeline
 
 ## Exercise 8 - Run the Pre-Registry Image scan task
 1. In Prisma Cloud, configure the policy that will be enforced:
-**a. Create CI Image vulnerability scan policy**
+* **a. Create CI Image vulnerability scan policy**
    * **`Defend`** → **`Vulnerabilities`** → **`Images`** → **`CI`** → **`Add Rule`**
       * **Rule Name**: Org Baseline - CI Image Vulnerability Policy
       * **Alert threshold**: Low
@@ -186,7 +186,7 @@ Leave this window open as we will need to configure some variables before we can
 
 ![azure-pipelines](../images/13-ci-image-repo-vuln.png)
 
-**b. Create CI Image compliance scan policy**
+* **b. Create CI Image compliance scan policy**
    * **`Defend`** → **`Compliance`** → **`Containers and Images`** → **`CI`** → **`Add Rule`**
       * **Rule Name**: Org Baseline - CI Image Compliance Policy
       * **Compliance Template**: NIST SP 800-190
@@ -199,7 +199,7 @@ Leave this window open as we will need to configure some variables before we can
 
 ![azure-pipelines](../images/13-ci-image-repo-comp.png)
 
-**c. Enhance malware checks with wildfire**
+* **c. Enhance malware checks with wildfire**
    * **`Manage`** → **`System`** → **`Wildfire`**
       * **WildFire malware detection**: Enable
       * **WildFire cloud region**: Europe (Netherlands)
@@ -224,36 +224,36 @@ Leave this window open as we will need to configure some variables before we can
 3. Results can be verified right in the pipeline
 
 4. Results can also be monitored in Prisma Cloud
-**a. Verify vulnerability scan results**
-* **`Monitor`** → **`Vulnerabilities`** → **`Images`** → **`CI`**
+* **a. Verify vulnerability scan results**
+   * **`Monitor`** → **`Vulnerabilities`** → **`Images`** → **`CI`**
 
-**b. Verify compliance scan results**
-* **`Monitor`** → **`Compliance`** → **`Images`** → **`CI`**
+* **b. Verify compliance scan results**
+   * **`Monitor`** → **`Compliance`** → **`Images`** → **`CI`**
 
-**c. Verify malware scan results**
-* **`Monitor`** → **`Compliance`** → **`Images`** → **`CI`**
+* **c. Verify malware scan results**
+   * **`Monitor`** → **`Compliance`** → **`Images`** → **`CI`**
 
 
 ## Exercise 9 - Run the Infrastructure-as-Code template scan tasks
 1. In the pipeline, the following flags controls the behaviour of the terraform template scan task:
 
-**PRE_DEPLOY_TERRAFORM_SCAN_FLAG**:
-**`''`** - exit on failed security checks
-**`'--soft-fail'`** - ignore failed security checks
+* **PRE_DEPLOY_TERRAFORM_SCAN_FLAG**:
+   * **`''`** - exit on failed security checks
+   * **`'--soft-fail'`** - ignore failed security checks
 
-**Prisma Cloud - Terraform Template Analysis**
-**`enabled: 'true'`** - execute terraform iac scan task
-**`enabled: 'false'`** - disable terraform iac scan task
+* **Prisma Cloud - Terraform Template Analysis**
+   * **`enabled: 'true'`** - execute terraform iac scan task
+   * **`enabled: 'false'`** - disable terraform iac scan task
 
 2. In the pipeline, the following flags controls the behaviour of the ARM template scan task:
 
-**PRE_DEPLOY_ARM_SCAN_FLAG**:
-**`''`** - exit on failed security checks
-**`'--soft-fail'`** - ignore failed security checks
+* **PRE_DEPLOY_ARM_SCAN_FLAG**:
+   * **`''`** - exit on failed security checks
+   * **`'--soft-fail'`** - ignore failed security checks
 
-**Prisma Cloud - ARM Template Analysis Task**
-**`enabled: 'true'`** - execute arm iac scan task
-**`enabled: 'false'`** - disable arm iac scan task
+* **Prisma Cloud - ARM Template Analysis Task**
+   * **`enabled: 'true'`** - execute arm iac scan task
+   * **`enabled: 'false'`** - disable arm iac scan task
 
 3. Results can be verified right in the pipeline
 
@@ -262,13 +262,13 @@ Leave this window open as we will need to configure some variables before we can
 
 1. In the pipeline, the following flags controls the behaviour of the registry scan check task:
 
-**PRE_DEPLOY_REG_SCAN_FLAG**:
-**`'1'`** - exit on failed security checks
-**`'0'`** - ignore failed security checks
+* **PRE_DEPLOY_REG_SCAN_FLAG**:
+   * **`'1'`** - exit on failed security checks
+   * **`'0'`** - ignore failed security checks
 
-**Prisma Cloud - Registry Image Scan Check**
-**`enabled: 'true'`** - execute the registry scan check task
-**`enabled: 'false'`** - execute the registry scan check task
+* **Prisma Cloud - Registry Image Scan Check**
+   * **`enabled: 'true'`** - execute the registry scan check task
+   * **`enabled: 'false'`** - execute the registry scan check task
 
 2. Results can be verified right in the pipeline
 
