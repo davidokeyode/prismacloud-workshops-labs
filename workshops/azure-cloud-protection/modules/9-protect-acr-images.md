@@ -13,49 +13,16 @@ Prisma Cloud can scan both Linux and Windows container images in Azure Container
 > * [Prisma Cloud Windows Containers features](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/install/install_windows.html)
 
 ## Module 8 Exercises
-In this module, we will begin to walk through some of the protection capabilities that Prisma Cloud supports for container registries in Azure. Here are the exercises that we will complete:
+In this module, we will begin to walk through some of the protection capabilities that Prisma Cloud supports for container registries in Azure. We will use the same credential that we configured in module 6 to implement this. Here are the exercises that we will complete:
 
-> * Create Azure Credential for Registry Scanning
-> * Add Azure Credential in Prisma Cloud
 > * Configure Prisma Cloud ACR integration
 > * Test Prisma Cloud ACR images scan
 > * Configure and teat ACR webhook integration
 > * Troubleshooting ACR Integration
 
-
 ## Pre-Requisites
-
-## Exercise 1: Create Azure Credential for Registry Scanning
-
-In this exercise, we will create the credential that Prisma Cloud will use to scan images in our Azure container registries. The credential created here can also be used for serverless and cloud discovery scans.
-
-1. Open a web browser tab and go to the [Azure Cloud Shell](https://shell.azure.com). Sign in with your Azure credentials. Ensure that you are in the **`Bash`** terminal.
-
-2. Create a service principal for Prisma Cloud Compute and assign the reader role to it using the command below:
-
-```
-subscription_id=$(az account show --query id | tr -d '"')
-
-az ad sp create-for-rbac -n "prismacloud-compute-azure-cred" --role "reader" --scopes /subscriptions/$subscription_id --sdk-auth
-```
-
-3. Copy the output of the command (the entire output including the curly brackets) as it will be needed in the next exercise.
-
-
-## Exercise 2: Add Azure Credential in Prisma Cloud
-
-In this exercise, we will add the credential that was created to Prisma Cloud.
-
-1. Open the Prisma Cloud console and go to  **`Compute`** → **`Manage`** → **`Authentication`** → **`Credentials Store`**
-
-2. Click **`Add Credential`** and configure the following:
-* **Name**: Azure - Prisma Cloud Compute Role
-* **Description**: Azure-PCC-Role
-* **Type**: Azure
-* **Service key**: Paste the output that was copied earlier
-* Click on **Save**
-
-## Exercise 3: Configure Prisma Cloud ACR integration
+> * Module 6 has been completed
+## Exercise 1: Configure Prisma Cloud ACR integration
 
 1. Open the Prisma Cloud console and go to **`Compute`** → **`Defend`** → **`Vulnerabilities`** → **`Images`** → **`Registry settings`**
 
@@ -78,7 +45,6 @@ In this exercise, we will add the credential that was created to Prisma Cloud.
 4. Click **Save** 
 
 ![prisma-acr](../images/8-prisma-acr-add.png)
-
 
 ## Exercise 4 - Test Prisma Cloud ACR images scan
 
@@ -147,8 +113,6 @@ az acr import  -n <acr-name> --source docker.io/sockshop4msa/gateway --image soc
 ## Next steps
 
 In this lesson, you completed the following:
-* Created an Azure Credential for Registry Scanning
-* Added an Azure Credential in Prisma Cloud
 * Configured Prisma Cloud ACR integration
 * Tested Prisma Cloud ACR images scan
 * Configured and tested ACR webhook integration

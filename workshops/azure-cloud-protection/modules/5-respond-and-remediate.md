@@ -155,4 +155,4 @@ In this lesson, you completed the following:
 * Configured auto-remediation in Prisma Cloud
 
 In the next lesson, you will implement cloud discovery using Prisma Cloud Compute:
-> [Protect Linux Hosts and Containers](6-implement-cloud-discovery.md)
+> [Implement Cloud Discovery](6-implement-cloud-discovery.md)
