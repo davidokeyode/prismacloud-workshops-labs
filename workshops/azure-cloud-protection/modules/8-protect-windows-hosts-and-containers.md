@@ -205,4 +205,4 @@ In this lesson, you completed the following:
 > * Implemented and Tested Windows Container Runtime Defense
 
 In the next lesson, you will configure security for Azure Container Registry (ACR). Click here to proceed to the next lesson:
-> [Protect ACR Images](8-protect-acr-images.md)
+> [Protect ACR Images](9-protect-acr-images.md)

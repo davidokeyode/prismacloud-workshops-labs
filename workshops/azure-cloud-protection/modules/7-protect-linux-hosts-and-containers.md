@@ -410,4 +410,4 @@ In this lesson, you completed the following:
 * Implemented host runtime defense 
 
 In the next lesson, you will configure security Windows hosts and containers. Click here to proceed to the next lesson:
-> [Protect Windows Hosts and Containers in Azure](7-protect-windows-hosts-and-containers.md)
+> [Protect Windows Hosts and Containers in Azure](8-protect-windows-hosts-and-containers.md)

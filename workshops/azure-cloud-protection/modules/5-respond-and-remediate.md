@@ -152,7 +152,7 @@ You have now remediated a policy violation manually using the instructions provi
 In this lesson, you completed the following:
 * Reviewed the Prisma Cloud Console
 * Reviewed and remediated Prisma Cloud Alerts
-* Configure Auto-remediation in Prisma Cloud
+* Configured auto-remediation in Prisma Cloud
 
-In the next lesson, you will protect Azure Kubernetes Service (AKS) workloads using Prisma Cloud Compute:
-> [Protect Linux Hosts and Containers](6-protect-linux-hosts-and-containers.md)
+In the next lesson, you will implement cloud discovery using Prisma Cloud Compute:
+> [Protect Linux Hosts and Containers](6-implement-cloud-discovery.md)

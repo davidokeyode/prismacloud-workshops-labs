@@ -154,4 +154,4 @@ In this lesson, you completed the following:
 * Configured and tested ACR webhook integration
 
 In the next lesson, you will implement protection for Azure Kubernetes Service (AKS) workloads. Click here to proceed to the next lesson:
-> [Protect AKS Workloads](9-protect-aks-workloads.md)
+> [Protect AKS Workloads](10-protect-aks-workloads.md)
