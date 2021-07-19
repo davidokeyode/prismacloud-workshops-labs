@@ -4,7 +4,7 @@ Description: Follow these instructions to integrate your JIRA project with Prism
 Author: David Okeyode
 ---
 
-# Module 4b: Configure JIRA integration in Prisma Cloud (Compute)
+# Module 4b - Introduction - Configure JIRA integration in Prisma Cloud (Compute)
 
 In the previous module, you integrated your JIRA project with Prisma Cloud (CSPM). This allows Prisma Cloud to generate tickets in JIRA for security risks and incidents for protected subscriptions, services and workloads. In this exercise, we will do the same for Prisma Cloud (Compute). Here are the exercises that we will be completing:
 

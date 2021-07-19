@@ -1,9 +1,9 @@
 ---
-Title: 6 - Protect Linux Hosts and Containers in Azure
+Title: 7 - Protect Linux Hosts and Containers in Azure
 Description: Prisma Cloud Compute provides a comprehensive set of security capabilities to protect containerized workloads everywhere including Linux hosts and containers
 Author: David Okeyode
 ---
-# Module 6: Protect Linux Hosts and Containers in Azure
+# Module 7 - Introduction and Exercises - Protect Linux Hosts and Containers in Azure
 
 In the previous lessons, you implemented some of the Cloud Security Posture Management capabilities of Prisma Cloud. From this lesson, we will begin to implement workload protection capabilities particularly in relation to containerized workloads in Azure. Here are the tasks that we will be completing in this module:
 

@@ -1,10 +1,10 @@
 ---
-Title: 8 - Protect ACR Images
+Title: 9 - Protect ACR Images
 Description: Follow these instructions to implement Azure Container Registry (ACR)scanning using Prisma Cloud Compute
 Author: David Okeyode
 ---
 
-## Module 8 Introduction - Protect ACR Images
+## Module 9 - Introduction - Protect ACR Images
 Prisma Cloud can scan both Linux and Windows container images in Azure Container Registries (ACR) for vulnerability, malware and compliance. Prisma Cloud can scan images in both private and public ACR instances.
 
 > * Assess Linux and Windows images in the registry for vulnerabilities, malware (static and dymanic) and compliance
@@ -12,7 +12,7 @@ Prisma Cloud can scan both Linux and Windows container images in Azure Container
 > * Prevent vulnerable, compromised or non-compliant images from being committed by scanning in your pipelines
 > * [Prisma Cloud Windows Containers features](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/install/install_windows.html)
 
-## Module 8 Exercises
+## Module 9 - Exercises
 In this module, we will begin to walk through some of the protection capabilities that Prisma Cloud supports for container registries in Azure. We will use the same credential that we configured in module 6 to implement this. Here are the exercises that we will complete:
 
 > * Configure Prisma Cloud ACR integration
@@ -31,7 +31,6 @@ In this module, we will begin to walk through some of the protection capabilitie
 * **Registry**: Enter the output value of **`container Registry FQDN`** from module 1.
 * **Credential**: Azure - Prisma Cloud Compute Role
 * **OS type**: Linux
-* **Scanner**: Automatic
 * Leave other settings at default values and click **Add**
 
 3. Click **`Add Registry`** again to add the information to scan Windows images in the registry. Configure the following:
@@ -74,7 +73,7 @@ az acr import  -n <acr-name> --source mcr.microsoft.com/windows/servercore/iis:2
 ![prisma-acr](../images/8-prisma-acr-webhook-url.png)
 
 2. Open the [Azure Portal](https://portal.azure.com) in a web browser. Browse to the container registry and go to **`Services`** → **`Webhooks`**. Click **`+ Add`** to add a new webhook and configure the following:
-* **Webhook name**: prismacloudscan-webhook
+* **Webhook name**: prismacloudscanwebhook
 * **Location**: This should default to the location of the registry 
 * **Service URI**: Paste the value of the webhook URL that you copied earlier from the Prisma Cloud console
 * **Custom headers**: Leave empty

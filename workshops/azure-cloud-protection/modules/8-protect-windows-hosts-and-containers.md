@@ -1,9 +1,9 @@
 ---
-Title: 7 - Protect Windows Hosts and Containers in Azure
+Title: 8 - Protect Windows Hosts and Containers in Azure
 Description: Prisma Cloud Compute provides a comprehensive set of security capabilities to protect containerized workloads everywhere including Windows hosts and containers
 Author: David Okeyode
 ---
-## Introduction
+## Module 8 -  Introduction - Protect Windows Hosts and Containers in Azure
 Prisma Cloud can secure Windows containers running on Windows Server 2016 and Windows Server 2019 hosts anywhere including in Azure. Prisma Cloud’s Intelligence Stream includes vulnerability data from Microsoft, so as new CVEs are reported, Prisma Cloud can detect them in your Windows images, containers and hosts. Here are the security capabilities that Prisma cloud offers for Windows images, containers and hosts.
 
 * Windows container vulnerability scan (Built-in and customer added intelligence feeds)
@@ -13,7 +13,7 @@ Prisma Cloud can secure Windows containers running on Windows Server 2016 and Wi
 * Runtime defense for Windows containers (Process and network protection) 
 * [Prisma Cloud Windows Containers features](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/install/install_windows.html)
 
-## Module Exercises
+## Module 8 - Exercises
 In this module, we will begin to walk through some of these protection capabilities using a Windows container host in Azure. Here are the exercises that we will complete:
 
 > * Switch Docker to use Windows containers and configure environment variables

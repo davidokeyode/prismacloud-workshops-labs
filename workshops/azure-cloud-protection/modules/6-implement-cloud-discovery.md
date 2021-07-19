@@ -14,7 +14,7 @@ In this module, we will begin to walk through some of the protection capabilitie
 > * Add cloud discovery credential in Prisma Cloud
 > * Configure cloud discovery in Prisma Cloud
 > * Review results in the Prisma Cloud radar
-> * Review troubleshooting information for cloud discovery
+> * Review troubleshooting and alerting information for cloud discovery
 
 ## Pre-Requisites
 
@@ -30,7 +30,7 @@ In this exercise, we will create the credential that Prisma Cloud will use for c
 ```
 subscription_id=$(az account show --query id | tr -d '"')
 
-az ad sp create-for-rbac -n "prismacloud-compute-azure-cred" --role "reader" --scopes /subscriptions/$subscription_id --sdk-auth
+az ad sp create-for-rbac -n "prismacloud-compute-azure-cred" --role "contributor" --scopes /subscriptions/$subscription_id --sdk-auth
 ```
 
 3. Copy the output of the command (the entire output including the curly brackets) as it will be needed in the next exercise.
@@ -78,10 +78,15 @@ In this exercise, we will review the results of cloud discovery in Prisma Cloud
 > * You can see the services we deployed in Module 1 and that they are currently unprotected. In the remaining modules of this workshop, we will walk through protection scenarios for the identified services and the applications that run on them.
 
 
-## Exercise 5 - Troubleshooting Cloud Discovery
+## Exercise 5 - Troubleshooting and Alerting Cloud Discovery
 1. In the Prisma Cloud console, go to **`Compute`** → **`Manage`** → **`View Logs`** → **`Console`** → Filter for **`scanner.go`** and/or **`client_aws.go`**
 
-
+2. An alert profile can also be configured to notify when new cloud native resources are discovered in your Azure subscriptions so that you can inspect and secure them with Prisma Cloud. Cloud discovery alerts are available on the email channel only.
+* **`Manage`** → **`Alerts`** → **`Manage`** → **`Add profile`**
+	* **Name**: email-notification-secops
+	* **Provider**: Email
+	* **Alert triggers**: Cloud discovery
+* You can read more about this here: [https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/alerts/alert_mechanism.html](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/alerts/alert_mechanism.html)
 ## Summary
 In this lesson, you completed the following exercises:
 * Created an Azure credential for cloud discovery

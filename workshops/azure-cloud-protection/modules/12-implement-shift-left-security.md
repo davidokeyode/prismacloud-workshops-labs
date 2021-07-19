@@ -1,5 +1,5 @@
 ---
-Title: 11 - Implement Shift Left Security in Azure DevOps
+Title: 12 - Implement Shift Left Security in Azure DevOps
 Description: Follow these instructions to Implement Shift Left Security in Azure DevOps
 Author: David Okeyode
 ---

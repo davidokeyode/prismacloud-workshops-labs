@@ -1,9 +1,9 @@
 ---
-Title: 9 - Protect Azure Kubernetes Service (AKS) Workloads
+Title: 10 - Protect Azure Kubernetes Service (AKS) Workloads
 Description: Prisma Cloud Compute provides a comprehensive set of security capabilities to protect containerized workloads everywhere including AKS
 Author: David Okeyode
 ---
-## Module 9 Introduction: Protect Azure Kubernetes Service (AKS) Workloads
+## Module 10 - Introduction - Protect Azure Kubernetes Service (AKS) Workloads
 
 In this module, we will implement protection for AKS workloads. Here's what we'll be completing:
 
@@ -13,7 +13,7 @@ In this module, we will implement protection for AKS workloads. Here's what we'l
 > * Prevent untrusted images from being deployed to AKS
 > * [Prisma Cloud Windows Containers features](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/install/install_windows.html)
 
-## Module 9 Exercises
+## Module 10 - Exercises
 
 In this module, we will begin to walk through some of the protection capabilities that Prisma Cloud supports for container registries in Azure. Here are the exercises that we will complete:
 
@@ -23,7 +23,6 @@ In this module, we will begin to walk through some of the protection capabilitie
 > * Configure protection for Windows pool in AKS
 > * Configure and teat ACR webhook integration
 > * Troubleshooting ACR Integration
-
 
 ## Exercise 1 - Deploy Sample App to AKS
 

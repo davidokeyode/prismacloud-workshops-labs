@@ -1,10 +1,10 @@
 ---
-Title: 4 - Configure JIRA integration in Prisma Cloud
+Title: 4a - Configure JIRA integration in Prisma Cloud
 Description: Follow these instructions to integrate your JIRA project with Prisma Cloud
 Author: David Okeyode
 ---
 
-# Module 4: Configure JIRA integration in Prisma Cloud
+# Module 4a - Introduction - Configure JIRA integration in Prisma Cloud
 
 In the previous module, you added your Azure AD tenant to Prisma Cloud. In this module, you will integrate your JIRA project with Prisma Cloud. This allows Prisma Cloud to generate tickets in JIRA for security risks and incidents for protected subscriptions, services and workloads. Here are the exercises that we will be completing:
 

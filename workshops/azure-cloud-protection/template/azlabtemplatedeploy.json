@@ -646,6 +646,10 @@
         "SQL Database": {
             "type": "string",
             "value": "[variables('sqlDatabaseName')]"
+        },
+        "Function App Name": {
+            "type": "string",
+            "value": "[variables('functionName')]"
         }
     }
 }

@@ -3,7 +3,7 @@ Title: 5 - Remediate Security Risks and Compliance Violations with Prisma Cloud
 Description: Follow these instructions to explore the Prisma Cloud console, remediate security risks and compliance violations using Prisma Cloud
 Author: David Okeyode
 ---
-# Module 5: Remediate Security Risks and Compliance Violations with Prisma Cloud
+# Module 5 - Introduction - Remediate Security Risks and Compliance Violations with Prisma Cloud
 
 ## Exercise 1 - Review the Prisma Cloud Console
 >* In order to simulate security and compliance violation detections by Prisma Cloud, we will deploy some sample templates that implements services that are badly configured into our Azure subscription. DO NOT deploy these templates into a production environment!

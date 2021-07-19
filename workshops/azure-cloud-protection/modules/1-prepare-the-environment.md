@@ -3,7 +3,7 @@ Title: 1 - Prepare the Environment
 Description: Follow these instructions to deploy Azure resources that we will use for the exercises in this workshop
 Author: David Okeyode
 ---
-# Module 1: Provision Azure Resources
+# Module 1 - Introduction - Provision Azure Resources
 
 In this workshop lesson, you'll provision resources in your Azure subscription using an ARM template.
 The following list of resources will be deployed during the provisioning process (including dependencies like disks, network interfaces, public IP addresses, etc.):
@@ -33,7 +33,7 @@ azlab-kv-[uniqestring] | Key vault | Demonstrating Key Vault related recommendat
 
 2.	You will be redirected to the Azure Portal, the custom deployment page where you should specify mandatory fields for deployment. Configure the following settings:
 * **Subscription**: Select the Azure subscription that you want to deploy the resources into
-* **Resource Group**: Click on **Create New** → Name: azlab-rg
+* **Resource Group**: Click on **Create New** → Name: **`azlab-rg`**
 * **Region**: Select an Azure region close to your current location
 * **Username**: Leave the default value
 * **Password**: Enter a complex password. This password will be used across services like VMs and SQL databases
