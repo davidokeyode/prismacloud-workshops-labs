@@ -63,4 +63,4 @@ azlab-kv-[uniqestring] | Key vault | Demonstrating Key Vault related recommendat
 In this lesson, you provisioned resources in your Azure subscription using an ARM template.
 
 Proceed to the next lesson:
-> [Onboard Azure Subscription to Prisma Cloud](2-onboard-azure-sub.md)
+> [Deploy Prisma Cloud Compute Edition (PCCE) on AKS](2-pcce-aks-deploy.md)

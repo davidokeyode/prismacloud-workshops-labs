@@ -9,7 +9,8 @@ In this workshop lesson, you will be setting up accounts that you need to follow
 
 > * Create an Azure Free Trial Subscription
 > * Create an Azure DevOps Organization
-> * Create a Prisma Cloud Enterprise trial Account
+> * Create a Prisma Cloud Compute License
+> * Create a Bridegecrew trial Account and obtained an API token
 > * Create a JIRA account
 > * Create a Slack account
 
