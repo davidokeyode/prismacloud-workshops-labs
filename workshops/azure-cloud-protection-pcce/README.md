@@ -34,9 +34,10 @@ The workshop is designed to take approximately 5-6 hours to complete. It can be 
 | 08 | [Protect Windows Hosts and Containers in Azure](modules/8-protect-windows-hosts-and-containers.md) | Hands on Lab |
 | 09 | [Protect Azure Container Registry (ACR) Images](modules/9-protect-acr-images.md)    | Hands on Lab |
 | 10 | [Protect Azure Kubernetes Service (AKS) Workloads](modules/10-protect-aks-workloads.md) | Hands on Lab |
-| 11 | [Protect Serverless Container Workloads](modules/11-protect-serverless-workloads.md)    | Hands on Lab |
-| 12 | [Implement Shift-Left Security in Azure DevOps](modules/12-implement-shift-left-security.md)    | Hands on Lab |
-| 13 | Wrap / Clean Up     | Hands on Lab |
+| 11 | [Protect Serverless Container Workloads](modules/11-protect-serverless-container-workloads.md)    | Hands on Lab |
+| 12 | [Protect Serverless Container Workloads](modules/12-protect-serverless-function-workloads.md)    | Hands on Lab |
+| 13 | [Implement Shift-Left Security in Azure DevOps](modules/13-implement-shift-left-security.md)    | Hands on Lab |
+| 14 | Wrap / Clean Up     | Hands on Lab |
 ----
 
 [Next](modules/0-prerequisites.md)

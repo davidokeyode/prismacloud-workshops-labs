@@ -17,14 +17,14 @@ In this module, we will begin to walk through some of the protection capabilitie
 
 > * Configure Prisma Cloud ACR integration
 > * Test Prisma Cloud ACR images scan
-> * Configure and teat ACR webhook integration
+> * Configure and test ACR webhook integration
 > * Troubleshooting ACR Integration
 
 ## Pre-Requisites
 > * Module 6 has been completed
 ## Exercise 1: Configure Prisma Cloud ACR integration
 
-1. Open the Prisma Cloud console and go to **`Compute`** → **`Defend`** → **`Vulnerabilities`** → **`Images`** → **`Registry settings`**
+1. Open the Prisma Cloud console and go to **`Defend`** → **`Vulnerabilities`** → **`Images`** → **`Registry settings`**
 
 2. Click **`Add Registry`** to add the information to scan Windows images in the registry. Configure the following:
 * **Version**: Azure Container Registry
@@ -58,7 +58,7 @@ az acr import  -n <acr-name> --source docker.io/library/nginx:1.13.6
 az acr import  -n <acr-name> --source mcr.microsoft.com/windows/servercore/iis:20191008-windowsservercore-ltsc2019 --image iis:20191008-windowsservercore-ltsc2019
 ```
 
-2. In the Prisma Cloud console, go to **`Compute`** → **`Monitor`** → **`Vulnerabilities`** → **`Images`** → **`Registries`**. Click on **`Scan`** to trigger a registry image scan.
+2. In the Prisma Cloud console, go to **`Monitor`** → **`Vulnerabilities`** → **`Images`** → **`Registries`**. Click on **`Scan`** to trigger a registry image scan.
 
 ![prisma-acr](../images/8-prisma-acr-scan.png)
 
@@ -68,7 +68,7 @@ az acr import  -n <acr-name> --source mcr.microsoft.com/windows/servercore/iis:2
 
 
 ## Exercise 5 - Configure and teat ACR webhook integration
-1. In the Prisma Cloud console, go to **`Compute`** → **`Defend`** → **`Vulnerabilities`** → **`Images`** → **`Registry settings`**. Copy the webhook integration URL in **`section 2(b)`**.
+1. In the Prisma Cloud console, go to **`Defend`** → **`Vulnerabilities`** → **`Images`** → **`Registry settings`**. Copy the webhook integration URL in **`section 2(b)`**.
 
 ![prisma-acr](../images/8-prisma-acr-webhook-url.png)
 
@@ -92,7 +92,7 @@ az acr import  -n <acr-name> --source docker.io/sockshop4msa/gateway --image soc
 
 4. Verify webhook event and Prisma Cloud scan.
 
-* In the Prisma Cloud console, go to **`Compute`** → **`Monitor`** → **`Vulnerabilities`** → **`Images`** → **`Registries`**. 
+* In the Prisma Cloud console, go to **`Monitor`** → **`Vulnerabilities`** → **`Images`** → **`Registries`**. 
 
 ![prisma-acr](../images/8-prisma-acr-webhook-scan.png)
 
@@ -101,7 +101,7 @@ az acr import  -n <acr-name> --source docker.io/sockshop4msa/gateway --image soc
 ![prisma-acr](../images/8-prisma-acr-webhook-event.png)
 
 ## Exercise 6 - Troubleshooting ACR Integration
-1. In the Prisma Cloud console, go to **`Compute`** → **`Manage`** → **`View Logs`** → **`Console`** → Filter for **`registry_scanner.go`**
+1. In the Prisma Cloud console, go to **`Manage`** → **`View Logs`** → **`Console`** → Filter for **`registry_scanner.go`**
 
 ![prisma-acr](../images/8-prisma-acr-troubleshoot.png)
 

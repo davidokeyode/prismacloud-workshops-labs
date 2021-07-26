@@ -13,8 +13,6 @@ Here are the tasks that we will be completing in this module:
 > * Import code and pipeline into Azure DevOps
 > * Configure pipeline (complete variables)
 > * Run pipeline and review results
-
-
 ## Exercise 1 - Grant permissions to the AKS instance to pull images from ACR
 1. Open a web browser tab and go to the [Azure Cloud Shell](https://shell.azure.com). Sign in with your Azure credentials. Ensure that you are in the **`Bash`** terminal.
 

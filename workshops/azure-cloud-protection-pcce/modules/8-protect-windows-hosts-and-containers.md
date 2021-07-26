@@ -34,7 +34,7 @@ In this module, we will begin to walk through some of these protection capabilit
 
 ![switch-docker](../images/7-switch-docker.png)
 
-5. Set environment variables for scanning. Replace the placeholder values with the values that you made note of Module 6. Ensure that the values are placed in quotes.
+5. Set environment variables for scanning. Replace the placeholder values with the values that you made note of **`Module 3 - Exercise 3`**. Ensure that the values are placed in quotes.
 ```
 $TWISTLOCK_CONSOLE="<PRISMA_CLOUD_CONSOLE_URL>"
 $TWISTLOCK_USER="<PRISMA_CLOUD_ACCESS_KEY_ID>"
@@ -43,7 +43,7 @@ $TWISTLOCK_PASSWORD="<PRISMA_CLOUD_SECRET_KEY>"
 
 ## Exercise 2 - Download and install twistCLI
 
-1. Log into the Prisma Cloud Console and obtain the twistCLI download URL from the following location: **`Compute`** → **`Manage`** → **`System`** → **`Downloads`** → Click to download the twistcli tool (Windows platform). 
+1. Log into the Prisma Cloud Console and obtain the twistCLI download URL from the following location: **`Manage`** → **`System`** → **`Downloads`** → Click to download the twistcli tool (Windows platform). 
 
 ![twistcli-download](../images/7-twistcli-download.png)
 
@@ -51,7 +51,7 @@ $TWISTLOCK_PASSWORD="<PRISMA_CLOUD_SECRET_KEY>"
 
 ## Exercise 3 - Deploy Prisma Cloud Defender on a Windows VM
 
-1. In the Prisma Cloud console, go to **`Compute`** → **`Manage`** → **`Defenders`** → **`Deploy`** → **`Defenders`** 
+1. In the Prisma Cloud console, go to **`Manage`** → **`Defenders`** → **`Deploy`** → **`Defenders`** 
 * **`Deployment method`**: Single Defender
 * **`Choose the Defender type`**: Container Defender - Windows
 * Leave other settings at default values
@@ -75,7 +75,7 @@ Get-Service -Name twistlockDefender
 ```
 
 * In Prisma Cloud:
-	* **`Compute`** → **`Manage`** → **`Defenders`** → **`Manage`** → **`Defenders`** 
+	* **`Manage`** → **`Defenders`** → **`Manage`** → **`Defenders`** 
 
 ![pcc-defender](../images/7-pcc-defenders.png)
 
@@ -106,7 +106,7 @@ docker build -t wincontainerapp:v1 wincontainerapp/.
 ![pcc-defender](../images/7-win-image-scan-result.png)
 
 * In the Prisma Cloud console
-	* **`Compute`** → **`Monitor`** → **`Compliance`** → **`Images`** → **`CI`** → **`Select image`** 
+	* **`Monitor`** → **`Compliance`** → **`Images`** → **`CI`** → **`Select image`** 
 	* Review the different tabs
 
 ## Exercise 5 - Implement and Test Windows Container Runtime Defense 
@@ -146,7 +146,7 @@ ping google.com
 
 ![pcc-runtime](../images/7-windows-cmd-verify.png)
 
-5. In the Prisma Cloud console, go to **`Compute`** → **`Monitor`** → **`Runtime`** → **`Container models`**
+5. In the Prisma Cloud console, go to **`Monitor`** → **`Runtime`** → **`Container models`**
 * Click on three dots in the Actions column of the **`windowscontainerapp:v1`** image and choose **`Manual Relearning`**. Click on the three dots in the Actions column again, and choose **`Manual Relearning`** to stop the learning. The state should now be shown as **`Active`**.
 
 ![pcc-runtime](../images/7-pcc-runtime.png)

@@ -11,6 +11,7 @@ In this workshop module, we will be configure a custom domain name for PCCE. Her
 > * Register a domain name with a DNS registrar
 > * Generate a trusted certificate for the DNS name
 > * Upload PEM certificate to the Prisma cloud console
+> * Create Prisma Cloud Credentials
 
 ## Exercise 1: Register a domain name with a DNS registrar
 1. If you are exposing the console publicly. You could use providers like [Name Cheap](https://www.namecheap.com/) or [GoDaddy](https://uk.godaddy.com/)
@@ -31,6 +32,20 @@ In this workshop module, we will be configure a custom domain name for PCCE. Her
 2. In the Prisma Cloud console, go to **`Manage`** → **`Defenders`** → **`Names`** → **`Add SAN`**. Enter the DNS name that you are using for the console, then click **`Add`**.
 
 ![pcce](../images/2-pcce-console-san.png)
+
+## Exercise 3 - Create Prisma Cloud Credentials
+To use the capabilities of Prisma Cloud, we need two main pieces of information. First the console address of our Prisma Cloud console and second, credentials that can be used for authenticating requests. We'll obtain both of these information in this exercise.
+
+1. The Prisma Cloud console address is the reachable URL of the console. If you are using a public or private DNS name, this will be the address to use.
+
+2. Generate credentials for scanning by doing the following:
+* **`Manage`** → **`Authentication`** → **`Users`** → **`Add User`** 
+	* **`Username`**: DevSecOps-Scan
+	* **`Password`**: Specify a complex password and make a note of it
+	* **`Role`**: DevSecOps User
+	* **`Permissions`**: All
+	* Click on **`Create`**
+	* Make a note of both the **Username** and the **Password**
 
 ## Learn More
 

@@ -157,5 +157,4 @@ In this lesson, you completed the following:
 
 
 ## Proceed to the next lesson:
-> [Optional - Configure Custom Domain for Prisma Cloud Compute Edition (PCCE)](2b-pcce-custom-domain.md) 
-> [Prepare Azure DevOps Services](3-pcce-prepare-azdevops-services.md) 
+> [Configure Custom Domain for Prisma Cloud Compute Edition (PCCE)](2b-pcce-custom-domain.md) 

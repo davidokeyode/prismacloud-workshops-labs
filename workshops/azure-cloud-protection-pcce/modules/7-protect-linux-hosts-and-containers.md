@@ -16,7 +16,7 @@ In the previous lessons, you implemented some of the Cloud Security Posture Mana
 
 ## Exercise 1 - Obtain the twistCLI Download URL
 
-1. Log into the Prisma Cloud Console and obtain the twistCLI download URL from the following location: **`Compute`** → **`Manage`** → **`System`** → **`Downloads`** → Copy the URL for the twistcli tool (Linux platform)
+1. Log into the Prisma Cloud Console and obtain the twistCLI download URL from the following location: **`Manage`** → **`System`** → **`Downloads`** → Copy the URL for the twistcli tool (Linux platform)
 * Make a note of the copied download command
 
 ![twistcli-download](../images/6-twistcli-download.png)
@@ -45,25 +45,9 @@ docker image ls
 ```
 curl --progress-bar -L -k --header "authorization: Bearer <PRISMA_CONSOLE_TOKEN>" <PRISMA_CONSOLE_URL> > twistcli; chmod a+x twistcli;
 ```
-
-## Exercise 3 - Create Scanning Credentials
-To begin scanning, we need two main pieces of information. First the console address of our Prisma Cloud console and second, API credentials that can be used for authenticating the scan request. We'll obtain both of these information in this exercise.
-
-1. Obtain the Prisma Cloud console address by going to the following location: 
-* **`Compute`** → **`Manage`** → **`System`** → **`Downloads`** → Copy the **`Path to console`**
-
-![prisma-console](../images/6-prisma-console.png)
-
-2. (Prisma Cloud SaaS) Generate credentials for scanning by doing the following:
-* **`Prisma Cloud`** → **`Settings`** → **`Access Keys`** → **`Add New`** 
-	* **`Name`**: DevSecOps-Scan
-	* **`Key Expiry`**: Select 30 days from current date
-	* Click on **`Create`**
-	* Make a note of both the **Access Key ID** and the **Secret Key**
-
-## Exercise 4 - Configure Prisma Cloud Host and Container Vulnerability Scanning Rules
+## Exercise 3 - Configure Prisma Cloud Host and Container Vulnerability Scanning Rules
 1. Configure a container image vulnerability assessment rule by going to the following location: 
-* **`Compute`** → **`Defend`** → **`Vulnerabilities`** → **`Images`** → **`CI`** → **`Add Rule`**
+* **`Defend`** → **`Vulnerabilities`** → **`Images`** → **`CI`** → **`Add Rule`**
 	* **Rule Name**: Org Baseline Container Vulnerability Rule
 	* **Alert Threshold**: Low
 	* **Failure Threshold**: Medium
@@ -73,7 +57,7 @@ To begin scanning, we need two main pieces of information. First the console add
 	* Click on **`Save`**
 
 2. Configure a host vulnerability assessment rule by going to the following location: 
-* **`Compute`** → **`Defend`** → **`Vulnerabilities`** → **`Hosts`** → **`Running Hosts`** → **`Add Rule`**
+* **`Defend`** → **`Vulnerabilities`** → **`Hosts`** → **`Running Hosts`** → **`Add Rule`**
 	* **Rule Name**: Org Baseline Host Vulnerability Rule
 	* **Alert Threshold**: Low
 	* **Expand Advanced Settings**
@@ -81,10 +65,9 @@ To begin scanning, we need two main pieces of information. First the console add
 	* Leave other settings at default value
 	* Click on **`Save`**
 
-
-## Exercise 5 - Configure Prisma Cloud Host and Container Compliance Rules
+## Exercise 4 - Configure Prisma Cloud Host and Container Compliance Rules
 1. Configure a container image compliance assessment rule by going to the following location: 
-* **`Compute`** → **`Defend`** → **`Compliance`** → **`Containers and Images`** → **`CI`** → **`Add Rule`**
+* **`Defend`** → **`Compliance`** → **`Containers and Images`** → **`CI`** → **`Add Rule`**
 	* **Rule Name**: Org Baseline Container Compliance Rule
 	* **Compliance Template**: NIST SP 800-190
 	* **Set the following policies to fail**
@@ -95,18 +78,18 @@ To begin scanning, we need two main pieces of information. First the console add
 	* Click on **`Save`**
 
 2. Configure a host compliance assessment rule by going to the following location: 
-* **`Compute`** → **`Defend`** → **`Compliance`** → **`Hosts`** → **`Running Hosts`** → **`Add Rule`**
+* **`Defend`** → **`Compliance`** → **`Hosts`** → **`Running Hosts`** → **`Add Rule`**
 	* **Rule Name**: Org Baseline Host Compliance Rule
 	* **Compliance Template**: GDPR
 	* Leave other settings at default value
 	* Click on **`Save`**
 
-## Exercise 6 - Scan Images Using twistCLI
-1. Go back to the SSH session of the Linux VM and configure the following environment variables. Replace the placeholder values with the values that you made note of in Exercise 3.
+## Exercise 5 - Scan Images Using twistCLI
+1. Go back to the SSH session of the Linux VM and configure the following environment variables. Replace the placeholder values with the values that you made note of in **`Module 3 - Exercise 3`**.
 ```
 TWISTLOCK_CONSOLE=<PRISMA_CLOUD_CONSOLE_URL>
-TWISTLOCK_USER=<PRISMA_CLOUD_ACCESS_KEY_ID>
-TWISTLOCK_PASSWORD=<PRISMA_CLOUD_SECRET_KEY>
+TWISTLOCK_USER=<PRISMA_CLOUD_USER>
+TWISTLOCK_PASSWORD=<PRISMA_CLOUD_USER_PASSWORD>
 ```
 
 2. Review twistCLI commands using the commands below:
@@ -142,19 +125,19 @@ TWISTLOCK_PASSWORD=<PRISMA_CLOUD_SECRET_KEY>
 * The criteria for passing or failing a scan can be refined with any of the following parameters: **`--compliance-threshold`**, **`--vulnerability-threshold`**, and **`--only-fixed`**.
 
 5. View results in the Prisma Cloud console. This is useful to track adoption of shift-left scans by developers.
-* **`Compute`** → **`Monitor`** → **`Vulnerabilities`** → **`Images`** → **`CI`**
+* **`Monitor`** → **`Vulnerabilities`** → **`Images`** → **`CI`**
 
 6. Specify if twistCLI scans will be saved in the console.
-* **`Compute`** → **`System`** → **`Scan`** → **`CI scan results`**
+* **`System`** → **`Scan`** → **`CI scan results`**
 
 7. Define collections and tags that can be used for filtering and policy assignment.
-* **`Compute`** → **`Manage`** → **`Collections and Tags`**
+* **`Manage`** → **`Collections and Tags`**
 
 8. Customize threat feeds and information
-* **`Compute`** → **`Manage`** → **`System`** → **`Custom feeds`** → **`Custom vulnerabilities`**
-* **`Compute`** → **`Manage`** → **`System`** → **`Custom feeds`** → **`Malware signatures`**
+* **`Manage`** → **`System`** → **`Custom feeds`** → **`Custom vulnerabilities`**
+* **`Manage`** → **`System`** → **`Custom feeds`** → **`Malware signatures`**
 
-## Exercise 7 - Implement custom compliance scan 
+## Exercise 6 - Implement custom compliance scan 
 1. In the Prisma Cloud console, go to **`Defend`** → **`Compliance`** → **`Custom`** → **`Add check`**
 * **`Name`**: Sensitive File Check
 * **`Description`**: Checks for sensitive file on container image
@@ -223,8 +206,8 @@ docker build -t nodeapp:v2 nodeapp/.
 ./twistcli images scan nodeapp:v2 --address $TWISTLOCK_CONSOLE -u $TWISTLOCK_USER -p $TWISTLOCK_PASSWORD --details
 ```
 
-## Exercise 8 - Install Prisma Cloud Defender 
-1. In the Prisma Cloud console, go to **`Compute`** → **`Manage`** → **`Defenders`** → **`Deploy`** → **`Defenders`** 
+## Exercise 7 - Install Prisma Cloud Defender 
+1. In the Prisma Cloud console, go to **`Manage`** → **`Defenders`** → **`Deploy`** → **`Defenders`** 
 * **`Deployment method`**: Single Defender
 * **`Choose the Defender type`**: Container Defender - Linux
 * Leave other settings at default values
@@ -246,23 +229,23 @@ docker container ls
 ```
 
 * In Prisma Cloud:
-	* **`Compute`** → **`Manage`** → **`Defenders`** → **`Manage`** → **`Defenders`** 
+	* **`Manage`** → **`Defenders`** → **`Manage`** → **`Defenders`** 
 
 ![pcc-defender](../images/6-pcc-defender-b.png)
 
 4. Review Container vulnerability and compliance information
-* **`Compute`** → **`Monitor`** → **`Vulnerabilities`** → **`Images`** → **`Deployed`** → **`Select image`** 
+* **`Monitor`** → **`Vulnerabilities`** → **`Images`** → **`Deployed`** → **`Select image`** 
 	* Review the different tabs
 	* The **`Layers`** tab will show which layer of the image introduced the vulnerability
-	* We can exclude base image vulnerabilities by first adding our base images in **`Compute`** → **`Defend`** → **`Vulnerabilities`** → **`Images`** → **`Base images`**
+	* We can exclude base image vulnerabilities by first adding our base images in **`Defend`** → **`Vulnerabilities`** → **`Images`** → **`Base images`**
 
 5. Review Host vulnerability and compliance information
-* **`Compute`** → **`Monitor`** → **`Vulnerabilities`** → **`Hosts`** → **`Running Hosts`** → **`Select host`** 
+* **`Monitor`** → **`Vulnerabilities`** → **`Hosts`** → **`Running Hosts`** → **`Select host`** 
 	* Review the different tabs
 	* The **`Package Info`** tab will show the installed packages on the host
 
-## Exercise 9 - Implement Container Runtime Defense 
-1. In the Prisma Cloud console, go to **`Compute`** → **`Monitor`** → **`Runtime`** → **`Container models`**
+## Exercise 8 - Implement Container Runtime Defense 
+1. In the Prisma Cloud console, go to **`Monitor`** → **`Runtime`** → **`Container models`**
 * Click on three dots in the Actions column of the **`sspreitzer/shellinabox:latest`** image and choose **`Manual Relearning`**. Click on the three dots in the Actions column again, and choose **`Manual Relearning`** to stop the learning. The state should now be shown as **`Active`**.
 
 ![pcc-runtime](../images/6-pcc-runtime.png)
@@ -361,8 +344,8 @@ docker run --rm -d servethehome/monero_cpu_minergate
 * Review host forensics in **`Monitor`** → **`Runtime`** → **`Host Observations`** → **`Forensics`**
 	* Filter for **`/usr/bin/docker`** to see when the container was started and who started it
 
-## Exercise 10 - Implement Host Runtime Defense 
-1. In the Prisma Cloud console, go to **`Compute`** → **`Defend`** → **`Runtime`** → **`Host policy`** → **`Add rule`**
+## Exercise 9 - Implement Host Runtime Defense 
+1. In the Prisma Cloud console, go to **`Defend`** → **`Runtime`** → **`Host policy`** → **`Add rule`**
 * **`Rule name`**: Host Runtime Protection Policy
 * Review the tabs
 * Review the **`Processes`** tab

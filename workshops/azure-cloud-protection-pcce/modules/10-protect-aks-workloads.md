@@ -18,11 +18,11 @@ In this module, we will implement protection for AKS workloads. Here's what we'l
 In this module, we will begin to walk through some of the protection capabilities that Prisma Cloud supports for container registries in Azure. Here are the exercises that we will complete:
 
 > * Deploy Sample App to AKS
-> * Add Azure Credential in Prisma Cloud
-> * Prevent untrusted images from being deployed to AKS
-> * Configure protection for Windows pool in AKS
-> * Configure and teat ACR webhook integration
-> * Troubleshooting ACR Integration
+> * Deploy the Prisma Cloud Compute Defender to AKS
+> * Create namespace based collection for workload in Prisma Cloud
+> * Implement Prisma Cloud Container Runtime Vulnerability Rules
+> * Implement Prisma Cloud Container Runtime Compliance Rules
+> * Implement Runtime Protection
 
 ## Exercise 1 - Deploy Sample App to AKS
 
@@ -82,7 +82,7 @@ http://<EXTERNAL-IP>
 ```
 
 ## Exercise 2 - Deploy the Prisma Cloud Compute Defender to AKS
-
+> * The defender was previously deployed in Module 2
 
 ## Exercise 3 - Create namespace based collection for workload in Prisma Cloud
 
@@ -132,7 +132,7 @@ http://<EXTERNAL-IP>
 	* Leave other settings at default value
 	* Click on **`Save`**
 
-## Exercise 6 - Implement Runtime  Protection
+## Exercise 6 - Implement Runtime Protection
 1. In the Cloudshell, run the following commands to deploy 
 ```
 wget https://raw.githubusercontent.com/davidokeyode/prismacloud-workshops-labs/main/workshops/azure-cloud-protection/template/shellinabox-deployment.yaml
@@ -232,10 +232,18 @@ kubectl apply -f monitor_cpu_minergate.yaml
 * Review host forensics in **`Monitor`** → **`Runtime`** → **`Host Observations`** → **`Forensics`**
 	* Filter for **`/usr/bin/docker`** to see when the container was started and who started it
 
-## Exercise 7 - Implement OPA
+## Learn more
+* [Prisma Cloud App Embedded Defender](https://docs.paloaltonetworks.com/prisma/prisma-cloud/21-04/prisma-cloud-compute-edition-admin/install/install_defender/install_rasp_defender.html)
+* [Deploying WAAS for App Embedded Defender](https://docs.twistlock.com/docs/compute_edition_21_04/waas/deploy_waas.html#deploying-waas-for-containers-protected-by-app-embedded-defender)
 
 ## Next steps
 
 In this lesson, you completed the following:
-* 
+* Implemented a Prisma Cloud Runtime App-Embedded Policy
+* Embedded the Prisma Cloud Defender into a Dockerfile
+* Built and deployed the protected container image in ACI
+* Verified serverless container workload active protection
+
+In the next lesson, you will implement Prisma Cloud security capabilities to protect serverless containerized workloads. Click here to proceed to the next module:
+> [Protect Serverless Container Workloads](11-protect-serverless-container-workloads.md)
 
