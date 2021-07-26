@@ -157,4 +157,4 @@ In this lesson, you completed the following:
 
 
 ## Proceed to the next lesson:
-> [Configure Custom Domain for Prisma Cloud Compute Edition (PCCE)](2b-pcce-custom-domain.md) 
+> [Configure Custom Domain for Prisma Cloud Compute Edition (PCCE)](3-pcce-custom-domain.md) 
