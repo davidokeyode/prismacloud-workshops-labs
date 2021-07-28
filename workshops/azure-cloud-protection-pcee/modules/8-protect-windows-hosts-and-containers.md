@@ -87,7 +87,7 @@ Get-Service -Name twistlockDefender
 ```
 dotnet new mvc -o wincontainerapp
 
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/davidokeyode/prismacloud-workshops-labs/main/workshops/azure-cloud-protection/template/windowscontainerapp/Dockerfile" -OutFile "./wincontainerapp/Dockerfile"
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/davidokeyode/prismacloud-workshops-labs/main/workshops/azure-cloud-protection-pcee/template/windowscontainerapp/Dockerfile" -OutFile "./wincontainerapp/Dockerfile"
 
 Invoke-WebRequest -Uri "https://github.com/InQuest/malware-samples/raw/powershell-japan/2019-03-PowerShell-Obfuscation-Encryption-Steganography/15.b.%20pe.bin" -OutFile "./wincontainerapp/15.b.%20pe.bin"
 
