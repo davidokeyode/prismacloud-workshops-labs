@@ -21,14 +21,16 @@ variable "subscription_id" {
   type = string
   default = ""
 }
+
+variable "azuread_sp_enterprise_oid" {
+  type = string
+  default = ""
+}
 variable "cloud_environment" {
   type = string
   default = "public"
 }
-variable "azuread_service_principal" {
-  type = string
-  default = ""
-}
+
 
 # The list of permissions added to the custom role
 variable "custom_role_permissions" {
@@ -114,7 +116,7 @@ resource "time_sleep" "wait_20_seconds" {
 
 resource "azurerm_role_assignment" "assign_custom_prisma_role" {
   scope       = "/subscriptions/${var.subscription_id}"
-  principal_id = var.azuread_service_principal
+  principal_id = var.azuread_sp_enterprise_oid
   role_definition_id = azurerm_role_definition.custom_prisma_role.role_definition_resource_id
   depends_on = [
     time_sleep.wait_20_seconds
@@ -124,21 +126,21 @@ resource "azurerm_role_assignment" "assign_custom_prisma_role" {
 
 resource "azurerm_role_assignment" "assign_reader" {
   scope       = "/subscriptions/${var.subscription_id}"
-  principal_id = var.azuread_service_principal
+  principal_id = var.azuread_sp_enterprise_oid
   role_definition_name = "Reader"
   skip_service_principal_aad_check = true
 }
 
 resource "azurerm_role_assignment" "assign_reader_data_access" {
   scope       = "/subscriptions/${var.subscription_id}"
-  principal_id = var.azuread_service_principal
+  principal_id = var.azuread_sp_enterprise_oid
   role_definition_name = "Reader and Data Access"
   skip_service_principal_aad_check = true
 }
 
 resource "azurerm_role_assignment" "assign_network_contrib" {
   scope       = "/subscriptions/${var.subscription_id}"
-  principal_id = var.azuread_service_principal
+  principal_id = var.azuread_sp_enterprise_oid
   role_definition_name = "Network Contributor"
   skip_service_principal_aad_check = true
 }
