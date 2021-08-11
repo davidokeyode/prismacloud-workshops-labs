@@ -178,7 +178,7 @@ if [ -f /tmp/sensitive.txt ]; then
 mkdir nodeapp
 echo "super sensitive" > nodeapp/sensitive.txt
 
-wget -P nodeapp/ https://raw.githubusercontent.com/davidokeyode/prismacloud-workshops-labs/main/workshops/azure-cloud-protection/template/nodeapp/Dockerfile
+wget -P nodeapp/ https://raw.githubusercontent.com/davidokeyode/prismacloud-workshops-labs/main/workshops/azure-cloud-protection-pcce/template/nodeapp/Dockerfile
 
 docker build -t nodeapp:v1 nodeapp/.
 ```
