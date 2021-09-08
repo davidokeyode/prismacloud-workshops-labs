@@ -28,7 +28,7 @@ In this workshop lesson, you will be setting up accounts that you need to follow
 
 ![bc-vscode-checkov-extension](../images/2-vscode-checkov-extension-settings.png)
 
-7. In the **`Checkov: Token`** window, enter the value of the Bridgecrew API token that you made a note of from **`Module 1 - Exercise 4b`**. When prompted to add the token, click to add it.
+7. In the **`Checkov: Token`** window, enter the value of the Bridgecrew API token **`Bridgecrew Console → Integrations → API Token`**. When prompted to add the token, click to add it.
 
 ![bc-vscode-checkov-extension](../images/2-vscode-checkov-extension-token.png)
 

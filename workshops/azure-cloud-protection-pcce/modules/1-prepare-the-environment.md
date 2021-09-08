@@ -20,8 +20,6 @@ azlab-fa-[uniqestring] | Function App | Demonstrating related built-in and custo
 azlab-splan | App Service plan | App Service plan to host the containerized web app
 azlab-app-[uniqestring] | App Service | App service to be for hosting a containerized web app
 azlabsa[uniqestring] | Storage account | Demonstrating related security recommendations
-azlab-sql-[uniqestring] | SQL server | To be using for the sample database
-azlab-as | SQL database | Sample database based on AdventureWorks template
 azlab-kv-[uniqestring] | Key vault | Demonstrating Key Vault related recommendations and security alerts
 
 ![1-lab-environment](../images/1-lab-environment.png)

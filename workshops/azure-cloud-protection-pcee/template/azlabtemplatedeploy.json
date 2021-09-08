@@ -20,13 +20,13 @@
             "metadata": {
                 "description": "Provide the version of Kubernetes to deploy"
             },
-            "defaultValue": "1.19.11",
+            "defaultValue": "1.20.9",
             "allowedValues": [
-                "1.18.19",
-                "1.19.9",
-                "1.19.11",
-                "1.20.5",
-                "1.20.7"
+                "1.21.2",
+                "1.21.1",
+                "1.20.7",
+                "1.19.13",
+                "1.19.11"                
             ]
         },
         "storageAccountType": {

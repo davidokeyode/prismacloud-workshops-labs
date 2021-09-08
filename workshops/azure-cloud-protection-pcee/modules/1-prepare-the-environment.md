@@ -10,7 +10,7 @@ The following list of resources will be deployed during the provisioning process
 
 Name | Resource Type | Purpose
 -----| ------------- | -------
-azlab-vnet | Virtual network | Vvirtual network that hosts both Azure VMs
+azlab-vnet | Virtual network | Virtual network that hosts both Azure VMs
 azlab-win | Virtual machine | Windows Server to test the host protection capabilities of Prisma Cloud
 azlab-linux | Virtual machine | Linux Server to test the host protection capabilities of Prisma Cloud
 azlab-nsg | Network security group | NSG for the 2-VMs
