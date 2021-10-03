@@ -11,6 +11,19 @@ This tech note walks you through how to integrate Prisma Cloud alerts into Azure
 
 ![1-prisma-to-sentinel](./images/prisma-to-sentinel.png)
 
+## Create service principal with contributor permissions
+
+1. Open a web browser tab and go to the Azure Cloud Shell. Sign in with your Azure credentials. Ensure that you are in the Bash terminal.
+
+2. Create a service principal for Prisma Cloud Compute and assign the reader role to it using the command below:
+```
+subscription_id=$(az account show --query id | tr -d '"')
+
+az ad sp create-for-rbac -n "logicapp-azure-cred" --role "contributor" --scopes /subscriptions/$subscription_id --sdk-auth
+```
+
+3. Make a note of the following values: **`clientId`**, **`clientSecret`**, **`subscriptionId`**, **`tenantId`** as they will be needed in the next section.
+
 ### Create an HTTP trigerred Logic App workflow to receive Prisma Cloud alerts
 1. Log into the Azure portal with your Azure credentials
 
@@ -40,333 +53,91 @@ This tech note walks you through how to integrate Prisma Cloud alerts into Azure
 7. In the **When a HTTP request is received** window, in the **Request Body JSON Schema** section, enter the following schema: 
 ```
 {
-    "type": "array",
-    "items": {
-        "type": "object",
-        "properties": {
-            "id": {
-                "type": "string"
-            },
-            "status": {
-                "type": "string"
-            },
-            "firstSeen": {
-                "type": "integer"
-            },
-            "lastSeen": {
-                "type": "integer"
-            },
-            "alertTime": {
-                "type": "integer"
-            },
-            "policy": {
-                "type": "object",
-                "properties": {
-                    "policyId": {
-                        "type": "string"
-                    },
-                    "policyType": {
-                        "type": "string"
-                    },
-                    "systemDefault": {
-                        "type": "boolean"
-                    },
-                    "remediation": {
-                        "type": "object",
-                        "properties": {
-                            "description": {
-                                "type": "string"
-                            },
-                            "impact": {
-                                "type": "string"
-                            },
-                            "cliScriptTemplate": {
-                                "type": "string"
-                            }
-                        }
-                    },
-                    "remediable": {
-                        "type": "boolean"
-                    }
-                }
-            },
-            "alertRules": {
-                "type": "array"
-            },
-            "history": {
-                "type": "array",
-                "items": {
-                    "type": "object",
-                    "properties": {
-                        "modifiedBy": {
-                            "type": "string"
-                        },
-                        "modifiedOn": {
-                            "type": "integer"
-                        },
-                        "status": {
-                            "type": "string"
-                        },
-                        "reason": {
-                            "type": "string"
-                        }
-                    },
-                    "required": [
-                        "modifiedBy",
-                        "modifiedOn",
-                        "status"
-                    ]
-                }
-            },
-            "riskDetail": {
-                "type": "object",
-                "properties": {
-                    "riskScore": {
-                        "type": "object",
-                        "properties": {
-                            "score": {
-                                "type": "integer"
-                            },
-                            "maxScore": {
-                                "type": "integer"
-                            }
-                        }
-                    },
-                    "rating": {
-                        "type": "string"
-                    },
-                    "score": {
-                        "type": "string"
-                    }
-                }
-            },
-            "resource": {
-                "type": "object",
-                "properties": {
-                    "rrn": {
-                        "type": "string"
-                    },
-                    "id": {
-                        "type": "string"
-                    },
-                    "name": {
-                        "type": "string"
-                    },
-                    "account": {
-                        "type": "string"
-                    },
-                    "accountId": {
-                        "type": "string"
-                    },
-                    "cloudAccountGroups": {
-                        "type": "array"
-                    },
-                    "region": {
-                        "type": "string"
-                    },
-                    "regionId": {
-                        "type": "string"
-                    },
-                    "resourceType": {
-                        "type": "string"
-                    },
-                    "resourceApiName": {
-                        "type": "string"
-                    },
-                    "url": {
-                        "type": "string"
-                    },
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "pricings": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "id": {
-                                            "type": "string"
-                                        },
-                                        "name": {
-                                            "type": "string"
-                                        },
-                                        "type": {
-                                            "type": "string"
-                                        },
-                                        "properties": {
-                                            "type": "object",
-                                            "properties": {
-                                                "pricingTier": {
-                                                    "type": "string"
-                                                }
-                                            }
-                                        }
-                                    },
-                                    "required": [
-                                        "id",
-                                        "name",
-                                        "type",
-                                        "properties"
-                                    ]
-                                }
-                            },
-                            "settings": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "id": {
-                                            "type": "string"
-                                        },
-                                        "kind": {
-                                            "type": "string"
-                                        },
-                                        "name": {
-                                            "type": "string"
-                                        },
-                                        "type": {
-                                            "type": "string"
-                                        },
-                                        "properties": {
-                                            "type": "object",
-                                            "properties": {
-                                                "enabled": {
-                                                    "type": "boolean"
-                                                }
-                                            }
-                                        }
-                                    },
-                                    "required": [
-                                        "id",
-                                        "kind",
-                                        "name",
-                                        "type",
-                                        "properties"
-                                    ]
-                                }
-                            },
-                            "securityContacts": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "id": {
-                                            "type": "string"
-                                        },
-                                        "name": {
-                                            "type": "string"
-                                        },
-                                        "type": {
-                                            "type": "string"
-                                        },
-                                        "location": {
-                                            "type": "string"
-                                        },
-                                        "properties": {
-                                            "type": "object",
-                                            "properties": {
-                                                "email": {
-                                                    "type": "string"
-                                                },
-                                                "phone": {
-                                                    "type": "string"
-                                                },
-                                                "alertsToAdmins": {
-                                                    "type": "string"
-                                                },
-                                                "alertNotifications": {
-                                                    "type": "string"
-                                                }
-                                            }
-                                        }
-                                    },
-                                    "required": [
-                                        "id",
-                                        "name",
-                                        "type",
-                                        "location",
-                                        "properties"
-                                    ]
-                                }
-                            },
-                            "autoProvisioningSettings": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "id": {
-                                            "type": "string"
-                                        },
-                                        "name": {
-                                            "type": "string"
-                                        },
-                                        "type": {
-                                            "type": "string"
-                                        },
-                                        "properties": {
-                                            "type": "object",
-                                            "properties": {
-                                                "autoProvision": {
-                                                    "type": "string"
-                                                }
-                                            }
-                                        }
-                                    },
-                                    "required": [
-                                        "id",
-                                        "name",
-                                        "type",
-                                        "properties"
-                                    ]
-                                }
-                            }
-                        }
-                    },
-                    "cloudType": {
-                        "type": "string"
-                    },
-                    "resourceTs": {
-                        "type": "integer"
-                    }
-                }
-            },
-            "reason": {
-                "type": "string"
-            }
+    "type": "object",
+    "properties": {
+        "type": {
+            "type": "string"
         },
-        "required": [
-            "id",
-            "status",
-            "firstSeen",
-            "lastSeen",
-            "alertTime",
-            "policy",
-            "alertRules",
-            "history",
-            "riskDetail",
-            "resource"
-        ]
+        "time": {
+            "type": "string"
+        },
+        "container": {
+            "type": "string"
+        },
+        "image": {
+            "type": "string"
+        },
+        "host": {
+            "type": "string"
+        },
+        "fqdn": {
+            "type": "string"
+        },
+        "function": {
+            "type": "string"
+        },
+        "region": {
+            "type": "string"
+        },
+        "runtime": {
+            "type": "string"
+        },
+        "appID": {
+            "type": "string"
+        },
+        "rule": {
+            "type": "string"
+        },
+        "message": {
+            "type": "string"
+        },
+        "aggregated": {
+            "type": "string"
+        },
+        "rest": {
+            "type": "string"
+        },
+        "forensics": {
+            "type": "string"
+        },
+        "accountID": {
+            "type": "string"
+        },
+        "cluster": {
+            "type": "string"
+        },
+        "labels": {
+            "type": "object",
+            "properties": {}
+        }
     }
 }
 ```
 
 8. Click on **+ New Step**:
 
-![5-logic-app](./images/logic-app-05b.png)
+9. In the Choose an operation window, in the **search box**, enter **Power off virtual machine**. From the **Actions** list, select **Power off virtual machine**.
 
-9. In the Choose an operation window, in the **search box**, enter **Azure Log Analytics data collector**. From the **Actions** list, select **Send Data**.
+![52-logic-app](./images/logic-app-52.png)
 
-![16-logic-app](./images/logic-app-16.png)
+10. In the **Azure VM** window, Click on **Connect with service principal**
 
-10. In the **Azure Log Analytics Data Collector** window, configure the following:
-* **Connection name**: sentinel-la-connection
-* **Workspace ID**: The log analytics workspace of your Azure Sentinel resource. You can obtain this information from the Log Analytics resource under Log Analytics Workspace → Agents management.
-* **Workspace Key**: The log analytics workspace key of your Azure Sentinel resource. You can obtain this information from the Log Analytics resource under Log Analytics Workspace → Agents management.
-* Click on **Create**
+![53-logic-app](./images/logic-app-53.png)
 
-![17-logic-app](./images/logic-app-17.png)
+11. In the **Azure VM** window, configure the following:
+* **Connection name**: Logic App Azure Connection
+* **Client ID**: The value of the **`clientId`** from earlier
+* **Client Secret**: The value of the **`clientSecret`** from earlier
+* **Tenant**: The value of the **`tenantId`** from earlier
+* Click on **`Create`**
 
-11. In the **Send Data (Preview)** window, configure the following:
+12. In the **Power off virtual machine** window, configure the following:
+* **Subscription Id**: Select your subscription
+* **Resource Group**: Select the resource group
+* **Virtual Machine**: Custom value -> host
+
+
+
 * **JSON Request body**: Click inside the box so that the dynamic content list appears. In the dynamic content list, search for **Body** and select **Body**.
 
 ![18-logic-app](./images/logic-app-18b.png)
@@ -382,13 +153,14 @@ This tech note walks you through how to integrate Prisma Cloud alerts into Azure
 ![20-logic-app](./images/logic-app-20c.png)
 
 ### Configure Web Hook Integration in Prisma Cloud
-1. Log into the Prisma Cloud console and go to **Settings** → **Integrations** → **+ Add New**. In the **Add Integration** window, configure the following:
-* **Integration Type**: Webhook
-* **Integration Name**: azure-sentinel-integration
-* **Web Hook URL**: The Logic App webhook URL that you made note of earlier
-* Click **Next**
+1. Log into the Prisma Cloud console and go to **`Manage`** → **`Alerts`** → **`Manage`** → **`Add profile`**. In the **`Create new profile`** window, configure the following:
+* **`Name`**: custom-webhook
+* **`Provider`**: webhook
+* **`Incoming webhook URL`**: Enter your webhook URL
+* **`Alert Triggers`**: Select **`Host runtime`** 
+* Click **`Save`**
 
-![1-prisma-cloud-integration](./images/prisma-cloud-integration.png)
+![1-prisma-cloud-integration](./images/prisma-cloud-webhook-int.png)
 
 2. Click on **Test** to test the integration. Then click on **Save**.
 
