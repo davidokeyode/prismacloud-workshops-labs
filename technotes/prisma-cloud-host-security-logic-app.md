@@ -226,4 +226,8 @@ az ad sp create-for-rbac -n "logicapp-azure-cred" --role "contributor" --scopes 
 
 ![79-logic-app](./images/logic-app-79.png)
 
+4. You can review the actions in the Azure activity logs
+
+![80-logic-app](./images/logic-app-80.png)
+
 
