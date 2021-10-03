@@ -1,15 +1,17 @@
 ---
-Title: Integrate Prisma Cloud alerts into Azure Sentinel
+Title: Prisma Cloud incident response to Azure Logic App
 Author: David Okeyode
 ---
 # Introduction
 
-This tech note walks you through how to integrate Prisma Cloud alerts into Azure Sentinel using a Logic App workflow. Here are the tasks that we will complete:
+This tech note walks you through how to integrate Prisma Cloud alerts with Logic App for cloud incident response. Here are the tasks that we will complete:
 
-> * Create an access key in Prisma CLoud
-> * Create a recurring Logic App workflow to retrieve alerts in Prisma Cloud
+> * Create service principal with contributor permissions
+> * Create an HTTP trigerred Logic App workflow to receive Prisma Cloud alerts
+> * Configure Web Hook Integration in Prisma Cloud
+> * Test and verify
 
-![1-prisma-to-sentinel](./images/prisma-to-sentinel.png)
+![50-prisma-to-logic-app](./images/50-prisma-to-logic-app.png)
 
 ## Create service principal with contributor permissions
 
@@ -33,24 +35,26 @@ az ad sp create-for-rbac -n "logicapp-azure-cred" --role "contributor" --scopes 
 
 3. On the Logic Apps page, select **Add**
 
-4. In the **Create Logic App** blade, configure the following:
-* **Subscription:** Select your Azure subscription
-* **Resource group:** Select or create a resource group
-* **Type**: Consumption
-* **Logic app name:** prisma-cloud-host-sec-incidence-response
-* **Region:** Select an Azure region close to you
-* Leave other settings as default
-* Click on **Review + create**. Confirm the details that you provided, and select **Create**. Wait for the deployment to complete.
+4. In the **`Create Logic App`** blade, configure the following:
+* **`Subscription:`** Select your Azure subscription
+* **`Resource group:`** Select or create a resource group
+* **`Type:`** Consumption
+* **`Logic app name:`** prisma-cloud-host-sec-incidence-response
+* **`Region:`** Select an Azure region close to you
+* **`Enable log analytics:`** No
+* Click on **`Review + create`**. Confirm the details that you provided, and select **`Create`**. Wait for the deployment to complete.
 
-![2-logic-app](./images/logic-app-51.png)
+![51-logic-app](./images/logic-app-51.png)
 
-5. On the deployment complete blade, click on **Go to resource**
+5. On the deployment complete blade, click on **`Go to resource`**
 
-6. In the **Logic Apps Designer** blade, under **Start with a common trigger**, click on **When a HTTP request is received**.
+![55-logic-app](./images/logic-app-55.png)
+
+6. In the **`Logic Apps Designer`** blade, under **`Start with a common trigger`**, click on **`When a HTTP request is received`**.
 
 ![4-logic-app](./images/logic-app-04b.png)
 
-7. In the **When a HTTP request is received** window, in the **Request Body JSON Schema** section, enter the following schema: 
+7. In the **When a HTTP request is received** window, in the **`Request Body JSON Schema`** section, replace the text with the following schema (this is the schema for a prisma cloud compute alert): 
 ```
 {
     "type": "object",
@@ -114,96 +118,112 @@ az ad sp create-for-rbac -n "logicapp-azure-cred" --role "contributor" --scopes 
 }
 ```
 
-8. Click on **+ New Step**:
+8. Click on **`+ New Step`**
 
-9. In the Choose an operation window, in the **search box**, enter **Power off virtual machine**. From the **Actions** list, select **Power off virtual machine**.
+![56-logic-app](./images/logic-app-56.png)
 
-![52-logic-app](./images/logic-app-52.png)
+9. In the **`Choose an operation`** window, in the **`search box`**, enter **`Initialize variable`**. From the **`Actions`** list, select **`Initialize variable`**
 
-10. In the **Azure VM** window, Click on **Connect with service principal**
+![61-logic-app](./images/logic-app-61.png)
 
-![53-logic-app](./images/logic-app-53.png)
+10. In the **`Initialize variable`** window, configure the following:
+* **Name**: **`host`**
+* **Type**: **`String`**
+* **Value**: **`Dynamic content`** → **`host`**
 
-11. In the **Azure VM** window, configure the following:
+![62-logic-app](./images/logic-app-62.png)
+
+11. Click on **`+ New Step`**
+
+12. In the **`Choose an operation`** window, in the **`search box`**, enter **`Initialize variable`**. From the **`Actions`** list, select **`Initialize variable`**
+
+![63-logic-app](./images/logic-app-63.png)
+
+13. In the **`Initialize variable`** window, configure the following:
+* **Name**: **`vmname`**
+* **Type**: **`String`**
+* **Value**: **`Expression`** → **`split(variables('host'),'.')[0]`**
+
+![64-logic-app](./images/logic-app-64.png)
+
+14. Click on **`+ New Step`**
+
+15. In the **`Choose an operation`** window, in the **`search box`**, enter **`Condition`**. From the **`Actions`** list, select **`Condition`**
+
+![65-logic-app](./images/logic-app-65.png)
+
+16. In the **`Condition`** window, configure the following: **`host`** (Dynamic content) is not equal to **`null`**
+
+![66-logic-app](./images/logic-app-66.png)
+
+17. In the **`True`** section, click on **`Add an action`**
+
+![67-logic-app](./images/logic-app-67.png)
+
+18. In the **`Choose an operation`** window, in the **`search box`**, enter **`Power off virtual machine`**. From the **`Actions`** list, select **`Power off virtual machine`**.
+
+![68-logic-app](./images/logic-app-68.png)
+
+19. In the **Azure VM** window, Click on **Connect with service principal**
+
+![69-logic-app](./images/logic-app-69.png)
+
+20. In the **Azure VM** window, configure the following:
 * **Connection name**: Logic App Azure Connection
 * **Client ID**: The value of the **`clientId`** from earlier
 * **Client Secret**: The value of the **`clientSecret`** from earlier
 * **Tenant**: The value of the **`tenantId`** from earlier
 * Click on **`Create`**
 
-12. In the **Power off virtual machine** window, configure the following:
+![70-logic-app](./images/logic-app-70.png)
+
+21. In the **Power off virtual machine** window, configure the following:
 * **Subscription Id**: Select your subscription
 * **Resource Group**: Select the resource group
-* **Virtual Machine**: Custom value -> host
+* **Virtual Machine**: **`Custom value`** → **`Dynamic content`** → **`vmname`**
 
+![71-logic-app](./images/logic-app-71.png)
 
+22. Click on **`Save`** in the top left corner
 
-* **JSON Request body**: Click inside the box so that the dynamic content list appears. In the dynamic content list, search for **Body** and select **Body**.
+![72-logic-app](./images/logic-app-72.png)
 
-![18-logic-app](./images/logic-app-18b.png)
+23. Your workflow should look similar to this:
 
-* **Custom Log Name**: prisma_cloud_alerts
+![73-logic-app](./images/logic-app-73.png)
 
-12. In the top left corner, click on **Save**. You can rename each step to describe them further as I've done in the screenshot below.
+24. Click on **When a HTTP request is received**. Copy and make a note of the webhook URL. YOu will need this when configuring the integration in Prisma Cloud.
 
-![20-logic-app](./images/logic-app-20b.png)
+![74-logic-app](./images/logic-app-74.png)
 
-13. Click on **When a HTTP request is received** and copy and make a note of the webhook URL.
-
-![20-logic-app](./images/logic-app-20c.png)
 
 ### Configure Web Hook Integration in Prisma Cloud
-1. Log into the Prisma Cloud console and go to **`Manage`** → **`Alerts`** → **`Manage`** → **`Add profile`**. In the **`Create new profile`** window, configure the following:
-* **`Name`**: custom-webhook
+1. Log into the Prisma Cloud console and go to **`Manage`** → **`Alerts`** → **`Manage`** → **`Add profile`**. 
+
+![75-logic-app](./images/logic-app-75.png)
+
+2. In the **`Create new profile`** window, configure the following:
+* **`Name`**: IR-webhook
 * **`Provider`**: webhook
 * **`Incoming webhook URL`**: Enter your webhook URL
 * **`Alert Triggers`**: Select **`Host runtime`** 
 * Click **`Save`**
 
-![1-prisma-cloud-integration](./images/prisma-cloud-webhook-int.png)
+![76-logic-app](./images/logic-app-76.png)
 
-2. Click on **Test** to test the integration. Then click on **Save**.
 
-![2-prisma-cloud-integration-test](./images/prisma-cloud-integration-test.png)
+### Test and verify
 
-3. Create Alert rule in Prisma Cloud. Go to **Alerts** → **Alert Rules** → **+ Add New**. In the **Select Alert Rule Type** window, click on **Run**
+1. To test, initiate an incident on a protected Azure host in the subscription. In the example below, I'm running a process from a temporary location which I have a policy to prevent that. After a few seconds, my connection closed because the incident triggered the logic app which powered off the VM.
 
-![3-prisma-cloud-alert-rule](./images/prisma-cloud-alert-rule.png)
+![77-logic-app](./images/logic-app-77.png)
 
-![3b-prisma-cloud-alert-rule](./images/prisma-cloud-alert-rule-b.png)
+2. In Azure - in the **`Overview`** pane of the logic app, you should see a successful workflow run as shown below:
 
-4. In the **Add Alert Rule** window, configure the following:
-* **Alert Rule Name**: azure-sentinel
-* Click **Next**
+![78-logic-app](./images/logic-app-78.png)
 
-![4-prisma-cloud-alert](./images/prisma-cloud-alert-1.png)
+3. Click on the successful run and review the details of the actions that happened.
 
-* **Account Groups**: Default Account Group
-* Click **Next**
+![79-logic-app](./images/logic-app-79.png)
 
-![4-prisma-cloud-alert](./images/prisma-cloud-alert-2.png)
 
-* Select all policies
-* Click **Next**
-
-![4-prisma-cloud-alert](./images/prisma-cloud-alert-3.png)
-
-* Enable Webhook
-* Select the webhook channel
-* Click **Save**
-
-![4-prisma-cloud-alert](./images/prisma-cloud-alert-4.png)
-
-5. Verify that the alerts are shown in Log Analytics, under **Custom Logs**
-
-![4-logic-app](./images/log-analytics-b.png)
-
-You can also review the new alerts being processed by Logic Apps
-
-![1-logic-app](./images/logic-app-01b.png)
-
-6. Verify that the alerts are shown in Azure Sentinel
-
-![5-logic-app](./images/azure-sentinel-b.png)
-
-## Next steps
