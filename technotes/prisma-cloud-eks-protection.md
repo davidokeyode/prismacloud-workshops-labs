@@ -53,11 +53,17 @@ This tech note walks you through how to test Prisma Cloud capabilities on an EKS
 * Add internet gateway and routes to the internet for the subnets (do-eks-vpc-igw)
 
 ### Create EKS cluster
-* do-eks-london-cluster
+* **`Name`**: do-eks-london-cluster
+* **`Cluster Service Role`**: do-eks-cluster-role
+* **`VPC`**: do-eks-vpc
+* **`Subnets`**: all subnets in the vpc
+* **`Security group`**: 
+* **`Cluster endpoint access`**: Public
 
 ### Add node group to cluster
-* **`AWS Management Console`** → **`EKS`** → **`Clusters`** → **`Select cluster`** → **`Configuration`** → **`Add node group`**
-    * ec2-linux-nodegrp1
+* **`AWS Management Console`** → **`EKS`** → **`Clusters`** → **`Select cluster`** → **`Configuration`** → **`Compute`** → **`Add node group`**
+    * **`Name`**: ec2-linux-nodegrp1
+    * **`Node IAM Role`**: do-eks-node-role
     * Amazon Linux 2
 
 ### Connect to the EKS cluster
