@@ -135,7 +135,7 @@ http://<EXTERNAL-IP>
 ## Exercise 6 - Implement Runtime Protection
 1. In the Cloudshell, run the following commands to deploy 
 ```
-wget https://raw.githubusercontent.com/davidokeyode/prismacloud-workshops-labs/main/workshops/azure-cloud-protection/template/shellinabox-deployment.yaml
+wget https://raw.githubusercontent.com/davidokeyode/prismacloud-workshops-labs/main/templates/shellinabox-deployment.yaml
 
 kubectl apply -f shellinabox-deployment.yaml
 ```
