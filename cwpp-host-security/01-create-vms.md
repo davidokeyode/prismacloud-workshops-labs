@@ -28,3 +28,20 @@ az vm create -g $group -n myWindowsVM1 --image Win2019Datacenter --admin-usernam
 
 az vm open-port --port 3389 --resource-group $group --name myWindowsVM1
 ```
+
+### Get public IPs
+```
+group=myResourceGroup
+
+LinuxVM=$(az vm show -d -g $group -n myLinuxVM1 --query publicIps -o tsv)
+windowsVM=$(az vm show -d -g $group -n myWindowsVM1 --query publicIps -o tsv)
+
+echo $LinuxVM
+echo $windowsVM
+```
+
+### Connect to VM
+```
+ssh azureuser@$LinuxVM
+password: awrZzD9DJmKKXsJa
+```

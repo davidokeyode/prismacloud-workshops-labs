@@ -2,25 +2,62 @@
 https://app2.prismacloud.io
 
 
-Compute -> Manage -> Defenders -> Deploy -> Defenders
-Deployment method: Single Defender
-Choose the Defender type: 
-    Host Defender - Linux
+
     Host Defender - Windows
 
 Assign globally unique names to Hosts: On
 
 
-2. **Add custom script extension to install IIS using Azure CLI**
+### Create deployment script file for Linux
+* Compute -> Manage -> Defenders -> Deploy -> Defenders
+* Deployment method: Single Defender
+* Choose the Defender type: 
+  * Host Defender - Linux
+  * Copy script
+
+### Copy Linux script to install file
 ```
-az vm extension set -n CustomScriptExtension --publisher Microsoft.Compute --vm-name myWindowsVM1 -g $group --version 1.8 --protected-settings '{"commandToExecute":"powershell Add-WindowsFeature Web-Server; powershell Add-Content -Path \"C:\\inetpub\\wwwroot\\Default.htm\" -Value $($env:computername)"}'
+Storage -> dostoresec -> prismascripts -> prisma-linux-host-sec-deploy.sh
+```
+* Modify the file
+```
+#!/bin/bash
+
+<SCRIPT_GOES_HERE>
 ```
 
-## Linux
-1. **Add custom script extension to install nginx using Azure PowerShell**
+### Add custom script extension to install Prisma Cloud Host Defender for Linux
 ```
-az vm extension set -g $group --vm-name myLinuxVM1 --name customScript --publisher Microsoft.Azure.Extensions --version 2.1 --settings '{"fileUris":["https://raw.githubusercontent.com/MicrosoftDocs/mslearn-welcome-to-azure/master/configure-nginx.sh"]}' --protected-settings '{"commandToExecute": "./configure-nginx.sh"}'
+group=myResourceGroup
+
+az vm extension set -g $group --vm-name myLinuxVM1 --name prisma-host-sec-deploy --publisher Microsoft.Azure.Extensions --version 2.1 --settings '{"fileUris":["https://dostoresec.blob.core.windows.net/prismascripts/prisma-linux-host-sec-deploy.sh"]}' --protected-settings '{"commandToExecute": "./prisma-linux-host-sec-deploy.sh"}'
 ```
 
 
+### Create deployment script file for Linux
+* Compute -> Manage -> Defenders -> Deploy -> Defenders
+* Deployment method: Single Defender
+* Choose the Defender type: 
+  * Host Defender - Windows
+  * Copy script
 
+
+### Copy windows script to install file
+```
+Storage -> dostoresec -> prismascripts -> prisma-windows-host-sec-deploy.ps1
+```
+* Modify the file
+```
+<SCRIPT_GOES_HERE>
+```
+
+### Add custom script extension to install Prisma Cloud Host Defender for Windows
+```
+group=myResourceGroup
+
+az vm extension set -n CustomScriptExtension --publisher Microsoft.Compute --vm-name myWindowsVM1 -g $group --version 1.8 --settings '{"fileUris":["https://dostoresec.blob.core.windows.net/prismascripts/defender.ps1"]}' --protected-settings '{"commandToExecute": "powershell ./defender.ps1 -type serverWindows -consoleCN us-east1.cloud.twistlock.com -install"}'
+```
+
+
+### Enforce using Azure Policy (DeployIfNotExists)
+* https://github.com/Azure/azure-policy/blob/master/samples/Compute/deploy-oms-vm-extension-windows-vm/azurepolicy.rules.json
