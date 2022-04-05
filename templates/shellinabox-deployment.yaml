@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shellinabox-deployment
+spec:
+  selector:
+    matchLabels:
+      app: shellinabox
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: shellinabox
+    spec:
+      containers:
+      - name: shellinabox
+        image: sspreitzer/shellinabox:latest
+        ports:
+        - containerPort: 4200

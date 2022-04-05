@@ -62,6 +62,64 @@ kubectl get service, pod, deployment -n cortex-xdr
 
 
 
+## Azure 
+
+1. Azure AD authentication logs and audit logs
+
+* https://docs.paloaltonetworks.com/cortex/cortex-xdr/cortex-xdr-pro-admin/external-data-ingestion/ingest-authentication-logs-and-data/ingest-authentication-logs-and-data-from-azure-ad.html
+
+* Directory.Read.All and AuditLog.Read.All
+
+* Requires premium
+
+
+
+2. Azure 
+
+* https://docs.paloaltonetworks.com/cortex/cortex-xdr/cortex-xdr-pro-admin/external-data-ingestion/ingest-authentication-logs-and-data/ingest-audit-logs-from-microsoft-azure-event-hub.html
+
+
+3. Dataset
+* Whatever you ingest will be put into its own data set
+* Data management --> Data set management --> msft_azure_ad_audit_raw -> right click --> view schema
+
+** XQL
+- Write queries
+- Build widgets
+
+
+** some logs that we wont send anywhere else but to XDR (enhanced application logs.. dhcp, ntlm, kerberos, SSL)
+- Create XQL query -> Timing -> Create an incident -> 
+- Correlation rules.
+- Configure notifications in XDR
+
+
+** Stealing best use cases for a SIEM.. not replacing a SIEM
+- Correlation rules
+
+
+
+Investigatin -> Query builder -> XQL search
+dataset = msft_azure_ad_audit_raw
+
+dataset = msft_azure_ad_audit_raw filter
+
+dataset = msft_azure_ad_audit_raw | filter | fields 
+
+
+** Detection rules = looks at a single event (Rules  -> BIOC).. check the behavior 
+	** Analytics BIOC = built-in correlation rules = Filter "Azure" in name (ML rules --> Looks for suspicious behaviours as part of the events)
+** Correlation rules =  time based events (Rules  -> Correlations)
+
+** No built in correlation rules out of the box
+
+
+
+
+
+
+
+
 
 code shellinabox-deployment.yaml
 
