@@ -41,7 +41,7 @@ az ad sp create-for-rbac -n "prismacloud-compute-azure-cred" --role "contributor
 
 In this exercise, we will add the credential that was created to Prisma Cloud.
 
-1. Open the Prisma Cloud console and go to  **`Compute`** → **`Manage`** → **`Authentication`** → **`Credentials Store`**
+1. Open the Prisma Cloud console and go to  **`Manage`** → **`Authentication`** → **`Credentials Store`**
 
 2. Click **`Add Credential`** and configure the following:
 * **Name**: Azure - Prisma Cloud Compute Role
@@ -54,7 +54,7 @@ In this exercise, we will add the credential that was created to Prisma Cloud.
 
 ## Exercise 3: Configure cloud discovery in Prisma Cloud
 
-1. Open the Prisma Cloud console and go to **`Compute`** → **`Defend`** → **`Compliance`** → **`Cloud platforms`** → **`Add account`** → Select **`Azure - Prisma Cloud Compute Role`** → Click **`Add`**
+1. Open the Prisma Cloud console and go to **`Defend`** → **`Compliance`** → **`Cloud platforms`** → **`Add account`** → Select **`Azure - Prisma Cloud Compute Role`** → Click **`Add`**
 
 ![compute-discovery](../images/6-cloud-disc.png)
 
@@ -79,7 +79,7 @@ In this exercise, we will review the results of cloud discovery in Prisma Cloud
 
 
 ## Exercise 5 - Troubleshooting and Alerting Cloud Discovery
-1. In the Prisma Cloud console, go to **`Compute`** → **`Manage`** → **`View Logs`** → **`Console`** → Filter for **`scanner.go`** and/or **`client_aws.go`**
+1. In the Prisma Cloud console, go to **`Manage`** → **`View Logs`** → **`Console`** → Filter for **`scanner.go`** and/or **`client_aws.go`**
 
 2. An alert profile can also be configured to notify when new cloud native resources are discovered in your Azure subscriptions so that you can inspect and secure them with Prisma Cloud. Cloud discovery alerts are available on the email channel only.
 * **`Manage`** → **`Alerts`** → **`Manage`** → **`Add profile`**

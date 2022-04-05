@@ -54,4 +54,4 @@ To use the capabilities of Prisma Cloud, we need two main pieces of information.
 > * [Prisma Cloud Subject Alternative Names](https://docs.paloaltonetworks.com/prisma/prisma-cloud/21-04/prisma-cloud-compute-edition-admin/configure/subject_alternative_names.html)
 
 ## Proceed to the next lesson:
-> [Prepare Azure DevOps Services](3-pcce-prepare-azdevops-services.md) 
+> [Prepare Azure DevOps Services](4-jira-integration-cwpp.md) 

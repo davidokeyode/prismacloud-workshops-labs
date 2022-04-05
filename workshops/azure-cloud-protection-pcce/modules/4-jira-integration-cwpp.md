@@ -36,7 +36,7 @@ In the previous module, you integrated your JIRA project with Prisma Cloud (CSPM
 >* In order to complete the JIRA integration process with Prisma Cloud (Compute), we need to setup the token that we created earlier.
 
 1. Open a web browser and go to your Prisma Cloud console 
-2. In the left hand menu, click on **`Compute`** → **`Authentication`** → **`Credentials store`** → **`+ Add credential`**
+2. In the left hand menu, click on **`Manage`** → **`Authentication`** → **`Credentials store`** → **`+ Add credential`**
 
 ![jira-products](../images/4b-prisma-cwpp-jira-cred.png)
 
@@ -55,7 +55,7 @@ In the previous module, you integrated your JIRA project with Prisma Cloud (CSPM
 >* In this exercise, we will configure the JIRA integration, using the components that we setup earlier.
 
 1. Open a web browser and go to your Prisma Cloud console 
-2. In the left hand menu, click on **`Compute`** → **`Alerts`** → **`Manage`** → **`+ Add profile`**
+2. In the left hand menu, click on **`Manage`** → **`Alerts`** → **`Manage`** → **`+ Add profile`**
 
 ![jira-products](../images/4b-prisma-cwpp-add-profile.png)
 
@@ -87,4 +87,4 @@ In this module, you completed the following:
 >* Added JIRA alert profile in Prisma Cloud
 
 In the next module, you will review and remediate security risks and compliance violations with Prisma Cloud. Click here to proceed to the next module:
-> [Review and remediate issues with Prisma Cloud](5-respond-and-remediate.md)
+> [Review and remediate issues with Prisma Cloud](5-o365-email-integration-cwpp.md)

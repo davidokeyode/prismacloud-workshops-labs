@@ -16,8 +16,8 @@ In the previous lessons, you implemented some of the Cloud Security Posture Mana
 
 ## Exercise 1 - Obtain the twistCLI Download URL
 
-1. Log into the Prisma Cloud Console and obtain the twistCLI download URL from the following location: **`Manage`** → **`System`** → **`Downloads`** → Copy the URL for the twistcli tool (Linux platform)
-* Make a note of the copied download command
+1. Log into the Prisma Cloud Console and obtain the twistCLI download URL from the following location: **`Manage`** → **`System`** → **`Utilities`** → Copy the URL for the twistcli tool (Linux platform)
+* Make a note of the copied download command. You will need this later.
 
 ![twistcli-download](../images/6-twistcli-download.png)
 
@@ -128,7 +128,7 @@ TWISTLOCK_PASSWORD=<PRISMA_CLOUD_USER_PASSWORD>
 * **`Monitor`** → **`Vulnerabilities`** → **`Images`** → **`CI`**
 
 6. Specify if twistCLI scans will be saved in the console.
-* **`System`** → **`Scan`** → **`CI scan results`**
+* **`Manage`** → **`System`** → **`Scan`** → **`CI scan results`**
 
 7. Define collections and tags that can be used for filtering and policy assignment.
 * **`Manage`** → **`Collections and Tags`**
