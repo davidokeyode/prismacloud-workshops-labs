@@ -20,7 +20,7 @@
             "metadata": {
                 "description": "Provide the version of Kubernetes to deploy"
             },
-            "defaultValue": "1.21.9",
+            "defaultValue": "1.23.8",
             "allowedValues": [
                 "1.22.11",
                 "1.23.5",
