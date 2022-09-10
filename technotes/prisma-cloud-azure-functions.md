@@ -1,6 +1,16 @@
 
 
 
+```
+Create new project called functionapp
+
+Generate git repo credential
+
+git clone https://CharisCloud098@dev.azure.com/CharisCloud098/functionapp/_git/functionapp
+
+cd functionapp
+```
+
 ### Create storage account and container
 ```
 random=$RANDOM
@@ -17,7 +27,7 @@ az storage container create --account-name $storage --name functionprojects --au
 
 ### Create function app
 ```
-funcapp=funcapp$RANDOM
+funcapp=funcapp$random
 funcversion=3
 pythonversion=3.7
 
@@ -26,12 +36,14 @@ az functionapp create --name $funcapp --storage-account $storage --consumption-p
 
 ### Create python function project (CloudShell)
 ```
+cd functionapp
+
 func init PythonFunctionProj --python
 cd PythonFunctionProj
 ls
 ```
 
-### Edit requirements file
+### Edit requirements file and add the following to **`azure-functions`** package
 ```
 code requirements.txt
 
@@ -55,6 +67,13 @@ import requests
 import enum34
 import jsonpickle
 import mock
+```
+
+### Push to git origin
+```
+git config --global user.name "David Okeyode"
+git config --global user.email david@xxxxxxxxxxx.com
+
 ```
 
 ### Zip the function
