@@ -83,6 +83,7 @@
         "linuxPublisher": "Canonical",
         "storageName": "[toLower(concat('azlabsa', uniqueString(subscription().subscriptionId)))]",
         "appServicePlanName": "azlab-splan",
+        "funcAppServicePlanName": "azlab-splan-func",
         "appServiceName": "[toLower(concat('azlab-app-', uniqueString(subscription().subscriptionId)))]",
         "kvName": "[toLower(concat('azlab-kv-',uniqueString(subscription().subscriptionId)))]",
         "functionName": "[toLower(concat('azlab-fa-',uniqueString(subscription().subscriptionId)))]",
@@ -413,7 +414,7 @@
             "name": "[variables('appServicePlanName')]",
             "type": "Microsoft.Web/serverfarms",
             "location": "[resourceGroup().location]",
-            "apiVersion": "2015-08-01",
+            "apiVersion": "2022-03-01",
             "sku": {
                 "name": "F1"
             },
@@ -421,6 +422,22 @@
             "tags": "[parameters('resourceTags')]",
             "properties": {
                 "name": "[variables('appServicePlanName')]",
+                "numberOfWorkers": 1
+            }
+        },
+        {
+            "name": "[variables('funcAppServicePlanName')]",
+            "type": "Microsoft.Web/serverfarms",
+            "location": "[resourceGroup().location]",
+            "apiVersion": "2022-03-01",
+            "sku": {
+                "name": "Y1",
+                "tier": "Dynamic"
+            },
+            "dependsOn": [],
+            "tags": "[parameters('resourceTags')]",
+            "properties": {
+                "name": "[variables('funcAppServicePlanName')]",
                 "numberOfWorkers": 1
             }
         },
@@ -472,15 +489,15 @@
         },
         {
             "type": "Microsoft.Web/sites",
-            "kind": "functionapp",
+            "kind": "functionapp,linux",
             "name": "[variables('functionName')]",
-            "apiVersion": "2016-08-01",
+            "apiVersion": "2022-03-01",
             "location": "[resourceGroup().location]",
             "identity": {
                 "type": "SystemAssigned"
             },
             "properties": {
-                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]",
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('funcAppServicePlanName'))]",
                 "siteConfig": {
                     "appSettings": [
                         {
@@ -497,7 +514,7 @@
                         },
                         {
                             "name": "FUNCTIONS_EXTENSION_VERSION",
-                            "value": "~2"
+                            "value": "~4"
                         },
                         {
                             "name": "WEBSITE_NODE_DEFAULT_VERSION",
@@ -511,7 +528,7 @@
                 }
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]"
+                "[resourceId('Microsoft.Web/serverfarms', variables('funcAppServicePlanName'))]"
             ],
             "tags": "[parameters('resourceTags')]"
         },
