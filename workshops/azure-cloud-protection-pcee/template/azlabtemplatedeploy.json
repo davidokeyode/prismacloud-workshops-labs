@@ -20,14 +20,14 @@
             "metadata": {
                 "description": "Provide the version of Kubernetes to deploy"
             },
-            "defaultValue": "1.27.7",
+            "defaultValue": "1.29.7",
             "allowedValues": [
-                "1.28.3",
-                "1.28.0",
-                "1.27.7",
-                "1.27.3",
-                "1.26.10",
-                "1.26.6"                
+                "1.29.6",
+                "1.29.5",
+                "1.29.4",
+                "1.30.0",
+                "1.30.1",
+                "1.30.2"                
             ]
         },
         "storageAccountType": {
@@ -65,8 +65,8 @@
     "variables": {
         "vmNameWindows": "azlab-win",
         "vmNameLinux": "azlab-linux",
-        "vmSize": "Standard_D2s_v3",
-        "vmSizeWin": "Standard_D2s_v3",
+        "vmSize": "Standard_DC2s_v3",
+        "vmSizeWin": "Standard_DC2s_v3",
         "availabilitySetName": "azlab-as",
         "vNetName": "azlab-vnet",
         "vNetAddressPrefix": "10.10.0.0/16",
